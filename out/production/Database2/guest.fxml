@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<SplitPane dividerPositions="0.36" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="490.0" prefWidth="805.0" stylesheets="@sample/DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainController">
+    <items>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+            <children>
+                <Button layoutX="2.0" layoutY="99.0" mnemonicParsing="false" onAction="#Onsale" styleClass="label-bright" text="在售房源" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="-1.0" />
+                <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="123.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="124.0" AnchorPane.topAnchor="37.0">
+                    <image>
+                        <Image url="@2.png" />
+                    </image>
+                </ImageView>
+                <Label layoutX="13.0" layoutY="20.0" styleClass="label-header" text="范德   豪斯" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="10.0">
+                    <font>
+                        <Font name="DFKai-SB" size="12.0" />
+                    </font>
+                </Label>
+            </children></AnchorPane>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" styleClass="label-bright" />
+    </items>
+</SplitPane>

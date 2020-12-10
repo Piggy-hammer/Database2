@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="200.0" prefWidth="300.0" styleClass="background" stylesheets="@sample/DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.LogController">
+    <children>
+        <Label layoutX="34.0" layoutY="67.0" text="登录名" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="40.0" />
+        <TextField fx:id="username" layoutX="167.0" layoutY="62.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="40.0" />
+        <Label layoutX="20.0" layoutY="100.0" text="密   码" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="20.0" />
+        <TextField fx:id="code" layoutX="177.0" layoutY="72.0" AnchorPane.bottomAnchor="60.0" AnchorPane.rightAnchor="15.0" />
+        <Button layoutX="56.0" layoutY="163.0" mnemonicParsing="false" onAction="#Login" text="登录" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="40.0" />
+        <Button layoutX="176.0" layoutY="168.0" mnemonicParsing="false" onAction="#Refresh" text="重置" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="40.0" />
+    </children>
+</AnchorPane>
