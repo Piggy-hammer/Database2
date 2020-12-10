@@ -43,7 +43,7 @@ public class Manager {
          */
         List<House> list = new LinkedList();
         for(int inte = 0; inte < 10; inte++){
-            list.add(new House("huxing",234,"@yue.png","SAAAAAAAA"));
+            list.add(new House("huxing",234,"@yue.png","SAAifsgoihguioashdguhwdosiughawoushgouihAAAAAA"));
         }
         return list;
     }
