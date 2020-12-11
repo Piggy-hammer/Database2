@@ -43,8 +43,40 @@ public class Manager {
          */
         List<House> list = new LinkedList();
         for(int inte = 0; inte < 10; inte++){
-            list.add(new House("huxing",234,"@yue.png","SAAifsgoihguioashdguhwdosiughawoushgouihAAAAAA"));
+            list.add(new House("huxing",234,"/2f9dd9642431bbef883d72313dd8aed4.jpg","SAAifsgoihguioashdguhwdosiughawoushgouihAAAAAA"));
         }
         return list;
     }
+
+    public List<House> getHolder(String user) throws IOException {
+        /*
+        执行对所有房东是user的房屋的查询，以List<House>返回
+         */
+        List<House> list = new LinkedList();
+        for(int inte = 0; inte < 10; inte++){
+            list.add(new House("huxing",234,"/2f9dd9642431bbef883d72313dd8aed4.jpg","SAAifsgoihguioashdguhwdosiughawoushgouihAAAAAA"));
+        }
+        return list;
+    }
+
+    public void rent(String loc, String user){
+        /*
+        用户名为user的客户，租用了loc号房产
+         */
+        System.out.println(user +"fsgag"+loc);
+
+    }
+
+    public void delete(String loca, String holder) {
+        /*
+        用户名为holder的客户，删除了loca号房产
+         */
+    }
+
+    public void insert (House house, String holder) {
+        /*
+        用户名为holder的客户，添加了loca号房产，holder是房东
+         */
+    }
+
 }

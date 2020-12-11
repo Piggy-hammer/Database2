@@ -13,10 +13,12 @@ public class MainController {
     static Stage stage;
     static Manager manager;
     static SplitPane splitPane;
+    static String user ;
 
-    public void init(Stage stageIn, Manager managerIn, int authority) throws IOException {
+    public void init(Stage stageIn, Manager managerIn, int authority,String user) throws IOException {
         stage = stageIn;
         manager = managerIn;
+        this.user = user;
         FXMLLoader loader;
         if (authority == 2) {
              loader = new FXMLLoader((Main.class.getResource("/manager.fxml")));
@@ -34,6 +36,16 @@ public class MainController {
     @FXML
     private void Onsale() throws IOException {
         OnsaleController onsaleController = new OnsaleController();
-        onsaleController.init(splitPane,manager);
+        onsaleController.init(splitPane,manager,user);
+    }
+
+    @FXML
+    private void Add() throws IOException {
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("/holder.fxml"));
+        System.out.println(loader.getLocation());
+        AnchorPane anchorPane = loader.load();
+        splitPane.getItems().set(1, anchorPane);
+        HolderController addController = loader.getController();
+        addController.init(manager,user);
     }
 }

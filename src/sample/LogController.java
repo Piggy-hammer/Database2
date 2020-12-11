@@ -27,7 +27,7 @@ public class LogController {
         if(authority != 0){
             MainController mainController = new MainController();
             stage.setTitle("范德豪斯  我们用爱守护您家的温暖");
-            mainController.init(stage,manager,authority);
+            mainController.init(stage,manager,authority,username.getText());
         }else{
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");

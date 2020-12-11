@@ -204,3 +204,6 @@
 .grid-pane-row {
     -fx-height:100;
 }
+.split-menu-button .arrow-button {
+    -fx-background-color: white;
+}

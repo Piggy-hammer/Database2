@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
@@ -12,21 +13,24 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 
+import java.beans.EventHandler;
 import java.io.IOException;
 import java.util.List;
 
 public class OnsaleController {
     static Manager manager;
     static SplitPane splitPane;
+    static String user;
     
     public OnsaleController(){
     }
-    public void init(SplitPane tPane, Manager manager) throws IOException {
+    public void init(SplitPane tPane, Manager manager, String user) throws IOException {
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("/onsale.fxml"));
         System.out.println(loader.getLocation());
         AnchorPane anchorPane = loader.load();
         splitPane = tPane;
         this.manager = manager;
+        this.user = user;
         splitPane.getItems().set(1,anchorPane);
     }
 
@@ -40,10 +44,14 @@ public class OnsaleController {
         int i = 1;
         for (House e: list
              ) {
-            Image image = new Image("/2f9dd9642431bbef883d72313dd8aed4.jpg");
+            Image image = new Image(e.Pic);
             ImageView imageView = new ImageView(image);
             Label rent = new Label();
             Text Loc = new Text();
+            Button button = new Button();
+            button.setText("立即入住");
+            button.getStyleClass().add("labe-x");
+            button.setOnMouseClicked(event -> {manager.rent(e.Loca,user);});
             Loc.setText(e.Loca);
             Loc.setWrappingWidth(120);
             Loc.setFont(Font.font("system",15));
@@ -55,6 +63,7 @@ public class OnsaleController {
             gridPane.add(imageView,0,i);
             gridPane.add(rent,1,i);
             gridPane.add(Loc,2,i);
+            gridPane.add(button,3,i);
             i++;
         }
     }
