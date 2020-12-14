@@ -6,7 +6,7 @@
     -fx-font-size: 11pt;
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: white;
-    -fx-opacity: 0.85;
+     -fx-opacity: 0.85;
 }
 
 .text-area{
@@ -40,9 +40,8 @@
 }
 
 .label-x {
-    -fx-font-size: 30pt;
-    -fx-font-family: "System";
-    -fx-front-style: "Bold";
+    -fx-font-size: 11pt;
+    -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: white;
     -fx-opacity: 1;
 }
@@ -114,12 +113,11 @@
 }
 
 .text-field{
-    -fx-background-color:black;
+    -fx-background-color:derive(#1d1d1d,20%);
     -fx-font-size: 11pt;
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: white;
 }
-
 
 /*
  * Metro style Push Button
@@ -199,11 +197,4 @@
 }
 .grid-pane {
     -fx-background-color: black;
-
-}
-.grid-pane-row {
-    -fx-height:100;
-}
-.split-menu-button .arrow-button {
-    -fx-background-color: white;
 }

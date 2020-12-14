@@ -1,9 +1,7 @@
 package sample;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -17,11 +15,19 @@ public class Manager {
             e.printStackTrace();
             System.out.println("fail");
         }
-        String url ="jdbc:sqlserver://127.0.0.1:1433;DatabaseName=Studentman;user=sa;password=123456";
+        String password = "694907182";//自己的密码
+        String url ="jdbc:sqlserver://127.0.0.1:1433;DatabaseName=HouseManager;user=sa;";
+        url+=password;
         try {
             Connection connection = DriverManager.getConnection(url);
             /*如果需要初始化数据库，在这里执行
              */
+            String sql = "if exists (select * from sysobjects where " +
+                    "objectproperty(object_id('HouseManager'),'istable') = 1)";
+            Statement statement;
+            statement = connection.createStatement();
+            ResultSet rSet = statement.executeQuery(sql);
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
