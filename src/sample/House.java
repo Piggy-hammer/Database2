@@ -8,7 +8,7 @@ public class House {
     String huXing;
     int rent;
     String Pic;
-    String Loca;
+    String Loca;//primary key
 
 
     public House(String huXing,int rent,String Pic,String Loc) throws IOException {
