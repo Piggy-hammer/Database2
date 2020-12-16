@@ -1,5 +1,9 @@
 package sample;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+
 import java.io.IOException;
 import java.sql.*;
 import java.util.LinkedList;
@@ -224,7 +228,7 @@ public class Manager {
                 House house = new House(structure, price, picture, location,size);
                 list.add(house);
             }
-        } catch (SQLException | IOException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return list;
@@ -244,9 +248,28 @@ public class Manager {
                 House house = new House(structure, price, picture, location,size);
                 list.add(house);
             }
-        } catch (SQLException | IOException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return list;
+    }
+
+    public ObservableList<HouseInformation> HouseSearch(String Locztion, String stucture, String size, String price, String Owner) {
+        /*
+        返回符合上诉条件的房源信息
+        其中 structure以“平层”的形式给出； size以“<100”或“100~150”或具体值形式给出； price以“<2000”或“2000~4000”或具体值形式给出
+        具体形式参见 AdministratorController
+         */
+        ObservableList<HouseInformation> list = FXCollections.observableArrayList();
+        for (int t = 0; t<100; t++)
+        list.add(new HouseInformation(RString(10),RString(15),(int)(Math.random()*100),(int)(Math.random()*9999),RString(20)));
+        return list;
+    }
+
+    public String RString(int n){
+        String str="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        String o = "";
+        for (int t = 0; t<n; t++) o += str.charAt((int)(Math.random()*61));
+        return o;
     }
 }

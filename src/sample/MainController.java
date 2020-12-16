@@ -22,15 +22,19 @@ public class MainController {
         FXMLLoader loader;
         if (authority == 2) {
              loader = new FXMLLoader((Main.class.getResource("/manager.fxml")));
-
+            TabPane pane = loader.load();
+            AdministratorController administratorController = loader.getController();
+            administratorController.init(manager);
+            Scene sceneMain = new Scene(pane);
+            stage.setScene(sceneMain);
+            stage.centerOnScreen();
         }else {
              loader = new FXMLLoader((Main.class.getResource("/guest.fxml")));
-
+            splitPane = loader.load();
+            Scene sceneMain = new Scene(splitPane);
+            stage.setScene(sceneMain);
+            stage.centerOnScreen();
         }
-        splitPane = loader.load();
-        Scene sceneMain = new Scene(splitPane);
-        stage.setScene(sceneMain);
-        stage.centerOnScreen();
     }
 
     @FXML

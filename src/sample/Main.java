@@ -3,14 +3,11 @@ package sample;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.SplitPane;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-    private Manager manager;
-
     @Override
     public void start(Stage primaryStage) throws Exception{
         primaryStage.setTitle("欢迎使用 范德豪斯");

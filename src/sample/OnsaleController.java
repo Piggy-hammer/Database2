@@ -1,6 +1,5 @@
 package sample;
 
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
@@ -11,9 +10,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-
-
-import java.beans.EventHandler;
 import java.io.IOException;
 import java.util.List;
 

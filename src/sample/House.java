@@ -1,17 +1,16 @@
 package sample;
-import java.io.IOException;
 
 public class House {
 
     String huXing;
     int rent;
     String Pic;
-    String Loca;//primary key
+    String Loca;
     int Size;
 
 
-    public House(String huXing,int rent,String Pic,String Loc,int Size) throws IOException {
-        this.huXing = huXing;
+    public House(String huXing,int rent,String Pic,String Loc,int Size) {
+            this.huXing = huXing;
         this.rent = rent;
         this.Pic = Pic;
         this.Loca = Loc;
