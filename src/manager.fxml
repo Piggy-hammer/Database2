@@ -8,30 +8,47 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<SplitPane dividerPositions="0.36" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="490.0" prefWidth="800.0" stylesheets="@sample/DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-  <items>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-         <children>
-            <Button layoutX="2.0" layoutY="99.0" mnemonicParsing="false" styleClass="label-bright" text="在售房源" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="-1.0" />
-            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="123.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="121.0" AnchorPane.topAnchor="37.0">
-               <image>
-                  <Image url="@../../DataBase/src/2.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="13.0" layoutY="20.0" styleClass="label-header" text="范德   豪斯" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="10.0">
-               <font>
-                  <Font name="DFKai-SB" size="12.0" />
-               </font>
-            </Label>
-            <Button layoutX="101.0" layoutY="144.0" mnemonicParsing="false" styleClass="label-bright" text="我的房屋" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="-1.0" />
-         </children></AnchorPane>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" styleClass="background">
-         <children>
-            <Label layoutX="463.0" layoutY="468.0" opacity="0.67" styleClass="label-tips" text="您以管理员身份登录" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="2.0">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Label>
-         </children></AnchorPane>
-  </items>
-</SplitPane>
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../../DataBase/src/sample/DarkTheme.css" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+  <tabs>
+    <Tab text="房源管理">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <TableView layoutX="89.0" layoutY="53.0" prefHeight="371.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <columns>
+                      <TableColumn prefWidth="75.0" text="C1" />
+                      <TableColumn prefWidth="75.0" text="C2" />
+                    </columns>
+                  </TableView>
+               </children></AnchorPane>
+      </content>
+    </Tab>
+    <Tab text="用户管理">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <TableView layoutX="200.0" layoutY="98.0" prefHeight="371.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <columns>
+                      <TableColumn prefWidth="75.0" text="C1" />
+                      <TableColumn prefWidth="75.0" text="C2" />
+                    </columns>
+                  </TableView>
+               </children></AnchorPane>
+      </content>
+    </Tab>
+      <Tab text="交易管理">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <TableView layoutX="72.0" layoutY="108.0" prefHeight="371.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <columns>
+                      <TableColumn prefWidth="75.0" text="C1" />
+                      <TableColumn prefWidth="75.0" text="C2" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+  </tabs>
+</TabPane>
