@@ -15,7 +15,7 @@
             <Button layoutX="2.0" layoutY="99.0" mnemonicParsing="false" styleClass="label-bright" text="在售房源" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="-1.0" />
             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="123.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="121.0" AnchorPane.topAnchor="37.0">
                <image>
-                  <Image url="@../../../Desktop/2.png" />
+                  <Image url="@../../DataBase/src/2.png" />
                </image>
             </ImageView>
             <Label layoutX="13.0" layoutY="20.0" styleClass="label-header" text="范德   豪斯" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="10.0">
