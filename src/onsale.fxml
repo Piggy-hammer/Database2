@@ -13,11 +13,11 @@
          <image>
             <Image url="@Ping.png" />
          </image></ImageView>
-      <ImageView fitHeight="490.0" fitWidth="171.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="171.0" AnchorPane.topAnchor="0.0">
+      <ImageView fitHeight="490.0" fitWidth="171.0" onMouseClicked="#Yue" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="171.0" AnchorPane.topAnchor="0.0">
          <image>
             <Image url="@yue.png" />
          </image></ImageView>
-      <ImageView fitHeight="490.0" fitWidth="171.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0">
+      <ImageView fitHeight="490.0" fitWidth="171.0" onMouseClicked="#Shu" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0">
          <image>
             <Image url="@shu.png" />
          </image>

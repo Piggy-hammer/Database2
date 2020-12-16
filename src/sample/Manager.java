@@ -91,9 +91,6 @@ public class Manager {
     }
 
     public List<House> getPing() throws IOException {
-        /*
-        执行对平层的查询，以List<House>返回
-         */
         List<House> list = new LinkedList();
         try {
             ResultSet resultSet = getHouse("pingceng");
@@ -110,10 +107,6 @@ public class Manager {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        /*
-        for (int inte = 0; inte < 10; inte++) {
-            list.add(new House("huxing", 234, "/2f9dd9642431bbef883d72313dd8aed4.jpg", "SAAifsgoihguioashdguhwdosiughawoushgouihAAAAAA"));
-        }*/
         return list;
     }
 
@@ -217,4 +210,43 @@ public class Manager {
         System.out.println("添加中发生错误");
     }
 
+    public List<House> getYue() {
+        List<House> list = new LinkedList();
+        try {
+            ResultSet resultSet = getHouse("yueceng");
+            while (resultSet.next()) {
+                String location = resultSet.getString(1);
+                int size = resultSet.getInt(2);
+                String structure = resultSet.getString(3);
+                String picture = resultSet.getString(4);
+                int price = resultSet.getInt(6);
+                System.out.println(structure+ price+ picture+ location);
+                House house = new House(structure, price, picture, location,size);
+                list.add(house);
+            }
+        } catch (SQLException | IOException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public List<House> getShu() {
+        List<House> list = new LinkedList();
+        try {
+            ResultSet resultSet = getHouse("yashu");
+            while (resultSet.next()) {
+                String location = resultSet.getString(1);
+                int size = resultSet.getInt(2);
+                String structure = resultSet.getString(3);
+                String picture = resultSet.getString(4);
+                int price = resultSet.getInt(6);
+                System.out.println(structure+ price+ picture+ location);
+                House house = new House(structure, price, picture, location,size);
+                list.add(house);
+            }
+        } catch (SQLException | IOException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
 }

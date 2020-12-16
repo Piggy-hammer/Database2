@@ -56,8 +56,8 @@ public class OnsaleController {
             Loc.setWrappingWidth(120);
             Loc.setFont(Font.font("system",15));
             Loc.setFill(Color.WHITE);
-            rent.setText("￥"+e.rent+"");
-            rent.getStyleClass().add("label-x");
+            rent.setText(e.Size+"m²"+"\n"+"￥"+e.rent);
+            rent.getStyleClass().add("label-bright");
             imageView.setFitHeight(100);
             imageView.setFitWidth(100);
             gridPane.add(imageView,0,i);
@@ -67,4 +67,72 @@ public class OnsaleController {
             i++;
         }
     }
+
+    @FXML
+    public void Yue() throws IOException {
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("/ping.fxml"));
+        ScrollPane anchorPane = loader.load();
+        splitPane.getItems().set(1,anchorPane);
+        GridPane gridPane = (GridPane)anchorPane.getContent();
+        List<House> list = manager.getYue();
+        int i = 1;
+        for (House e: list
+        ) {
+            Image image = new Image(e.Pic);
+            ImageView imageView = new ImageView(image);
+            Label rent = new Label();
+            Text Loc = new Text();
+            Button button = new Button();
+            button.setText("立即入住");
+            button.getStyleClass().add("labe-x");
+            button.setOnMouseClicked(event -> {manager.rent(e.Loca,user);});
+            Loc.setText(e.Loca);
+            Loc.setWrappingWidth(120);
+            Loc.setFont(Font.font("system",15));
+            Loc.setFill(Color.WHITE);
+            rent.setText(e.Size+"m²"+"\n"+"￥"+e.rent);
+            rent.getStyleClass().add("label-bright");
+            imageView.setFitHeight(100);
+            imageView.setFitWidth(100);
+            gridPane.add(imageView,0,i);
+            gridPane.add(rent,1,i);
+            gridPane.add(Loc,2,i);
+            gridPane.add(button,3,i);
+            i++;
+        }
+    }
+    @FXML
+    public void Shu() throws IOException {
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("/ping.fxml"));
+        ScrollPane anchorPane = loader.load();
+        splitPane.getItems().set(1,anchorPane);
+        GridPane gridPane = (GridPane)anchorPane.getContent();
+        List<House> list = manager.getShu();
+        int i = 1;
+        for (House e: list
+        ) {
+            Image image = new Image(e.Pic);
+            ImageView imageView = new ImageView(image);
+            Label rent = new Label();
+            Text Loc = new Text();
+            Button button = new Button();
+            button.setText("立即入住");
+            button.getStyleClass().add("labe-x");
+            button.setOnMouseClicked(event -> {manager.rent(e.Loca,user);});
+            Loc.setText(e.Loca);
+            Loc.setWrappingWidth(120);
+            Loc.setFont(Font.font("system",15));
+            Loc.setFill(Color.WHITE);
+            rent.setText(e.Size+"m²"+"\n"+"￥"+e.rent);
+            rent.getStyleClass().add("label-bright");
+            imageView.setFitHeight(100);
+            imageView.setFitWidth(100);
+            gridPane.add(imageView,0,i);
+            gridPane.add(rent,1,i);
+            gridPane.add(Loc,2,i);
+            gridPane.add(button,3,i);
+            i++;
+        }
+    }
+
 }

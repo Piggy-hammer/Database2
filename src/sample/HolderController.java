@@ -5,7 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.SplitPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -45,8 +44,8 @@ public class HolderController {
             Loc.setWrappingWidth(120);
             Loc.setFont(Font.font("system", 15));
             Loc.setFill(Color.WHITE);
-            rent.setText("￥" + e.rent + "");
-            rent.getStyleClass().add("label-x");
+            rent.setText(e.Size+"m²"+"\n"+"￥"+e.rent);
+            rent.getStyleClass().add("label-bright");
             imageView.setFitHeight(100);
             imageView.setFitWidth(100);
             gridPane.add(imageView, 0, i);
