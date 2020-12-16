@@ -8,18 +8,32 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../../DataBase/src/sample/DarkTheme.css" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@sample/DarkTheme.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <tabs>
     <Tab text="房源管理">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <TableView layoutX="89.0" layoutY="53.0" prefHeight="371.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView layoutX="89.0" layoutY="53.0" prefHeight="371.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="C1" />
-                      <TableColumn prefWidth="75.0" text="C2" />
+                      <TableColumn prefWidth="75.0" text="地址" />
+                      <TableColumn prefWidth="75.0" text="面积" />
+                        <TableColumn prefWidth="75.0" text="价格" />
+                        <TableColumn prefWidth="75.0" text="户主" />
                     </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
                   </TableView>
+                  <MenuButton layoutX="14.0" maxWidth="100.0" mnemonicParsing="false" prefHeight="30.0" styleClass="background" text="所有户型" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="平层" />
+                        <MenuItem mnemonicParsing="false" text="跃层" />
+                        <MenuItem mnemonicParsing="false" text="雅墅" />
+                      <MenuItem mnemonicParsing="false" text="所有户型" />
+                    </items>
+                  </MenuButton>
+                  <Button layoutX="107.0" layoutY="4.0" mnemonicParsing="false" text="刷新" AnchorPane.rightAnchor="0.0" />
                </children></AnchorPane>
       </content>
     </Tab>
@@ -40,7 +54,7 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <TableView layoutX="72.0" layoutY="108.0" prefHeight="371.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView layoutY="47.0" prefHeight="371.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
                       <TableColumn prefWidth="75.0" text="C1" />
                       <TableColumn prefWidth="75.0" text="C2" />

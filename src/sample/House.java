@@ -1,6 +1,4 @@
 package sample;
-
-import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
 
 public class House {
@@ -9,26 +7,15 @@ public class House {
     int rent;
     String Pic;
     String Loca;//primary key
+    int Size;
 
 
-    public House(String huXing,int rent,String Pic,String Loc) throws IOException {
+    public House(String huXing,int rent,String Pic,String Loc,int Size) throws IOException {
         this.huXing = huXing;
         this.rent = rent;
         this.Pic = Pic;
         this.Loca = Loc;
+        this.Size = Size;
 
     }
-
-    public String getHuXing() {
-        return huXing;
-    }
-
-    public String getPic() {
-        return Pic;
-    }
-
-    public int getRent() {
-        return rent;
-    }
-
 }

@@ -29,6 +29,8 @@ public class AddController {
     TextField Loc;
     @FXML
     TextField Pic;
+    @FXML
+    TextField Size;
 
     public void init(Manager manage,Stage stage,String user,HolderController holderController) {
         manager = manage;
@@ -70,8 +72,9 @@ public class AddController {
         String rent = Rent.getText();
         String loc = Loc.getText();
         String pic = Pic.getText();
-        if(!huxing.equals("选择户型") && isNumeric(rent) && !loc.equals("") && !pic.equals("")){
-            manager.insert(new House(huxing,Integer.parseInt(rent),pic,loc),user);
+        String size = Size.getText();
+        if(!huxing.equals("选择户型") && isNumeric(rent) && !loc.equals("") && !pic.equals("") && isNumeric(size)){
+            manager.insert(new House(huxing,Integer.parseInt(rent),pic,loc,Integer.parseInt(size)),user);
             holderController.init(manager,user);
             stage.close();
         }else {

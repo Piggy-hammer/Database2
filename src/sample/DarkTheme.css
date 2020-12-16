@@ -204,7 +204,7 @@
 }
 
 .tab-pane {
-    -fx-background-color: #e6e6e6;
+    -fx-background-color: black;
 }
 /* 修改Tab的背景颜色 */
 .tab {
@@ -213,7 +213,7 @@
 /* 修改顶栏的背景颜色 */
 .tab-pane>*.tab-header-area>*.tab-header-background
 {
-    -fx-background-color: -fx-outer-border, -fx-text-box-border, #333333;
+    -fx-background-color: -fx-outer-border, -fx-text-box-border, #1d1d1d;
 }
 /* 修改Tab中文本的颜色 */
 .tab-label {
@@ -221,11 +221,11 @@
 }
 /* 子代选择器，Tab选中的时候选择其子元素tab-label */
 .tab:selected .tab-label {
-    -fx-text-fill: #003333ff;
+    -fx-text-fill: white;
 }
 /* tab选中时设置背景颜色 */
 .tab:selected {
-    -fx-background-color: #990000ff;
+    -fx-background-color: derive(#1d1d1d,50%);
 }
 /* Tab选中的时候选中其边框并修改样式 */
 .tab-pane:focused > .tab-header-area > .headers-region > .tab:selected .focus-indicator {

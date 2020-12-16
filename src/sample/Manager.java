@@ -104,7 +104,7 @@ public class Manager {
                 String picture = resultSet.getString(4);
                 int price = resultSet.getInt(6);
                 System.out.println(structure+ price+ picture+ location);
-                House house = new House(structure, price, picture, location);
+                House house = new House(structure, price, picture, location,size);
                 list.add(house);
             }
         } catch (SQLException e) {
@@ -137,7 +137,7 @@ public class Manager {
                 String picture = resultSet.getString(4);
                 int price = resultSet.getInt(6);
                 System.out.println(structure+ price+ picture+ location);
-                House house = new House(structure, price, picture, location);
+                House house = new House(structure, price, picture, location,size);
                 list.add(house);
             }
         } catch (SQLException e) {
