@@ -3,7 +3,13 @@ package sample;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 
 public class AdministratorController {
@@ -92,7 +98,7 @@ public class AdministratorController {
     @FXML private void selectAS(){Size.setText("所有面积");}
 
     @FXML
-    private void HouseRefresh() {
+    public void HouseRefresh() {
         ObservableList<HouseInformation> list = manager.HouseSearch("所有地址",Huxing.getText(),Size.getText(),Price.getText(),"所有房东");
         FangXing.setItems(list);
 
@@ -146,12 +152,19 @@ public class AdministratorController {
     }
 
     @FXML
-    private void Fedit(){
+    private void Fedit() throws IOException {
         try {
             HouseInformation selectedItem = FangXing.getSelectionModel().getSelectedItem();
-            FXMLLoader loader = new FXMLLoader((Main.class.getResource("/editHouse.fxml")));
+            FXMLLoader loader = new FXMLLoader((Main.class.getResource("/Fedit.fxml")));
+            AnchorPane pane = loader.load();
             FeditController feditController = loader.getController();
-            feditController.init(manager,selectedItem);
+            Scene scene = new Scene(pane);
+            feditController.init(manager,selectedItem,this);
+            Stage add = new Stage();
+            add.setScene(scene);
+            add.setTitle("编辑房屋");
+            add.getIcons().add(new Image(Main.class.getResourceAsStream("/1.png")));
+            add.show();
         }catch (NullPointerException e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -162,12 +175,30 @@ public class AdministratorController {
     }
 
     @FXML
-    private void Fadd(){
-
+    private void Fadd() throws IOException {
+        FXMLLoader loader = new FXMLLoader((Main.class.getResource("/Fedit.fxml")));
+        AnchorPane pane = loader.load();
+        FeditController feditController = loader.getController();
+        Scene scene = new Scene(pane);
+        feditController.init1(manager,this);
+        Stage add = new Stage();
+        add.setScene(scene);
+        add.setTitle("添加房屋");
+        add.getIcons().add(new Image(Main.class.getResourceAsStream("/1.png")));
+        add.show();
     }
 
     @FXML
     private void Fdelete(){
-
+        try {
+            HouseInformation selectedItem = FangXing.getSelectionModel().getSelectedItem();
+            manager.delete(selectedItem.getLocation(),selectedItem.getOwner());
+        }catch (NullPointerException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("编辑目标缺失");
+            alert.setContentText("您必须选择一个目标以删除");
+            alert.showAndWait();
+        }
     }
 }

@@ -8,13 +8,13 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@sample/DarkTheme.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AdministratorController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" stylesheets="@sample/DarkTheme.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AdministratorController">
   <tabs>
     <Tab text="房源管理">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <TableView fx:id="FangXing" layoutX="89.0" layoutY="53.0" prefHeight="371.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
+                  <TableView fx:id="FangXing" layoutX="89.0" layoutY="53.0" prefHeight="371.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="62.0">
                     <columns>
                       <TableColumn fx:id="FC1" prefWidth="75.0" text="地址" />
                         <TableColumn fx:id="FC2" prefWidth="75.0" text="户型" />
@@ -26,7 +26,7 @@
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                      </columnResizePolicy>
                   </TableView>
-                  <MenuButton fx:id="Huxing" layoutX="14.0" maxWidth="100.0" mnemonicParsing="false" prefHeight="30.0" styleClass="background" text="所有户型" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="30.0">
+                  <MenuButton fx:id="Huxing" layoutX="14.0" maxWidth="100.0" mnemonicParsing="false" prefHeight="30.0" styleClass="background" text="所有户型" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="32.0">
                     <items>
                       <MenuItem mnemonicParsing="false" onAction="#selectP" text="平层" />
                         <MenuItem mnemonicParsing="false" onAction="#selectY" text="跃层" />
@@ -34,8 +34,8 @@
                       <MenuItem mnemonicParsing="false" onAction="#selectA" text="所有户型" />
                     </items>
                   </MenuButton>
-                  <Button layoutX="107.0" layoutY="4.0" maxWidth="100.0" mnemonicParsing="false" onAction="#HouseRefresh" prefHeight="30.0" prefWidth="70.0" text="刷新" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0" />
-                  <MenuButton fx:id="Size" layoutX="24.0" layoutY="10.0" maxWidth="100.0" mnemonicParsing="false" prefHeight="30.0" styleClass="background" text="所有面积" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="30.0">
+                  <Button layoutX="107.0" layoutY="4.0" maxWidth="100.0" mnemonicParsing="false" onAction="#HouseRefresh" prefHeight="30.0" prefWidth="70.0" text="刷新" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="32.0" />
+                  <MenuButton fx:id="Size" layoutX="24.0" layoutY="10.0" maxWidth="100.0" mnemonicParsing="false" prefHeight="30.0" styleClass="background" text="所有面积" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="32.0">
                      <items>
                         <MenuItem mnemonicParsing="false" onAction="#select_100" text="&lt;100" />
                         <MenuItem mnemonicParsing="false" onAction="#s100_150" text="100~150" />
@@ -44,7 +44,7 @@
                         <MenuItem mnemonicParsing="false" onAction="#selectAS" text="所有面积" />
                      </items>
                   </MenuButton>
-                  <MenuButton fx:id="Price" layoutX="34.0" layoutY="20.0" maxWidth="100.0" mnemonicParsing="false" prefHeight="30.0" styleClass="background" text="所有价格" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="30.0">
+                  <MenuButton fx:id="Price" layoutX="34.0" layoutY="20.0" maxWidth="100.0" mnemonicParsing="false" prefHeight="30.0" styleClass="background" text="所有价格" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="32.0">
                      <items>
                         <MenuItem mnemonicParsing="false" onAction="#select_2000" text="&lt;2000" />
                         <MenuItem mnemonicParsing="false" onAction="#s2000_4000" text="2000~4000" />
@@ -53,11 +53,11 @@
                         <MenuItem mnemonicParsing="false" onAction="#selectAP" text="所有价格" />
                      </items>
                   </MenuButton>
-                  <Button layoutX="484.0" layoutY="6.0" mnemonicParsing="false" onAction="#Fedit" prefHeight="30.0" prefWidth="70.0" text="编辑" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="30.0" />
-                  <Button layoutX="494.0" layoutY="16.0" mnemonicParsing="false" onAction="#Fdelete" prefHeight="30.0" prefWidth="70.0" text="删除" AnchorPane.rightAnchor="140.0" AnchorPane.topAnchor="30.0" />
-                  <Button layoutX="504.0" layoutY="26.0" mnemonicParsing="false" onAction="#Fadd" prefHeight="30.0" prefWidth="70.0" text="添加" AnchorPane.rightAnchor="210.0" AnchorPane.topAnchor="30.0" />
+                  <Button layoutX="484.0" layoutY="6.0" mnemonicParsing="false" onAction="#Fedit" prefHeight="30.0" prefWidth="70.0" text="编辑" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="32.0" />
+                  <Button layoutX="494.0" layoutY="16.0" mnemonicParsing="false" onAction="#Fdelete" prefHeight="30.0" prefWidth="70.0" text="删除" AnchorPane.rightAnchor="140.0" AnchorPane.topAnchor="32.0" />
+                  <Button layoutX="504.0" layoutY="26.0" mnemonicParsing="false" onAction="#Fadd" prefHeight="30.0" prefWidth="70.0" text="添加" AnchorPane.rightAnchor="210.0" AnchorPane.topAnchor="32.0" />
                   <TextField fx:id="Fsousuo" layoutY="37.0" prefHeight="30.0" promptText="填入您要搜索的信息" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="0.0" />
-                  <MenuButton fx:id="FsousuoT" layoutX="34.0" layoutY="20.0" maxWidth="100.0" mnemonicParsing="false" prefHeight="30.0" styleClass="background" text="搜索条件" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="0.0">
+                  <MenuButton fx:id="FsousuoT" layoutX="34.0" layoutY="20.0" maxHeight="30.0" maxWidth="100.0" mnemonicParsing="false" prefHeight="28.0" styleClass="background" text="搜索条件" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="0.0">
                      <items>
                         <MenuItem mnemonicParsing="false" onAction="#sDizhi" text="地址" />
                         <MenuItem mnemonicParsing="false" onAction="#sHuxing" text="户型" />
@@ -66,7 +66,7 @@
                         <MenuItem mnemonicParsing="false" onAction="#sOwner" text="房东" />
                      </items>
                   </MenuButton>
-                  <Button fx:id="Fsearch" layoutX="510.0" layoutY="34.0" mnemonicParsing="false" onAction="#Fsearch" prefWidth="80.0" text="搜索" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="0.0" />
+                  <Button fx:id="Fsearch" layoutX="510.0" layoutY="34.0" mnemonicParsing="false" onAction="#Fsearch" prefHeight="30.0" prefWidth="80.0" text="搜索" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="0.0" />
                </children></AnchorPane>
       </content>
     </Tab>

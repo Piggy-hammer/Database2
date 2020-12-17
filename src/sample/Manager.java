@@ -273,4 +273,7 @@ public class Manager {
         for (int t = 0; t<n; t++) o += str.charAt((int)(Math.random()*61));
         return o;
     }
+
+    public void insertF(HouseInformation houseInformation) {
+    }
 }
