@@ -2,6 +2,7 @@ package sample;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 
 
@@ -146,7 +147,18 @@ public class AdministratorController {
 
     @FXML
     private void Fedit(){
-
+        try {
+            HouseInformation selectedItem = FangXing.getSelectionModel().getSelectedItem();
+            FXMLLoader loader = new FXMLLoader((Main.class.getResource("/editHouse.fxml")));
+            FeditController feditController = loader.getController();
+            feditController.init(manager,selectedItem);
+        }catch (NullPointerException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("编辑目标缺失");
+            alert.setContentText("您必须选择一个目标以编辑");
+            alert.showAndWait();
+        }
     }
 
     @FXML

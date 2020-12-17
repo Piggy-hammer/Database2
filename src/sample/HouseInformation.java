@@ -11,12 +11,14 @@ public class HouseInformation {
     IntegerProperty Size;
     IntegerProperty Price;
     StringProperty Owner;
+    StringProperty Pic;
 
-    public HouseInformation(String location, String structure, int size, int price, String owner){
+    public HouseInformation(String location, String structure, int size, int price, String picture, String owner){
         Location = new SimpleStringProperty(location);
         Structure = new SimpleStringProperty(structure);
         Size = new SimpleIntegerProperty(size);
         Price = new SimpleIntegerProperty(price);
+        Pic = new SimpleStringProperty(picture);
         Owner = new SimpleStringProperty(owner);
     }
 
@@ -58,6 +60,14 @@ public class HouseInformation {
 
     public StringProperty ownerProperty() {
         return Owner;
+    }
+
+    public String getPic() {
+        return Pic.get();
+    }
+
+    public StringProperty picProperty() {
+        return Pic;
     }
 }
 

@@ -262,8 +262,8 @@ public class Manager {
          */
         ObservableList<HouseInformation> list = FXCollections.observableArrayList();
         for (int t = 0; t<100; t++)
-        list.add(new HouseInformation(RString(10),RString(15),(int)(Math.random()*100),(int)(Math.random()*9999),RString(20)));
-        list.add(new HouseInformation("a","pingceng",101,2005,"我"));
+        list.add(new HouseInformation(RString(10),RString(15),(int)(Math.random()*100),(int)(Math.random()*9999),RString(30),RString(20)));
+        list.add(new HouseInformation("a","pingceng",101,2005,"pic","我"));
         return list;
     }
 
