@@ -97,7 +97,7 @@ public class Manager {
     public List<House> getPing() throws IOException {
         List<House> list = new LinkedList();
         try {
-            ResultSet resultSet = getHouse("pingceng");
+            ResultSet resultSet = getHouse("平层");
             while (resultSet.next()) {
                 String location = resultSet.getString(1);
                 int size = resultSet.getInt(2);
@@ -217,7 +217,7 @@ public class Manager {
     public List<House> getYue() {
         List<House> list = new LinkedList();
         try {
-            ResultSet resultSet = getHouse("yueceng");
+            ResultSet resultSet = getHouse("跃层");
             while (resultSet.next()) {
                 String location = resultSet.getString(1);
                 int size = resultSet.getInt(2);
@@ -237,7 +237,7 @@ public class Manager {
     public List<House> getShu() {
         List<House> list = new LinkedList();
         try {
-            ResultSet resultSet = getHouse("yashu");
+            ResultSet resultSet = getHouse("雅墅");
             while (resultSet.next()) {
                 String location = resultSet.getString(1);
                 int size = resultSet.getInt(2);
