@@ -21,8 +21,15 @@ public class AdministratorController {
         FC3.setCellValueFactory(cellData -> cellData.getValue().Size.asObject());
         FC4.setCellValueFactory(cellData -> cellData.getValue().Price.asObject());
         FC5.setCellValueFactory(cellData -> cellData.getValue().Owner);
+        RC1.setCellValueFactory(cellData -> cellData.getValue().ID);
+        RC2.setCellValueFactory(cellData -> cellData.getValue().Name);
+        RC3.setCellValueFactory(cellData -> cellData.getValue().Sex);
+        RC4.setCellValueFactory(cellData -> cellData.getValue().Tel);
+        RC5.setCellValueFactory(cellData -> cellData.getValue().Wechat);
         HouseRefresh();
+        Rrefresh();
     }
+
 
 
     // 房源管理
@@ -201,4 +208,32 @@ public class AdministratorController {
             alert.showAndWait();
         }
     }
+
+
+    //住户管理
+    @FXML
+    TableView<RenterInformation> Rtable;
+    @FXML TableColumn <RenterInformation,String> RC1;
+    @FXML TableColumn <RenterInformation,String> RC2;
+    @FXML TableColumn <RenterInformation,String> RC3;
+    @FXML TableColumn <RenterInformation,String> RC4;
+    @FXML TableColumn <RenterInformation,String> RC5;
+
+    @FXML TextField Rsousuo;
+
+    @FXML MenuButton RsousuoT;
+    @FXML private void Rsid(){RsousuoT.setText("ID");}
+    @FXML private void Rsname(){RsousuoT.setText("姓名");}
+    @FXML private void Rstel(){RsousuoT.setText("手机号");}
+    @FXML private void Rswechat(){RsousuoT.setText("微信号");}
+
+    @FXML MenuButton Rsex;
+    @FXML private void Rman(){Rsex.setText("男");}
+
+
+    @FXML
+    private void Rrefresh() {
+    }
+
+
 }

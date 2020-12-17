@@ -57,7 +57,7 @@
                   <Button layoutX="494.0" layoutY="16.0" mnemonicParsing="false" onAction="#Fdelete" prefHeight="30.0" prefWidth="70.0" text="删除" AnchorPane.rightAnchor="140.0" AnchorPane.topAnchor="32.0" />
                   <Button layoutX="504.0" layoutY="26.0" mnemonicParsing="false" onAction="#Fadd" prefHeight="30.0" prefWidth="70.0" text="添加" AnchorPane.rightAnchor="210.0" AnchorPane.topAnchor="32.0" />
                   <TextField fx:id="Fsousuo" layoutY="37.0" prefHeight="30.0" promptText="填入您要搜索的信息" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="0.0" />
-                  <MenuButton fx:id="FsousuoT" layoutX="34.0" layoutY="20.0" maxHeight="30.0" maxWidth="100.0" mnemonicParsing="false" prefHeight="28.0" styleClass="background" text="搜索条件" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="0.0">
+                  <MenuButton fx:id="FsousuoT" layoutX="34.0" layoutY="20.0" maxHeight="30.0" maxWidth="100.0" mnemonicParsing="false" prefHeight="28.0" styleClass="background" text="搜索条件" AnchorPane.leftAnchor="395.0" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="0.0">
                      <items>
                         <MenuItem mnemonicParsing="false" onAction="#sDizhi" text="地址" />
                         <MenuItem mnemonicParsing="false" onAction="#sHuxing" text="户型" />
@@ -74,12 +74,39 @@
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <TableView layoutX="200.0" layoutY="98.0" prefHeight="371.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="Rtable" layoutX="200.0" layoutY="98.0" prefHeight="371.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="62.0">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="C1" />
-                      <TableColumn prefWidth="75.0" text="C2" />
+                      <TableColumn fx:id="RC1" prefWidth="75.0" text="ID" />
+                        <TableColumn fx:id="RC2" prefWidth="75.0" text="姓名" />
+                        <TableColumn fx:id="RC3" prefWidth="75.0" text="性别" />
+                      <TableColumn fx:id="RC4" prefWidth="75.0" text="手机号" />
+                        <TableColumn fx:id="RC5" prefWidth="75.0" text="微信号" />
                     </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
                   </TableView>
+                  <TextField fx:id="Rsousuo" layoutX="14.0" layoutY="3.0" promptText="输入您要搜索的信息" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="0.0" />
+                  <MenuButton fx:id="RsousuoT" layoutX="381.0" layoutY="5.0" mnemonicParsing="false" styleClass="background" text="搜索条件" AnchorPane.leftAnchor="395.0" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="0.0">
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#Rsid" text="ID" />
+                      <MenuItem mnemonicParsing="false" onAction="#Rsname" text="姓名" />
+                        <MenuItem mnemonicParsing="false" onAction="#Rstel" text="手机号" />
+                        <MenuItem mnemonicParsing="false" onAction="#Rswechat" text="微信号" />
+                    </items>
+                  </MenuButton>
+                  <Button layoutX="515.0" layoutY="4.0" mnemonicParsing="false" onAction="#Rsearch" prefHeight="30.0" text="搜索" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="0.0" />
+                  <Button layoutX="545.0" layoutY="37.0" mnemonicParsing="false" onAction="#Rrefresh" prefWidth="70.0" text="刷新" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="32.0" />
+                  <Button layoutX="463.0" layoutY="34.0" mnemonicParsing="false" onAction="#Redit" prefWidth="70.0" text="编辑" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="32.0" />
+                  <Button layoutX="555.0" layoutY="47.0" mnemonicParsing="false" onAction="#Rdelete" prefWidth="70.0" text="删除" AnchorPane.rightAnchor="140.0" AnchorPane.topAnchor="32.0" />
+                  <Button layoutX="565.0" layoutY="57.0" mnemonicParsing="false" onAction="#Radd" prefWidth="70.0" text="添加" AnchorPane.rightAnchor="210.0" AnchorPane.topAnchor="32.0" />
+                  <MenuButton fx:id="Rsex" layoutY="34.0" mnemonicParsing="false" prefWidth="100.0" styleClass="background" text="所有性别" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="31.0">
+                    <items>
+                      <MenuItem fx:id="Rman" mnemonicParsing="false" text="男" />
+                      <MenuItem fx:id="Rwoman" mnemonicParsing="false" text="女" />
+                        <MenuItem fx:id="Rallsex" mnemonicParsing="false" text="所有性别" />
+                    </items>
+                  </MenuButton>
                </children></AnchorPane>
       </content>
     </Tab>
