@@ -83,7 +83,6 @@ public class Manager {
         String sql = "select * from House where Structure =?";
         PreparedStatement statement = null;
         ResultSet resultSet = null;
-        List<House> list = new LinkedList();
         try {
             statement = connection.prepareStatement(sql);
             statement.setString(1, structure);
@@ -98,6 +97,46 @@ public class Manager {
         List<House> list = new LinkedList();
         try {
             ResultSet resultSet = getHouse("平层");
+            while (resultSet.next()) {
+                String location = resultSet.getString(1);
+                int size = resultSet.getInt(2);
+                String structure = resultSet.getString(3);
+                String picture = resultSet.getString(4);
+                int price = resultSet.getInt(6);
+                System.out.println(structure+ price+ picture+ location);
+                House house = new House(structure, price, picture, location,size);
+                list.add(house);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public List<House> getYue() {
+        List<House> list = new LinkedList();
+        try {
+            ResultSet resultSet = getHouse("跃层");
+            while (resultSet.next()) {
+                String location = resultSet.getString(1);
+                int size = resultSet.getInt(2);
+                String structure = resultSet.getString(3);
+                String picture = resultSet.getString(4);
+                int price = resultSet.getInt(6);
+                System.out.println(structure+ price+ picture+ location);
+                House house = new House(structure, price, picture, location,size);
+                list.add(house);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public List<House> getShu() {
+        List<House> list = new LinkedList();
+        try {
+            ResultSet resultSet = getHouse("雅墅");
             while (resultSet.next()) {
                 String location = resultSet.getString(1);
                 int size = resultSet.getInt(2);
@@ -214,53 +253,39 @@ public class Manager {
         System.out.println("添加中发生错误");
     }
 
-    public List<House> getYue() {
-        List<House> list = new LinkedList();
-        try {
-            ResultSet resultSet = getHouse("跃层");
-            while (resultSet.next()) {
-                String location = resultSet.getString(1);
-                int size = resultSet.getInt(2);
-                String structure = resultSet.getString(3);
-                String picture = resultSet.getString(4);
-                int price = resultSet.getInt(6);
-                System.out.println(structure+ price+ picture+ location);
-                House house = new House(structure, price, picture, location,size);
-                list.add(house);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return list;
-    }
 
-    public List<House> getShu() {
-        List<House> list = new LinkedList();
-        try {
-            ResultSet resultSet = getHouse("雅墅");
-            while (resultSet.next()) {
-                String location = resultSet.getString(1);
-                int size = resultSet.getInt(2);
-                String structure = resultSet.getString(3);
-                String picture = resultSet.getString(4);
-                int price = resultSet.getInt(6);
-                System.out.println(structure+ price+ picture+ location);
-                House house = new House(structure, price, picture, location,size);
-                list.add(house);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return list;
-    }
 
-    public ObservableList<HouseInformation> HouseSearch(String Locztion, String stucture, String size, String price, String Owner) {
+    public ObservableList<HouseInformation> HouseSearch(String Location, String stucture, String size, String price, String Owner) {
         /*
         返回符合上诉条件的房源信息
         其中 structure以“平层”或“所有房型”的形式给出； size以“<100”或“100~150”或具体值形式给出； price以“<2000”或“2000~4000”或具体值形式给出
         具体形式参见 AdministratorController
+        全部则是*
          */
+        String sql = "select * from House where Location =?, stucture=?, size between ? and ?, price between ? and ?, Owner = ? ";
+        String sql
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
         ObservableList<HouseInformation> list = FXCollections.observableArrayList();
+        try {
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, username);
+            statement.setString(2, password);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                String location = resultSet.getString(1);
+                int size = resultSet.getInt(2);
+                String structure = resultSet.getString(3);
+                String picture = resultSet.getString(4);
+                int price = resultSet.getInt(6);
+                System.out.println(structure+ price+ picture+ location);
+                House house = new House(structure, price, picture, location,size);
+                list.add(house);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         for (int t = 0; t<100; t++)
         list.add(new HouseInformation(RString(10),RString(15),(int)(Math.random()*100),(int)(Math.random()*9999),RString(30),RString(20)));
         list.add(new HouseInformation("a","pingceng",101,2005,"pic","我"));
