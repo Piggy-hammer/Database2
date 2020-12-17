@@ -229,11 +229,71 @@ public class AdministratorController {
 
     @FXML MenuButton Rsex;
     @FXML private void Rman(){Rsex.setText("男");}
-
+    @FXML private void Rwoman(){Rsex.setText("女");}
+    @FXML private void Rallsex(){Rsex.setText("所有性别");}
 
     @FXML
     private void Rrefresh() {
+        ObservableList<HouseInformation> list =  manager.getRenter("所有ID","所有姓名",Rsex.getText(),"所有手机号","所有微信号");
+        FangXing.setItems(list);
+    }
+    @FXML
+    private void Rsearch(){
+        if (!Rsousuo.getText().equals("")){
+            switch(RsousuoT.getText()) {
+                case "ID":
+                    ObservableList<HouseInformation> list = manager.getRenter(Fsousuo.getText(), "所有姓名", "所有性别", "所有手机号", "所有微信号");
+                    FangXing.setItems(list);break;
+                case "姓名":
+                    ObservableList<HouseInformation> list1 = manager.getRenter("所有ID", Fsousuo.getText(), "所有性别", "所有手机号", "所有微信号");
+                    FangXing.setItems(list1);break;
+                case "手机号":
+                    ObservableList<HouseInformation> list2 = manager.getRenter("所有ID", "所有姓名", "所有性别", Fsousuo.getText(), "所有微信号");
+                    FangXing.setItems(list2);break;
+                case "微信号":
+                    ObservableList<HouseInformation> list3 = manager.getRenter("所有ID", "所有姓名", "所有性别", "所有手机号", Fsousuo.getText());
+                    FangXing.setItems(list3);break;
+                case "搜索条件":
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("搜索条件缺失");
+                    alert.setContentText("选择一个您的搜索条件");
+                    alert.showAndWait();
+            }
+        }else {
+            error1();
+        }
+    }
+    @FXML
+    private void Redit(){
+        try {
+            RenterInformation selectedItem = Rtable.getSelectionModel().getSelectedItem();
+            FXMLLoader loader = new FXMLLoader((Main.class.getResource("/Redit.fxml")));
+            AnchorPane pane = loader.load();
+            ReditController reditController = loader.getController();
+            Scene scene = new Scene(pane);
+            reditController.init(manager,selectedItem,this);
+            Stage add = new Stage();
+            add.setScene(scene);
+            add.setTitle("编辑租户");
+            add.getIcons().add(new Image(Main.class.getResourceAsStream("/1.png")));
+            add.show();
+        }catch (NullPointerException | IOException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("编辑目标缺失");
+            alert.setContentText("您必须选择一个目标以编辑");
+            alert.showAndWait();
+        }
+    }
+    @FXML
+    private void Rdelete(){
+
     }
 
+    @FXML
+    private void Radd(){
+
+    }
 
 }

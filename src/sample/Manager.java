@@ -273,4 +273,9 @@ public class Manager {
 
     public void insertF(HouseInformation houseInformation) {
     }
+
+    public ObservableList<HouseInformation> getRenter(String ID, String name, String sex, String tel, String wechat) {
+        ObservableList<HouseInformation> list = FXCollections.observableArrayList();
+        return list;
+    }
 }
