@@ -257,12 +257,13 @@ public class Manager {
     public ObservableList<HouseInformation> HouseSearch(String Locztion, String stucture, String size, String price, String Owner) {
         /*
         返回符合上诉条件的房源信息
-        其中 structure以“平层”的形式给出； size以“<100”或“100~150”或具体值形式给出； price以“<2000”或“2000~4000”或具体值形式给出
+        其中 structure以“平层”或“所有房型”的形式给出； size以“<100”或“100~150”或具体值形式给出； price以“<2000”或“2000~4000”或具体值形式给出
         具体形式参见 AdministratorController
          */
         ObservableList<HouseInformation> list = FXCollections.observableArrayList();
         for (int t = 0; t<100; t++)
         list.add(new HouseInformation(RString(10),RString(15),(int)(Math.random()*100),(int)(Math.random()*9999),RString(20)));
+        list.add(new HouseInformation("a","pingceng",101,2005,"我"));
         return list;
     }
 

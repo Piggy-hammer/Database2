@@ -53,9 +53,9 @@
                         <MenuItem mnemonicParsing="false" onAction="#selectAP" text="所有价格" />
                      </items>
                   </MenuButton>
-                  <Button layoutX="484.0" layoutY="6.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="70.0" text="编辑" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="30.0" />
-                  <Button layoutX="494.0" layoutY="16.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="70.0" text="删除" AnchorPane.rightAnchor="140.0" AnchorPane.topAnchor="30.0" />
-                  <Button layoutX="504.0" layoutY="26.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="70.0" text="添加" AnchorPane.rightAnchor="210.0" AnchorPane.topAnchor="30.0" />
+                  <Button layoutX="484.0" layoutY="6.0" mnemonicParsing="false" onAction="#Fedit" prefHeight="30.0" prefWidth="70.0" text="编辑" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="30.0" />
+                  <Button layoutX="494.0" layoutY="16.0" mnemonicParsing="false" onAction="#Fdelete" prefHeight="30.0" prefWidth="70.0" text="删除" AnchorPane.rightAnchor="140.0" AnchorPane.topAnchor="30.0" />
+                  <Button layoutX="504.0" layoutY="26.0" mnemonicParsing="false" onAction="#Fadd" prefHeight="30.0" prefWidth="70.0" text="添加" AnchorPane.rightAnchor="210.0" AnchorPane.topAnchor="30.0" />
                   <TextField fx:id="Fsousuo" layoutY="37.0" prefHeight="30.0" promptText="填入您要搜索的信息" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="0.0" />
                   <MenuButton fx:id="FsousuoT" layoutX="34.0" layoutY="20.0" maxWidth="100.0" mnemonicParsing="false" prefHeight="30.0" styleClass="background" text="搜索条件" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="0.0">
                      <items>
@@ -66,7 +66,7 @@
                         <MenuItem mnemonicParsing="false" onAction="#sOwner" text="房东" />
                      </items>
                   </MenuButton>
-                  <Button fx:id="Fsearch" layoutX="510.0" layoutY="34.0" mnemonicParsing="false" onAction="#Fsearch" prefWidth="70.0" text="搜索" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="0.0" />
+                  <Button fx:id="Fsearch" layoutX="510.0" layoutY="34.0" mnemonicParsing="false" onAction="#Fsearch" prefWidth="80.0" text="搜索" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="0.0" />
                </children></AnchorPane>
       </content>
     </Tab>

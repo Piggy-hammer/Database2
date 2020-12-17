@@ -9,6 +9,11 @@ public class AdministratorController {
     Manager manager;
     public void init(Manager manager1) {
         manager = manager1;
+        FC1.setCellValueFactory(cellData -> cellData.getValue().Location);
+        FC2.setCellValueFactory(cellData -> cellData.getValue().Structure);
+        FC3.setCellValueFactory(cellData -> cellData.getValue().Size.asObject());
+        FC4.setCellValueFactory(cellData -> cellData.getValue().Price.asObject());
+        FC5.setCellValueFactory(cellData -> cellData.getValue().Owner);
         HouseRefresh();
     }
 
@@ -22,17 +27,16 @@ public class AdministratorController {
     @FXML TableColumn<HouseInformation, Integer>FC4;
     @FXML TableColumn<HouseInformation, String>FC5;
 
-
     @FXML
     TextField Fsousuo;
 
     @FXML
     MenuButton FsousuoT;
-    @FXML private void sDizhi(){ Fsousuo.setText("地址");}
-    @FXML private void sHuxing(){ Fsousuo.setText("户型");}
-    @FXML private void sPrice(){Fsousuo.setText("价格");}
-    @FXML private void sSize(){Fsousuo.setText("面积");}
-    @FXML private void sOwner(){Fsousuo.setText("房东");}
+    @FXML private void sDizhi(){ FsousuoT.setText("地址");}
+    @FXML private void sHuxing(){ FsousuoT.setText("户型");}
+    @FXML private void sPrice(){FsousuoT.setText("价格");}
+    @FXML private void sSize(){FsousuoT.setText("面积");}
+    @FXML private void sOwner(){FsousuoT.setText("房东");}
 
     @FXML
     Button Fsearch;
@@ -88,18 +92,70 @@ public class AdministratorController {
 
     @FXML
     private void HouseRefresh() {
-        ObservableList<HouseInformation> list = (ObservableList<HouseInformation>) manager.HouseSearch("所有地址",Huxing.getText(),Size.getText(),Price.getText(),"所有房东");
-        FC1.setCellValueFactory(cellData -> cellData.getValue().Location);
-        FC2.setCellValueFactory(cellData -> cellData.getValue().Structure);
-        FC3.setCellValueFactory(cellData -> cellData.getValue().Size.asObject());
-        FC4.setCellValueFactory(cellData -> cellData.getValue().Price.asObject());
-        FC5.setCellValueFactory(cellData -> cellData.getValue().Owner);
+        ObservableList<HouseInformation> list = manager.HouseSearch("所有地址",Huxing.getText(),Size.getText(),Price.getText(),"所有房东");
         FangXing.setItems(list);
 
     }
 
     @FXML
     public void Fsearch() {
+        if (!Fsousuo.getText().equals("")) {
+            switch (FsousuoT.getText()) {
+                case "地址":
+                    ObservableList<HouseInformation> list = manager.HouseSearch(Fsousuo.getText(), "所有户型", "所有面积", "所有价格", "所有房东");
+                    FangXing.setItems(list);break;
+                case "户型":
+                    ObservableList<HouseInformation> list1 = manager.HouseSearch("所有地址", Fsousuo.getText(), "所有面积", "所有价格", "所有房东");
+                    FangXing.setItems(list1);break;
+                case "面积":
+                    if (AddController.isNumeric(Fsousuo.getText())) {
+                        ObservableList<HouseInformation> list2 = manager.HouseSearch("所有地址", "所有户型", Fsousuo.getText(), "所有价格", "所有房东");
+                        FangXing.setItems(list2);break;
+                    }else {
+                        error1(); break;
+                    }
+                case "价格":
+                    if (AddController.isNumeric(Fsousuo.getText())) {
+                        ObservableList<HouseInformation> list3 = manager.HouseSearch("所有地址", "所有户型", "所有面积", Fsousuo.getText(), "所有房东");
+                        FangXing.setItems(list3);break;
+                    }else {
+                        error1(); break;
+                    }
+                case "房东":
+                    ObservableList<HouseInformation> list4 = manager.HouseSearch("所有地址", "所有户型", "所有面积","所有价格", Fsousuo.getText());
+                    FangXing.setItems(list4);break;
+                case "搜索条件":
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("搜索条件缺失");
+                    alert.setContentText("选择一个您的搜索条件");
+                    alert.showAndWait();
+            }
+        }else {
+            error1();
+        }
+    }
+
+    private void error1() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText("搜索条件缺失");
+        alert.setContentText("请检查您是否在搜索框中输入格式准确的信息");
+        alert.showAndWait();
+    }
+
+    @FXML
+    private void Fedit(){
+
+    }
+
+    @FXML
+    private void Fadd(){
+
+    }
+
+    @FXML
+    private void Fdelete(){
 
     }
 }
