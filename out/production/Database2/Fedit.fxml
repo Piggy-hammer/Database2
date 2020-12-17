@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="265.0" prefWidth="550.0" styleClass="background" stylesheets="@sample/DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FeditController">
+    <children>
+        <MenuButton fx:id="Huxing" layoutX="103.0" layoutY="22.0" mnemonicParsing="false" prefWidth="100.0" style="-fx-background-color: derive(#1d1d1d,50%);" text="选择户型" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="22.0">
+            <items>
+                <MenuItem mnemonicParsing="false" onAction="#selectP" text="平层" />
+                <MenuItem mnemonicParsing="false" onAction="#selectY" text="跃层" />
+                <MenuItem mnemonicParsing="false" onAction="#selectS" text="雅墅" />
+            </items>
+        </MenuButton>
+        <Label layoutX="32.0" layoutY="59.0" styleClass="label-bright" text="户型" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0" />
+        <Label layoutX="38.0" layoutY="144.0" styleClass="label-bright" text="地址" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="80.0" />
+        <Label layoutX="49.0" layoutY="200.0" styleClass="label-bright" text="预览图" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="140.0" />
+        <Label layoutX="215.0" layoutY="59.0" styleClass="label-bright" text="租金" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="20.0" />
+        <TextField fx:id="Rent" layoutX="281.0" layoutY="22.0" prefWidth="90.0" promptText="填入月租金" style="-fx-background-color: derive(#1d1d1d,50%);" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="22.0" />
+        <TextField fx:id="Loc" layoutX="90.0" layoutY="82.0" promptText="填入地址" style="-fx-background-color: derive(#1d1d1d,50%);" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="290.0" />
+        <TextField fx:id="Pic" layoutX="90.0" layoutY="142.0" promptText="拖曳文件至此或填入地址" style="-fx-background-color: derive(#1d1d1d,50%);" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="140.0" AnchorPane.topAnchor="142.0" />
+        <Button layoutX="345.0" layoutY="141.0" mnemonicParsing="false" onAction="#selectPic" styleClass="l" text="选择文件" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="142.0" />
+        <Label layoutX="345.0" layoutY="147.0" styleClass="label-bright" text="或" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="140.0">
+            <font>
+                <Font size="39.0" />
+            </font>
+        </Label>
+        <Button layoutX="230.0" layoutY="197.0" mnemonicParsing="false" onAction="#confirm" styleClass="label-bright" text="确定" AnchorPane.leftAnchor="230.0" AnchorPane.topAnchor="197.0" />
+        <Label layoutX="205.0" layoutY="21.0" styleClass="label-bright" text="面积" AnchorPane.leftAnchor="215.0" AnchorPane.rightAnchor="281.0" AnchorPane.topAnchor="20.0" />
+        <TextField fx:id="Size" layoutX="235.0" layoutY="26.0" prefWidth="85.0" promptText="填入面积" style="-fx-background-color: derive(#1d1d1d,50%);" AnchorPane.leftAnchor="280.0" AnchorPane.rightAnchor="185.0" AnchorPane.topAnchor="22.0" />
+      <Label layoutX="307.0" layoutY="90.0" styleClass="label-bright" text="房东" AnchorPane.leftAnchor="280.0" AnchorPane.topAnchor="80.0" />
+      <TextField fx:id="Owner" layoutX="376.0" layoutY="86.0" promptText="填入房东ID" style="-fx-background-color: derive(#1d1d1d,50%);" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="82.0" />
+    </children>
+</AnchorPane>

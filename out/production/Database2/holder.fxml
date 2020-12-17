@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="490.0" prefWidth="512.0" styleClass="background" stylesheets="@sample/DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.HolderController">
+    <children>
+        <Label layoutX="26.0" layoutY="14.0" styleClass="label-bright" text="我的房产" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0" />
+        <Line endX="100.0" layoutX="121.0" layoutY="53.0" startX="-100.0" stroke="WHITE" strokeWidth="2.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="50.0" />
+        <Button layoutX="378.0" layoutY="19.0" mnemonicParsing="false" onAction="#addnew" text="添加新房产" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="19.0" />
+        <ScrollPane layoutX="21.0" layoutY="65.0" prefHeight="0.0" prefWidth="512.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="65.0">
+            <content>
+                <GridPane fx:id="gridPane" prefWidth="496.0" styleClass="background">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="120.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                </GridPane>
+            </content>
+        </ScrollPane>
+    </children>
+</AnchorPane>
