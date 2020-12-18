@@ -1,5 +1,6 @@
 package sample;
 
+import com.sun.glass.ui.Size;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -83,7 +84,6 @@ public class Manager {
         String sql = "select * from House where Structure =?";
         PreparedStatement statement = null;
         ResultSet resultSet = null;
-        List<House> list = new LinkedList();
         try {
             statement = connection.prepareStatement(sql);
             statement.setString(1, structure);
@@ -104,8 +104,48 @@ public class Manager {
                 String structure = resultSet.getString(3);
                 String picture = resultSet.getString(4);
                 int price = resultSet.getInt(6);
-                System.out.println(structure+ price+ picture+ location);
-                House house = new House(structure, price, picture, location,size);
+                System.out.println(structure + price + picture + location);
+                House house = new House(structure, price, picture, location, size);
+                list.add(house);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public List<House> getYue() {
+        List<House> list = new LinkedList();
+        try {
+            ResultSet resultSet = getHouse("跃层");
+            while (resultSet.next()) {
+                String location = resultSet.getString(1);
+                int size = resultSet.getInt(2);
+                String structure = resultSet.getString(3);
+                String picture = resultSet.getString(4);
+                int price = resultSet.getInt(6);
+                System.out.println(structure + price + picture + location);
+                House house = new House(structure, price, picture, location, size);
+                list.add(house);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public List<House> getShu() {
+        List<House> list = new LinkedList();
+        try {
+            ResultSet resultSet = getHouse("雅墅");
+            while (resultSet.next()) {
+                String location = resultSet.getString(1);
+                int size = resultSet.getInt(2);
+                String structure = resultSet.getString(3);
+                String picture = resultSet.getString(4);
+                int price = resultSet.getInt(6);
+                System.out.println(structure + price + picture + location);
+                House house = new House(structure, price, picture, location, size);
                 list.add(house);
             }
         } catch (SQLException e) {
@@ -133,13 +173,16 @@ public class Manager {
                 String structure = resultSet.getString(3);
                 String picture = resultSet.getString(4);
                 int price = resultSet.getInt(6);
-                System.out.println(structure+ price+ picture+ location);
-                House house = new House(structure, price, picture, location,size);
+                System.out.println(structure + price + picture + location);
+                House house = new House(structure, price, picture, location, size);
                 list.add(house);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        /*for (int inte = 0; inte < 10; inte++) {
+            list.add(new House("huxing", 234, "/2f9dd9642431bbef883d72313dd8aed4.jpg", "SAAifsgoihguioashdguhwdosiughawoushgouihAAAAAA"));
+        }*/
         return list;
     }
 
@@ -149,7 +192,7 @@ public class Manager {
          */
         int md5 = user.hashCode();
         String RentingID = String.valueOf(md5);
-        String sql1 = "update House set ForRentOrNot = '否' where loc =?";
+        String sql1 = "update House set ForRentOrNot = '否' where HLocation =?";
         String sql2 = "insert into Renting values(?,?,?,?,?,?,?,?) ";
         PreparedStatement statement = null;
         try {
@@ -170,7 +213,7 @@ public class Manager {
         /*
         用户名为holder的客户，删除了loca号房产
          */
-        String sql1 = "delete from House set where loc =?";
+        String sql1 = "delete from House set where HLocation =? and ";
         String sql2 = "insert into Renting values(?,?,?,?,?,?,?,?) ";
         PreparedStatement statement = null;
         try {
@@ -195,11 +238,21 @@ public class Manager {
         String loc = house.Loca;
         String structure = house.huXing;
         String pic = house.Pic;
+        int size = house.Size;
         String sql1 = "insert into House values(?,?,?,?,?,?,?,?,?,?) ";
         PreparedStatement statement = null;
         try {
             statement = connection.prepareStatement(sql1);
             statement.setString(1, loc);
+            statement.setInt(2, size);
+            statement.setString(3, null);
+            statement.setString(4, null);
+            statement.setString(5, holder);
+            statement.setInt(6, 0);
+            statement.setInt(7, 0);
+            statement.setString(8, "否");
+            statement.setString(9, "否");
+            statement.setString(10, "一川公司塘朗营业部");
             statement.executeQuery();
             //statement.setString();
 
@@ -211,63 +264,101 @@ public class Manager {
         System.out.println("添加中发生错误");
     }
 
-    public List<House> getYue() {
-        List<House> list = new LinkedList();
-        try {
-            ResultSet resultSet = getHouse("跃层");
-            while (resultSet.next()) {
-                String location = resultSet.getString(1);
-                int size = resultSet.getInt(2);
-                String structure = resultSet.getString(3);
-                String picture = resultSet.getString(4);
-                int price = resultSet.getInt(6);
-                System.out.println(structure+ price+ picture+ location);
-                House house = new House(structure, price, picture, location,size);
-                list.add(house);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return list;
-    }
 
-    public List<House> getShu() {
-        List<House> list = new LinkedList();
-        try {
-            ResultSet resultSet = getHouse("雅墅");
-            while (resultSet.next()) {
-                String location = resultSet.getString(1);
-                int size = resultSet.getInt(2);
-                String structure = resultSet.getString(3);
-                String picture = resultSet.getString(4);
-                int price = resultSet.getInt(6);
-                System.out.println(structure+ price+ picture+ location);
-                House house = new House(structure, price, picture, location,size);
-                list.add(house);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return list;
-    }
-
-    public ObservableList<HouseInformation> HouseSearch(String Locztion, String stucture, String size, String price, String Owner) {
+    public ObservableList<HouseInformation>
+    HouseSearch(String Location, String stucture, String size, String price, String Owner) {
         /*
         返回符合上诉条件的房源信息
         其中 structure以“平层”或“所有房型”的形式给出； size以“<100”或“100~150”或具体值形式给出； price以“<2000”或“2000~4000”或具体值形式给出
         具体形式参见 AdministratorController
+        全部则是*
          */
+        String sql = "select * from House where HLocation =? and Structure=? and Size between ? and ? and SalePrice between ? and ? and HouseHolderID = ? ";
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
         ObservableList<HouseInformation> list = FXCollections.observableArrayList();
-        for (int t = 0; t<100; t++)
-        list.add(new HouseInformation(RString(10),RString(15),(int)(Math.random()*100),(int)(Math.random()*9999),RString(30),RString(20)));
-        list.add(new HouseInformation("a","pingceng",101,2005,"pic","我"));
+        try {
+            statement = connection.prepareStatement(sql);
+            if (Location.equals("所有地址")) {
+                statement.setString(1, "House.HLocation");
+                System.out.println("1");
+            } else
+                statement.setString(1, Location);
+            if (stucture.equals("所有户型")) {
+                statement.setString(2, "House.Structure");
+                System.out.println("2");
+            } else
+                statement.setString(2, stucture);
+            if (size.equals("所有面积")) {
+                statement.setString(3, "0");
+                statement.setString(4, "999999999999");
+                System.out.println("3");
+            } else {
+                String size_up;//higher bound
+                String size_do;//lowwer bound
+                if (size.substring(0, 1).equals(">")) {
+                    statement.setString(3, size);
+                } else if (size.substring(0, 1).equals("<")) {
+                    statement.setString(3, size);
+                } else {
+                    String size_new[] = size.split("~");
+                    size_up = size_new[1];
+                    size_do = size_new[0];
+                    String statement_size = "between " + size_do + " and " + size_up;
+                    statement.setString(3, statement_size);
+                }
+            }
+            if (price.equals("所有价格")) {
+                statement.setString(5, "0");
+                statement.setString(6, "99999999999999");
+                System.out.println("4");
+            } else {
+                String price_up;//higher bound
+                String price_do;//lowwer bound
+                if (price.substring(0, 1).equals(">")) {
+                    statement.setString(3, price);
+                } else if (price.substring(0, 1).equals("<")) {
+                    statement.setString(3, price);
+                } else {
+                    String price_new[] = size.split("~");
+                    price_up = price_new[1];
+                    price_do = price_new[0];
+                    String statement_size = "between " + price_do + " and " + price_up;
+                    statement.setString(3, statement_size);
+                }
+            }
+            if (Owner.equals("所有房东")) {
+                statement.setString(7, "House.HouseHolderID");
+                System.out.println("5");
+            } else {
+                statement.setString(5, Owner);
+            }
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                String location = resultSet.getString(1);
+                int size_new = resultSet.getInt(2);
+                String structure = resultSet.getString(3);
+                String picture = resultSet.getString(4);
+                int price_new = resultSet.getInt(6);
+                String ownerID = resultSet.getString(5);
+                System.out.println(structure + price + picture + location);
+                HouseInformation houseIn = new HouseInformation(location, structure, price_new, size_new, picture, ownerID);
+                list.add(houseIn);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        /*
+        for (int t = 0; t < 100; t++)
+            list.add(new HouseInformation(RString(10), RString(15), (int) (Math.random() * 100), (int) (Math.random() * 9999), RString(30), RString(20)));
+        list.add(new HouseInformation("a", "pingceng", 101, 2005, "pic", "我"));*/
         return list;
     }
 
-    public String RString(int n){
-        String str="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    public String RString(int n) {
+        String str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         String o = "";
-        for (int t = 0; t<n; t++) o += str.charAt((int)(Math.random()*61));
+        for (int t = 0; t < n; t++) o += str.charAt((int) (Math.random() * 61));
         return o;
     }
 
