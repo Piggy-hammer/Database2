@@ -162,12 +162,13 @@ public class AdministratorController {
     private void Fedit() throws IOException {
         try {
             HouseInformation selectedItem = FangXing.getSelectionModel().getSelectedItem();
+            manager.delete(selectedItem.getLocation(),selectedItem.getOwner());
             FXMLLoader loader = new FXMLLoader((Main.class.getResource("/Fedit.fxml")));
             AnchorPane pane = loader.load();
             FeditController feditController = loader.getController();
             Scene scene = new Scene(pane);
-            feditController.init(manager,selectedItem,this);
             Stage add = new Stage();
+            feditController.init(manager,selectedItem,this,add);
             add.setScene(scene);
             add.setTitle("编辑房屋");
             add.getIcons().add(new Image(Main.class.getResourceAsStream("/1.png")));
@@ -187,8 +188,8 @@ public class AdministratorController {
         AnchorPane pane = loader.load();
         FeditController feditController = loader.getController();
         Scene scene = new Scene(pane);
-        feditController.init1(manager,this);
         Stage add = new Stage();
+        feditController.init1(manager,this,add);
         add.setScene(scene);
         add.setTitle("添加房屋");
         add.getIcons().add(new Image(Main.class.getResourceAsStream("/1.png")));
@@ -233,7 +234,7 @@ public class AdministratorController {
     @FXML private void Rallsex(){Rsex.setText("所有性别");}
 
     @FXML
-    private void Rrefresh() {
+    public void Rrefresh() {
         ObservableList<HouseInformation> list =  manager.getRenter("所有ID","所有姓名",Rsex.getText(),"所有手机号","所有微信号");
         FangXing.setItems(list);
     }
@@ -268,12 +269,13 @@ public class AdministratorController {
     private void Redit(){
         try {
             RenterInformation selectedItem = Rtable.getSelectionModel().getSelectedItem();
+            manager.deleteR(selectedItem.getID());
             FXMLLoader loader = new FXMLLoader((Main.class.getResource("/Redit.fxml")));
             AnchorPane pane = loader.load();
             ReditController reditController = loader.getController();
             Scene scene = new Scene(pane);
-            reditController.init(manager,selectedItem,this);
             Stage add = new Stage();
+            reditController.init(manager,selectedItem,this,add);
             add.setScene(scene);
             add.setTitle("编辑租户");
             add.getIcons().add(new Image(Main.class.getResourceAsStream("/1.png")));
@@ -288,12 +290,30 @@ public class AdministratorController {
     }
     @FXML
     private void Rdelete(){
-
+        try {
+            RenterInformation selectedItem = Rtable.getSelectionModel().getSelectedItem();
+            manager.deleteR(selectedItem.getID());
+        }catch (NullPointerException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("编辑目标缺失");
+            alert.setContentText("您必须选择一个目标以删除");
+            alert.showAndWait();
+        }
     }
 
     @FXML
-    private void Radd(){
-
+    private void Radd() throws IOException {
+        FXMLLoader loader = new FXMLLoader((Main.class.getResource("/Redit.fxml")));
+        AnchorPane pane = loader.load();
+        ReditController feditController = loader.getController();
+        Scene scene = new Scene(pane);
+        Stage add = new Stage();
+        feditController.init1(manager,this,add);
+        add.setScene(scene);
+        add.setTitle("添加租户");
+        add.getIcons().add(new Image(Main.class.getResourceAsStream("/1.png")));
+        add.show();
     }
 
 }

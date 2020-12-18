@@ -272,10 +272,19 @@ public class Manager {
     }
 
     public void insertF(HouseInformation houseInformation) {
+        //新增一个房源
     }
 
     public ObservableList<HouseInformation> getRenter(String ID, String name, String sex, String tel, String wechat) {
         ObservableList<HouseInformation> list = FXCollections.observableArrayList();
         return list;
+    }
+
+    public void insertR(RenterInformation renterInformation) {
+        //新增一个租房客
+    }
+
+    public void deleteR(String id) {
+        //删除一个提供id的租房客
     }
 }

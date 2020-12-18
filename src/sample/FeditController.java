@@ -26,7 +26,7 @@ public class FeditController {
     @FXML
     TextField Owner;
 
-    public void init(Manager manage, HouseInformation houseInformation,AdministratorController administratorController1) {
+    public void init(Manager manage, HouseInformation houseInformation,AdministratorController administratorController1,Stage stage1) {
         manager = manage;
         administratorController = administratorController1;
         Loc.setText(houseInformation.getLocation());
@@ -40,10 +40,12 @@ public class FeditController {
             String s = dragboard.getFiles().get(0).getPath();
             Pic.setText(s);
         });
+        stage = stage1;
     }
 
-    public void init1(Manager manager1,AdministratorController administratorController1){
+    public void init1(Manager manager1,AdministratorController administratorController1,Stage stage1){
         manager = manager1;
+        stage = stage1;
         administratorController = administratorController1;
     }
 
