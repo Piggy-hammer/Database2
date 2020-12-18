@@ -179,9 +179,6 @@ public class Manager {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        /*for (int inte = 0; inte < 10; inte++) {
-            list.add(new House("huxing", 234, "/2f9dd9642431bbef883d72313dd8aed4.jpg", "SAAifsgoihguioashdguhwdosiughawoushgouihAAAAAA"));
-        }*/
         return list;
     }
 
