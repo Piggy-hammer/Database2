@@ -11,10 +11,12 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 
 public class AdministratorController {
     Manager manager;
+    DateTimeFormatter yyyyMMdd = DateTimeFormatter.ofPattern("yyyyMMdd");
     public void init(Manager manager1) {
         manager = manager1;
         FC1.setCellValueFactory(cellData -> cellData.getValue().Location);
@@ -447,16 +449,90 @@ public class AdministratorController {
     @FXML private void D_6000(){Dprice.setText(">6000");}
     @FXML DatePicker Dateto;
 
-
-
-
-
-
     public void Drefresh(){
         System.out.println(Datefrom.getValue().toString());
-        ObservableList<DealInformation> list = manager.RentingSearch("所有合约号","所有租户ID","所有房东ID","所有地址",Datefrom.getValue().toString(),Dateto.getValue().toString(),Dprice.getText());
+        ObservableList<DealInformation> list = manager.RentingSearch("所有合约号","所有租户ID","所有房东ID","所有地址",Datefrom.getValue().format(yyyyMMdd),Dateto.getValue().format(yyyyMMdd),Dprice.getText());
         Dtable.setItems(list);
     }
-
+    @FXML
+    private void Dsearch() {
+        if (!Dsousuo.getText().equals("")) {
+            switch (DsousuoT.getText()) {
+                case "合约号":
+                    ObservableList<DealInformation> list = manager.RentingSearch(Dsousuo.getText(), "所有租户ID", "所有房东ID", "所有地址", "所有日期", "所有日期", "所有价格");
+                    Dtable.setItems(list);
+                    break;
+                case "租户ID":
+                    ObservableList<DealInformation> list1 = manager.RentingSearch("所有合约号", Dsousuo.getText(), "所有房东ID", "所有地址", "所有日期", "所有日期", "所有价格");
+                    Dtable.setItems(list1);
+                    break;
+                case "房东ID":
+                    ObservableList<DealInformation> list2 = manager.RentingSearch("所有合约号", "所有租户ID", Dsousuo.getText(), "所有地址", "所有日期", "所有日期", "所有价格");
+                    Dtable.setItems(list2);
+                    break;
+                case "房源地址":
+                    ObservableList<DealInformation> list3 = manager.RentingSearch("所有合约号", "所有租户ID", "所有房东ID", Dsousuo.getText(), "所有日期", "所有日期", "所有价格");
+                    Dtable.setItems(list3);
+                    break;
+                case "搜索条件":
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("搜索条件缺失");
+                    alert.setContentText("选择一个您的搜索条件");
+                    alert.showAndWait();
+            }
+        } else {
+            error1();
+        }
+    }
+    @FXML
+    private void Dedit(){
+        try {
+            DealInformation selectedItem = Dtable.getSelectionModel().getSelectedItem();
+            manager.deleteD(selectedItem.getDealid());
+            FXMLLoader loader = new FXMLLoader((Main.class.getResource("/Dedit.fxml")));
+            AnchorPane pane = loader.load();
+            DeditController reditController = loader.getController();
+            Scene scene = new Scene(pane);
+            Stage add = new Stage();
+            reditController.init(manager,selectedItem,this,add);
+            add.setScene(scene);
+            add.setTitle("编辑合约");
+            add.getIcons().add(new Image(Main.class.getResourceAsStream("/1.png")));
+            add.show();
+        }catch (NullPointerException | IOException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("编辑目标缺失");
+            alert.setContentText("您必须选择一个目标以编辑");
+            alert.showAndWait();
+        }
+    }
+    @FXML
+    private void Ddelete(){
+        try {
+            DealInformation selectedItem = Dtable.getSelectionModel().getSelectedItem();
+            manager.deleteD(selectedItem.getDealid());
+        }catch (NullPointerException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("编辑目标缺失");
+            alert.setContentText("您必须选择一个目标以删除");
+            alert.showAndWait();
+        }
+    }
+    @FXML
+    private void Dadd() throws IOException {
+        FXMLLoader loader = new FXMLLoader((Main.class.getResource("/Dedit.fxml")));
+        AnchorPane pane = loader.load();
+        DeditController feditController = loader.getController();
+        Scene scene = new Scene(pane);
+        Stage add = new Stage();
+        feditController.init1(manager,this,add);
+        add.setScene(scene);
+        add.setTitle("添加合约");
+        add.getIcons().add(new Image(Main.class.getResourceAsStream("/1.png")));
+        add.show();
+    }
 
 }

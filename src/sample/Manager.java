@@ -519,9 +519,17 @@ public class Manager {
         //删除符合上述条件的房东
     }
 
-    public ObservableList<DealInformation> RentingSearch(String reningid, String renterid, String householderid, String location, String datefrom, String dateto, String price) {
-        //搜索符合上诉条件的renting信息
+    public ObservableList<DealInformation> RentingSearch(String rentingId, String renterId, String householderId, String location, String datefrom, String dateto, String price) {
+        //搜索符合上诉条件的renting信息, dafrom格式为"2020-12-19",除确定值外，可能传入"所有合约号","所有租户ID","所有房东ID","所有地址"或“2000~4000”
         ObservableList<DealInformation> list = FXCollections.observableArrayList();
         return list;
+    }
+
+    public void deleteD(String dealId) {
+        //删除合约号为rentingId的renting记录
+    }
+
+    public void insertD(DealInformation dealInformation) {
+        //新建renting中记录
     }
 }

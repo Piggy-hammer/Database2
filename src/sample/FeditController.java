@@ -93,6 +93,5 @@ public class FeditController {
             alert.setContentText("请检查您的房产信息格式与完整性");
             alert.showAndWait();
         }
-        System.out.println(Huxing.getText() + " " + Rent.getText() + " " + Pic.getText() + " " + Loc.getText());
     }
 }
