@@ -59,12 +59,11 @@ public class Manager {
             resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 int num = resultSet.getInt(3);
-                System.out.println("您的权限是"+num);
-                if(num == 3){
+                System.out.println("您的权限是" + num);
+                if (num == 3) {
                     System.out.println("真正的神，登录成功");
                     return 3;
-                }
-                if (num == 2) {
+                } else if (num == 2) {
                     System.out.println("尊敬的神，登录成功");
                     return 2;
                 } else if (num == 1) {
@@ -290,12 +289,12 @@ public class Manager {
                 sql += "HLocation = House.HLocation";
                 System.out.println("1");
             } else
-                sql += "HLocation = "+ Location + " ";
+                sql += "HLocation = " + Location + " ";
             if (stucture.equals("所有户型")) {
                 sql += " and Structure = House.Structure";
                 System.out.println("2");
             } else
-                sql += " and Stucture = "+ stucture + " ";
+                sql += " and Stucture = " + stucture + " ";
             if (size.equals("所有面积")) {
                 sql += " and Size = House.Size";
                 System.out.println("3");
@@ -303,15 +302,15 @@ public class Manager {
                 String size_up;//higher bound
                 String size_do;//lowwer bound
                 if (size.substring(0, 1).equals(">")) {
-                    sql += " and Size = "+ size + " ";
+                    sql += " and Size = " + size + " ";
                 } else if (size.substring(0, 1).equals("<")) {
-                    sql += " and Size = "+ size + " ";
+                    sql += " and Size = " + size + " ";
                 } else {
                     String size_new[] = size.split("~");
                     size_up = size_new[1];
                     size_do = size_new[0];
                     String statement_size = "between " + size_do + " and " + size_up;
-                    sql += " and Size  "+ statement_size + " ";
+                    sql += " and Size  " + statement_size + " ";
                 }
             }
             if (price.equals("所有价格")) {
@@ -321,22 +320,22 @@ public class Manager {
                 String price_up;//higher bound
                 String price_do;//lowwer bound
                 if (price.substring(0, 1).equals(">")) {
-                    sql += " and Price = "+ price + " ";
+                    sql += " and Price = " + price + " ";
                 } else if (price.substring(0, 1).equals("<")) {
-                    sql += " and Price = "+ price + " ";
+                    sql += " and Price = " + price + " ";
                 } else {
                     String price_new[] = size.split("~");
                     price_up = price_new[1];
                     price_do = price_new[0];
                     String statement_size = "between " + price_do + " and " + price_up;
-                    sql += " and Price = "+ statement_size + " ";
+                    sql += " and Price = " + statement_size + " ";
                 }
             }
             if (Owner.equals("所有房东")) {
                 sql += " and HouseHolderID =  House.HouseHolderID";
                 System.out.println("5");
             } else {
-                sql += " and HouseHolderID = "+ Owner + " ";
+                sql += " and HouseHolderID = " + Owner + " ";
             }
             statement = connection.prepareStatement(sql);
             System.out.println(sql);
@@ -349,7 +348,7 @@ public class Manager {
                 int price_new = resultSet.getInt(6);
                 System.out.println(7);
                 String ownerID = resultSet.getString(5);
-                System.out.println(structure +","+ price_new +","+ picture +","+ location);
+                System.out.println(structure + "," + price_new + "," + picture + "," + location);
                 HouseInformation houseIn = new HouseInformation(location, structure, size_new, price_new, picture, ownerID);
                 list.add(houseIn);
             }
@@ -414,12 +413,12 @@ public class Manager {
                 sql += " RenterID = Renter.RenterID";
                 System.out.println("1");
             } else
-                sql += " RenterID = "+ ID + " ";
+                sql += " RenterID = " + ID + " ";
             if (name.equals("所有姓名")) {
                 sql += " and RenterName = Renter.RenterName";
                 System.out.println("2");
             } else
-                sql += " and RenterName = "+ name + " ";
+                sql += " and RenterName = " + name + " ";
             if (sex.equals("所有性别")) {
                 sql += " and RSex = Renter.RSex";
                 System.out.println("3");
@@ -448,7 +447,7 @@ public class Manager {
                 String newTel = resultSet.getString(4);
                 String newWechat = resultSet.getString(5);
                 System.out.println(6);
-                System.out.println(newID +","+ newName +","+ newSex +","+ newTel + "," + newWechat);
+                System.out.println(newID + "," + newName + "," + newSex + "," + newTel + "," + newWechat);
                 RenterInformation renterInfo = new RenterInformation(newID, newName, newSex, newTel, newWechat);
                 list.add(renterInfo);
             }
