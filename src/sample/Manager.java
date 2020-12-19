@@ -42,7 +42,8 @@ public class Manager {
     public int login(String username, String password) {
         /*
         在这里判断用户输入的用户名和密码是否符合要求
-        最高权限返回2
+        最高权限返回3
+        管理权限返回2
         普通权限返回1
         没有该用户返回0
          */
@@ -58,7 +59,11 @@ public class Manager {
             resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 int num = resultSet.getInt(3);
-                System.out.println(num);
+                System.out.println("您的权限是"+num);
+                if(num == 3){
+                    System.out.println("真正的神，登录成功");
+                    return 3;
+                }
                 if (num == 2) {
                     System.out.println("尊敬的神，登录成功");
                     return 2;
@@ -213,7 +218,7 @@ public class Manager {
         /*
         用户名为holder的客户，删除了loca号房产
          */
-        String sql1 = "delete from House set where HLocation =? and ";
+        String sql1 = "delete from House set where HLocation =?  ";
         String sql2 = "insert into Renting values(?,?,?,?,?,?,?,?) ";
         PreparedStatement statement = null;
         try {
@@ -235,9 +240,10 @@ public class Manager {
         /*
         用户名为holder的客户，添加了loca号房产，holder是房东
          */
+        String pic = null;
         String loc = house.Loca;
         String structure = house.huXing;
-        String pic = house.Pic;
+        pic = house.Pic;
         int size = house.Size;
         String sql1 = "insert into House values(?,?,?,?,?,?,?,?,?,?) ";
         PreparedStatement statement = null;
@@ -245,15 +251,15 @@ public class Manager {
             statement = connection.prepareStatement(sql1);
             statement.setString(1, loc);
             statement.setInt(2, size);
-            statement.setString(3, null);
-            statement.setString(4, null);
+            statement.setString(3, structure);
+            statement.setString(4, pic);
             statement.setString(5, holder);
             statement.setInt(6, 0);
             statement.setInt(7, 0);
             statement.setString(8, "否");
             statement.setString(9, "否");
             statement.setString(10, "一川公司塘朗营业部");
-            statement.executeQuery();
+            statement.execute();
             //statement.setString();
 
             System.out.println("成功添加");
@@ -272,67 +278,69 @@ public class Manager {
         其中 structure以“平层”或“所有房型”的形式给出； size以“<100”或“100~150”或具体值形式给出； price以“<2000”或“2000~4000”或具体值形式给出
         具体形式参见 AdministratorController
         全部则是*
+        and Size between ? and ? and SalePrice between ? and ?
          */
-        String sql = "select * from House where HLocation =? and Structure=? and Size between ? and ? and SalePrice between ? and ? and HouseHolderID = ? ";
+        String sql = "select * from House where ";
         PreparedStatement statement = null;
         ResultSet resultSet = null;
+        //String sql2 = "select * from House";
         ObservableList<HouseInformation> list = FXCollections.observableArrayList();
         try {
             statement = connection.prepareStatement(sql);
             if (Location.equals("所有地址")) {
-                statement.setString(1, "House.HLocation");
+                sql += "HLocation = House.HLocation";
                 System.out.println("1");
             } else
-                statement.setString(1, Location);
+                sql += "HLocation = "+ Location + " ";
             if (stucture.equals("所有户型")) {
-                statement.setString(2, "House.Structure");
+                sql += " and Structure = House.Structure";
                 System.out.println("2");
             } else
-                statement.setString(2, stucture);
+                sql += " and Stucture = "+ stucture + " ";
             if (size.equals("所有面积")) {
-                statement.setString(3, "0");
-                statement.setString(4, "999999999999");
+                sql += " and Size = House.Size";
                 System.out.println("3");
             } else {
                 String size_up;//higher bound
                 String size_do;//lowwer bound
                 if (size.substring(0, 1).equals(">")) {
-                    statement.setString(3, size);
+                    sql += " and Size = "+ size + " ";
                 } else if (size.substring(0, 1).equals("<")) {
-                    statement.setString(3, size);
+                    sql += " and Size = "+ size + " ";
                 } else {
                     String size_new[] = size.split("~");
                     size_up = size_new[1];
                     size_do = size_new[0];
                     String statement_size = "between " + size_do + " and " + size_up;
-                    statement.setString(3, statement_size);
+                    sql += " and Size  "+ statement_size + " ";
                 }
             }
             if (price.equals("所有价格")) {
-                statement.setString(5, "0");
-                statement.setString(6, "99999999999999");
+                sql += " and SalePrice = House.SalePrice";
                 System.out.println("4");
             } else {
                 String price_up;//higher bound
                 String price_do;//lowwer bound
                 if (price.substring(0, 1).equals(">")) {
-                    statement.setString(3, price);
+                    sql += " and Price = "+ price + " ";
                 } else if (price.substring(0, 1).equals("<")) {
-                    statement.setString(3, price);
+                    sql += " and Price = "+ price + " ";
                 } else {
                     String price_new[] = size.split("~");
                     price_up = price_new[1];
                     price_do = price_new[0];
                     String statement_size = "between " + price_do + " and " + price_up;
-                    statement.setString(3, statement_size);
+                    sql += " and Price = "+ statement_size + " ";
                 }
             }
             if (Owner.equals("所有房东")) {
-                statement.setString(7, "House.HouseHolderID");
+                sql += " and HouseHolderID =  House.HouseHolderID";
                 System.out.println("5");
             } else {
-                statement.setString(5, Owner);
+                sql += " and HouseHolderID = "+ Owner + " ";
             }
+            statement = connection.prepareStatement(sql);
+            System.out.println(sql);
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 String location = resultSet.getString(1);
@@ -340,18 +348,19 @@ public class Manager {
                 String structure = resultSet.getString(3);
                 String picture = resultSet.getString(4);
                 int price_new = resultSet.getInt(6);
+                System.out.println(7);
                 String ownerID = resultSet.getString(5);
-                System.out.println(structure + price + picture + location);
-                HouseInformation houseIn = new HouseInformation(location, structure, price_new, size_new, picture, ownerID);
-                list.add(houseIn);
+                System.out.println(structure +","+ price_new +","+ picture +","+ location);
+                HouseInformation houseIn = new HouseInformation(location, structure, size_new, price_new, picture, ownerID);
+                //list.add(houseIn);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        /*ObservableList list = FXCollections.observableArrayList();
+
         for (int t = 0; t < 100; t++)
             list.add(new HouseInformation(RString(10), RString(15), (int) (Math.random() * 100), (int) (Math.random() * 9999), RString(30), RString(20)));
-        list.add(new HouseInformation("a", "pingceng", 101, 2005, "pic", "我"));*/
+        list.add(new HouseInformation("a", "pingceng", 101, 2005, "pic", "我"));
         return list;
     }
 
@@ -364,18 +373,84 @@ public class Manager {
 
     public void insertF(HouseInformation houseInformation) {
         //新增一个房源
+        HouseInformation house = houseInformation;
+        String pic = null;
+        String loc = house.getLocation();
+        String structure = house.getStructure();
+        pic = house.getPic();
+        int size = house.getSize();
+        String holder = house.getOwner();
+        String sql1 = "insert into House values(?,?,?,?,?,?,?,?,?,?) ";
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(sql1);
+            statement.setString(1, loc);
+            statement.setInt(2, size);
+            statement.setString(3, structure);
+            statement.setString(4, pic);
+            statement.setString(5, holder);
+            statement.setInt(6, 0);
+            statement.setInt(7, 0);
+            statement.setString(8, "否");
+            statement.setString(9, "否");
+            statement.setString(10, "一川公司塘朗营业部");
+            statement.execute();
+            //statement.setString();
+
+            System.out.println("成功添加");
+            return;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println("添加中发生错误");
     }
 
-    public ObservableList<RenterInformation> getRenter(String ID, String name, String sex, String tel, String wechat) {
-        ObservableList<RenterInformation> list = FXCollections.observableArrayList();
+    public ObservableList<HouseInformation> getRenter(String ID, String name, String sex, String tel, String wechat) {
+        ObservableList<HouseInformation> list = FXCollections.observableArrayList();
         return list;
     }
 
     public void insertR(RenterInformation renterInformation) {
         //新增一个租房客
+        String id = renterInformation.getID();
+        String name = renterInformation.getName();
+        String sex = renterInformation.getSex();
+        String tel = renterInformation.getTel();
+        String wechat = renterInformation.getWechat();
+        String sql1 = "insert into Renter values(?,?,?,?,?) ";
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(sql1);
+            statement.setString(1, id);
+            statement.setString(2, name);
+            statement.setString(3, sex);
+            statement.setString(4, tel);
+            statement.setString(5, wechat);
+
+            statement.execute();
+            //statement.setString();
+
+            System.out.println("成功添加");
+            return;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println("添加中发生错误");
     }
 
     public void deleteR(String id) {
         //删除一个提供id的租房客
+        String sql1 = "delete from Renter where RenterID = ? ";
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(sql1);
+            statement.setString(1, id);
+            statement.execute();
+            System.out.println("成功删除");
+            return;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println("删除中发生错误");
     }
 }
