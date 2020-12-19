@@ -283,7 +283,6 @@ public class Manager {
         String sql = "select * from House where ";
         PreparedStatement statement = null;
         ResultSet resultSet = null;
-        //String sql2 = "select * from House";
         ObservableList<HouseInformation> list = FXCollections.observableArrayList();
         try {
             statement = connection.prepareStatement(sql);
@@ -352,15 +351,15 @@ public class Manager {
                 String ownerID = resultSet.getString(5);
                 System.out.println(structure +","+ price_new +","+ picture +","+ location);
                 HouseInformation houseIn = new HouseInformation(location, structure, size_new, price_new, picture, ownerID);
-                //list.add(houseIn);
+                list.add(houseIn);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        for (int t = 0; t < 100; t++)
+        /*for (int t = 0; t < 100; t++)
             list.add(new HouseInformation(RString(10), RString(15), (int) (Math.random() * 100), (int) (Math.random() * 9999), RString(30), RString(20)));
-        list.add(new HouseInformation("a", "pingceng", 101, 2005, "pic", "我"));
+        list.add(new HouseInformation("a", "pingceng", 101, 2005, "pic", "我"));*/
         return list;
     }
 
@@ -405,8 +404,61 @@ public class Manager {
         System.out.println("添加中发生错误");
     }
 
-    public ObservableList<HouseInformation> getRenter(String ID, String name, String sex, String tel, String wechat) {
-        ObservableList<HouseInformation> list = FXCollections.observableArrayList();
+    public ObservableList<RenterInformation> getRenter(String ID, String name, String sex, String tel, String wechat) {
+        ObservableList<RenterInformation> list = FXCollections.observableArrayList();
+        String sql = "select * from Renter where ";
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        try {
+            if (ID.equals("所有ID")) {
+                sql += " RenterID = Renter.RenterID";
+                System.out.println("1");
+            } else
+                sql += " RenterID = "+ ID + " ";
+            if (name.equals("所有姓名")) {
+                sql += " and RenterName = Renter.RenterName";
+                System.out.println("2");
+            } else
+                sql += " and RenterName = "+ name + " ";
+            if (sex.equals("所有性别")) {
+                sql += " and RSex = Renter.RSex";
+                System.out.println("3");
+            } else {
+                sql += " and RSex = " + sex;
+            }
+            if (tel.equals("所有手机号")) {
+                sql += " and RTel = Renter.RTel";
+                System.out.println("4");
+            } else {
+                sql += " and RTel = " + tel;
+            }
+            if (wechat.equals("所有微信号")) {
+                sql += " and RWechat = Renter.RWechat";
+                System.out.println("5");
+            } else {
+                sql += " and RWechat = " + wechat;
+            }
+            statement = connection.prepareStatement(sql);
+            System.out.println(sql);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                String newID = resultSet.getString(1);
+                String newName = resultSet.getString(2);
+                String newSex = resultSet.getString(3);
+                String newTel = resultSet.getString(4);
+                String newWechat = resultSet.getString(5);
+                System.out.println(6);
+                System.out.println(newID +","+ newName +","+ newSex +","+ newTel + "," + newWechat);
+                RenterInformation renterInfo = new RenterInformation(newID, newName, newSex, newTel, newWechat);
+                list.add(renterInfo);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        /*for (int t = 0; t < 100; t++)
+            list.add(new HouseInformation(RString(10), RString(15), (int) (Math.random() * 100), (int) (Math.random() * 9999), RString(30), RString(20)));
+        list.add(new HouseInformation("a", "pingceng", 101, 2005, "pic", "我"));*/
         return list;
     }
 
