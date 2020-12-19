@@ -26,8 +26,14 @@ public class AdministratorController {
         RC3.setCellValueFactory(cellData -> cellData.getValue().Sex);
         RC4.setCellValueFactory(cellData -> cellData.getValue().Tel);
         RC5.setCellValueFactory(cellData -> cellData.getValue().Wechat);
+        HC1.setCellValueFactory(cellData -> cellData.getValue().ID);
+        HC2.setCellValueFactory(cellData -> cellData.getValue().Name);
+        HC3.setCellValueFactory(cellData -> cellData.getValue().Sex);
+        HC4.setCellValueFactory(cellData -> cellData.getValue().Tel);
+        HC5.setCellValueFactory(cellData -> cellData.getValue().Wechat);
         HouseRefresh();
         Rrefresh();
+        Hrefresh();
     }
 
 
@@ -103,13 +109,11 @@ public class AdministratorController {
         Size.setText(">6000");
     }
     @FXML private void selectAS(){Size.setText("所有面积");}
-
     @FXML
     public void HouseRefresh() {
         ObservableList<HouseInformation> list = manager.HouseSearch("所有地址",Huxing.getText(),Size.getText(),Price.getText(),"所有房东");
         FangXing.setItems(list);
     }
-
     @FXML
     public void Fsearch() {
         if (!Fsousuo.getText().equals("")) {
@@ -156,7 +160,6 @@ public class AdministratorController {
         alert.setContentText("请检查您是否在搜索框中输入格式准确的信息");
         alert.showAndWait();
     }
-
     @FXML
     private void Fedit() throws IOException {
         try {
@@ -180,7 +183,6 @@ public class AdministratorController {
             alert.showAndWait();
         }
     }
-
     @FXML
     private void Fadd() throws IOException {
         FXMLLoader loader = new FXMLLoader((Main.class.getResource("/Fedit.fxml")));
@@ -194,7 +196,6 @@ public class AdministratorController {
         add.getIcons().add(new Image(Main.class.getResourceAsStream("/1.png")));
         add.show();
     }
-
     @FXML
     private void Fdelete(){
         try {
@@ -300,7 +301,6 @@ public class AdministratorController {
             alert.showAndWait();
         }
     }
-
     @FXML
     private void Radd() throws IOException {
         FXMLLoader loader = new FXMLLoader((Main.class.getResource("/Redit.fxml")));
@@ -314,5 +314,107 @@ public class AdministratorController {
         add.getIcons().add(new Image(Main.class.getResourceAsStream("/1.png")));
         add.show();
     }
+
+    //房东管理
+    @FXML
+    TableView<HouseholderInformation> Htable;
+    @FXML TableColumn <HouseholderInformation,String> HC1;
+    @FXML TableColumn <HouseholderInformation,String> HC2;
+    @FXML TableColumn <HouseholderInformation,String> HC3;
+    @FXML TableColumn <HouseholderInformation,String> HC4;
+    @FXML TableColumn <HouseholderInformation,String> HC5;
+    @FXML TextField Hsousuo;
+    @FXML MenuButton HsousuoT;
+    @FXML private void Hid(){HsousuoT.setText("ID");}
+    @FXML private void Hname(){HsousuoT.setText("姓名");}
+    @FXML private void Htel(){HsousuoT.setText("手机号");}
+    @FXML private void Hwechat(){HsousuoT.setText("微信号");}
+    @FXML MenuButton Hsex;
+    @FXML private void Hmale(){Rsex.setText("男");}
+    @FXML private void Hfemale(){Rsex.setText("女");}
+    @FXML private void Hallsex(){Rsex.setText("所有性别");}
+    @FXML
+    public void Hrefresh() {
+        ObservableList<HouseholderInformation> list =  manager.getHouseholder("所有ID","所有姓名",Rsex.getText(),"所有手机号","所有微信号");
+        Htable.setItems(list);
+    }
+    @FXML
+    private void Hsearch(){
+        if (!Hsousuo.getText().equals("")){
+            switch(HsousuoT.getText()) {
+                case "ID":
+                    ObservableList<HouseholderInformation> list = manager.getHouseholder(Fsousuo.getText(), "所有姓名", "所有性别", "所有手机号", "所有微信号");
+                    Htable.setItems(list);break;
+                case "姓名":
+                    ObservableList<HouseholderInformation> list1 = manager.getHouseholder("所有ID", Fsousuo.getText(), "所有性别", "所有手机号", "所有微信号");
+                    Htable.setItems(list1);break;
+                case "手机号":
+                    ObservableList<HouseholderInformation> list2 = manager.getHouseholder("所有ID", "所有姓名", "所有性别", Fsousuo.getText(), "所有微信号");
+                    Htable.setItems(list2);break;
+                case "微信号":
+                    ObservableList<HouseholderInformation> list3 = manager.getHouseholder("所有ID", "所有姓名", "所有性别", "所有手机号", Fsousuo.getText());
+                    Htable.setItems(list3);break;
+                case "搜索条件":
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("搜索条件缺失");
+                    alert.setContentText("选择一个您的搜索条件");
+                    alert.showAndWait();
+            }
+        }else {
+            error1();
+        }
+    }
+    @FXML
+    private void Hedit(){
+        try {
+            HouseholderInformation selectedItem = Htable.getSelectionModel().getSelectedItem();
+            manager.deleteH(selectedItem.getID());
+            FXMLLoader loader = new FXMLLoader((Main.class.getResource("/Hedit.fxml")));
+            AnchorPane pane = loader.load();
+            HeditController reditController = loader.getController();
+            Scene scene = new Scene(pane);
+            Stage add = new Stage();
+            reditController.init(manager,selectedItem,this,add);
+            add.setScene(scene);
+            add.setTitle("编辑房东");
+            add.getIcons().add(new Image(Main.class.getResourceAsStream("/1.png")));
+            add.show();
+        }catch (NullPointerException | IOException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("编辑目标缺失");
+            alert.setContentText("您必须选择一个目标以编辑");
+            alert.showAndWait();
+        }
+    }
+    @FXML
+    private void Hdelete(){
+        try {
+            HouseholderInformation selectedItem = Htable.getSelectionModel().getSelectedItem();
+            manager.deleteH(selectedItem.getID());
+        }catch (NullPointerException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("编辑目标缺失");
+            alert.setContentText("您必须选择一个目标以删除");
+            alert.showAndWait();
+        }
+    }
+    @FXML
+    private void Hadd() throws IOException {
+        FXMLLoader loader = new FXMLLoader((Main.class.getResource("/Hedit.fxml")));
+        AnchorPane pane = loader.load();
+        HeditController feditController = loader.getController();
+        Scene scene = new Scene(pane);
+        Stage add = new Stage();
+        feditController.init1(manager,this,add);
+        add.setScene(scene);
+        add.setTitle("添加房东");
+        add.getIcons().add(new Image(Main.class.getResourceAsStream("/1.png")));
+        add.show();
+    }
+
+
 
 }

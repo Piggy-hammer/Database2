@@ -504,4 +504,18 @@ public class Manager {
         }
         System.out.println("删除中发生错误");
     }
+
+    public ObservableList<HouseholderInformation> getHouseholder(String ID, String name, String sex, String tel, String wechat) {
+        //搜索符合上述条件的房东
+        ObservableList<HouseholderInformation> list = FXCollections.observableArrayList();
+        return list;
+    }
+
+    public void insertH(HouseholderInformation householderInformation) {
+        //插入符合上述条件的房东
+    }
+
+    public void deleteH(String id) {
+        //删除符合上述条件的房东
+    }
 }

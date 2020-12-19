@@ -34,7 +34,7 @@
                       <MenuItem mnemonicParsing="false" onAction="#selectA" text="所有户型" />
                     </items>
                   </MenuButton>
-                  <Button layoutX="107.0" layoutY="4.0" maxWidth="100.0" mnemonicParsing="false" onAction="#HouseRefresh" prefHeight="30.0" prefWidth="70.0" text="刷新" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="32.0" />
+                  <Button layoutX="107.0" layoutY="4.0" maxWidth="100.0" mnemonicParsing="false" onAction="#HouseRefresh" prefHeight="30.0" prefWidth="75.0" text="刷新" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="32.0" />
                   <MenuButton fx:id="Size" layoutX="24.0" layoutY="10.0" maxWidth="100.0" mnemonicParsing="false" prefHeight="30.0" styleClass="background" text="所有面积" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="32.0">
                      <items>
                         <MenuItem mnemonicParsing="false" onAction="#select_100" text="&lt;100" />
@@ -53,9 +53,9 @@
                         <MenuItem mnemonicParsing="false" onAction="#selectAP" text="所有价格" />
                      </items>
                   </MenuButton>
-                  <Button layoutX="484.0" layoutY="6.0" mnemonicParsing="false" onAction="#Fedit" prefHeight="30.0" prefWidth="70.0" text="编辑" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="32.0" />
-                  <Button layoutX="494.0" layoutY="16.0" mnemonicParsing="false" onAction="#Fdelete" prefHeight="30.0" prefWidth="70.0" text="删除" AnchorPane.rightAnchor="140.0" AnchorPane.topAnchor="32.0" />
-                  <Button layoutX="504.0" layoutY="26.0" mnemonicParsing="false" onAction="#Fadd" prefHeight="30.0" prefWidth="70.0" text="添加" AnchorPane.rightAnchor="210.0" AnchorPane.topAnchor="32.0" />
+                  <Button layoutX="484.0" layoutY="6.0" mnemonicParsing="false" onAction="#Fedit" prefHeight="30.0" prefWidth="75.0" text="编辑" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="32.0" />
+                  <Button layoutX="494.0" layoutY="16.0" mnemonicParsing="false" onAction="#Fdelete" prefHeight="30.0" prefWidth="75.0" text="删除" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="32.0" />
+                  <Button layoutX="504.0" layoutY="26.0" mnemonicParsing="false" onAction="#Fadd" prefHeight="30.0" prefWidth="75.0" text="添加" AnchorPane.rightAnchor="225.0" AnchorPane.topAnchor="32.0" />
                   <TextField fx:id="Fsousuo" layoutY="37.0" prefHeight="30.0" promptText="填入您要搜索的信息" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="0.0" />
                   <MenuButton fx:id="FsousuoT" layoutX="34.0" layoutY="20.0" maxHeight="30.0" maxWidth="100.0" mnemonicParsing="false" prefHeight="28.0" styleClass="background" text="搜索条件" AnchorPane.leftAnchor="395.0" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="0.0">
                      <items>
@@ -66,7 +66,7 @@
                         <MenuItem mnemonicParsing="false" onAction="#sOwner" text="房东" />
                      </items>
                   </MenuButton>
-                  <Button fx:id="Fsearch" layoutX="510.0" layoutY="34.0" mnemonicParsing="false" onAction="#Fsearch" prefHeight="30.0" prefWidth="80.0" text="搜索" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="0.0" />
+                  <Button fx:id="Fsearch" layoutX="510.0" layoutY="34.0" mnemonicParsing="false" onAction="#Fsearch" prefHeight="32.0" prefWidth="80.0" text="搜索" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="0.0" />
                </children></AnchorPane>
       </content>
     </Tab>
@@ -77,7 +77,7 @@
                   <TableView fx:id="Rtable" layoutX="200.0" layoutY="98.0" prefHeight="371.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="62.0">
                     <columns>
                       <TableColumn fx:id="RC1" prefWidth="75.0" text="ID" />
-                        <TableColumn fx:id="RC2" prefWidth="75.0" text="姓名" />
+                        <TableColumn fx:id="RC2" prefWidth="50.0" text="姓名" />
                         <TableColumn fx:id="RC3" prefWidth="75.0" text="性别" />
                       <TableColumn fx:id="RC4" prefWidth="75.0" text="手机号" />
                         <TableColumn fx:id="RC5" prefWidth="75.0" text="微信号" />
@@ -95,11 +95,11 @@
                         <MenuItem mnemonicParsing="false" onAction="#Rswechat" text="微信号" />
                     </items>
                   </MenuButton>
-                  <Button layoutX="515.0" layoutY="4.0" mnemonicParsing="false" onAction="#Rsearch" prefHeight="30.0" text="搜索" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="0.0" />
+                  <Button layoutX="515.0" layoutY="4.0" mnemonicParsing="false" onAction="#Rsearch" prefHeight="30.0" prefWidth="75.0" text="搜索" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="0.0" />
                   <Button layoutX="545.0" layoutY="37.0" mnemonicParsing="false" onAction="#Rrefresh" prefHeight="32.0" prefWidth="75.0" text="刷新" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="32.0" />
-                  <Button layoutX="463.0" layoutY="34.0" mnemonicParsing="false" onAction="#Redit" prefHeight="32.0" prefWidth="70.0" text="编辑" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="32.0" />
+                  <Button layoutX="463.0" layoutY="34.0" mnemonicParsing="false" onAction="#Redit" prefHeight="32.0" prefWidth="75.0" text="编辑" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="32.0" />
                   <Button layoutX="555.0" layoutY="47.0" mnemonicParsing="false" onAction="#Rdelete" prefHeight="32.0" prefWidth="75.0" text="删除" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="32.0" />
-                  <Button layoutX="565.0" layoutY="57.0" mnemonicParsing="false" onAction="#Radd" prefHeight="32.0" prefWidth="70.0" text="添加" AnchorPane.rightAnchor="225.0" AnchorPane.topAnchor="32.0" />
+                  <Button layoutX="565.0" layoutY="57.0" mnemonicParsing="false" onAction="#Radd" prefHeight="32.0" prefWidth="75.0" text="添加" AnchorPane.rightAnchor="225.0" AnchorPane.topAnchor="32.0" />
                   <MenuButton fx:id="Rsex" layoutY="34.0" mnemonicParsing="false" prefWidth="100.0" styleClass="background" text="所有性别" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="31.0">
                     <items>
                       <MenuItem fx:id="Rman" mnemonicParsing="false" text="男" />
@@ -114,12 +114,39 @@
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <TableView layoutX="200.0" layoutY="98.0" prefHeight="371.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="Htable" layoutX="200.0" layoutY="98.0" prefHeight="371.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="62.0">
                      <columns>
-                        <TableColumn prefWidth="75.0" text="C1" />
-                        <TableColumn prefWidth="75.0" text="C2" />
+                        <TableColumn fx:id="HC1" prefWidth="75.0" text="ID" />
+                        <TableColumn fx:id="HC2" prefWidth="75.0" text="姓名" />
+                        <TableColumn fx:id="HC3" prefWidth="75.0" text="性别" />
+                        <TableColumn fx:id="HC4" prefWidth="75.0" text="手机号" />
+                        <TableColumn fx:id="HC5" prefWidth="75.0" text="微信号" />
                      </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
                   </TableView>
+                  <TextField fx:id="Hsousuo" layoutX="28.0" layoutY="14.0" promptText="输入您要搜索的信息" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="0.0" />
+                  <MenuButton fx:id="HsousuoT" layoutX="370.0" layoutY="4.0" mnemonicParsing="false" styleClass="background" text="搜索条件" AnchorPane.leftAnchor="395.0" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="0.0">
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#Hid" text="ID" />
+                      <MenuItem mnemonicParsing="false" onAction="#Hname" text="姓名" />
+                        <MenuItem mnemonicParsing="false" onAction="#Htel" text="手机号" />
+                        <MenuItem mnemonicParsing="false" onAction="#Hwechat" text="微信号" />
+                    </items>
+                  </MenuButton>
+                  <Button layoutX="531.0" layoutY="20.0" mnemonicParsing="false" onAction="#Hsearch" prefHeight="32.0" prefWidth="75.0" text="搜索" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="0.0" />
+                  <MenuButton fx:id="Hsex" layoutX="20.0" layoutY="31.0" mnemonicParsing="false" styleClass="background" text="所有性别" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="31.0">
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#Hmale" text="男" />
+                      <MenuItem mnemonicParsing="false" onAction="#Hfemale" text="女" />
+                        <MenuItem mnemonicParsing="false" onAction="#Hallsex" text="所有性别" />
+                    </items>
+                  </MenuButton>
+                  <Button layoutX="350.0" layoutY="35.0" mnemonicParsing="false" onAction="#Hadd" prefHeight="32.0" prefWidth="75.0" text="添加" AnchorPane.rightAnchor="225.0" AnchorPane.topAnchor="32.0" />
+                  <Button layoutX="520.0" layoutY="35.0" mnemonicParsing="false" onAction="#Hrefresh" prefHeight="32.0" prefWidth="75.0" text="刷新" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="32.0" />
+                  <Button layoutX="463.0" layoutY="35.0" minHeight="32.0" mnemonicParsing="false" onAction="#Hedit" prefWidth="75.0" text="编辑" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="32.0" />
+                  <Button layoutX="388.0" layoutY="37.0" minHeight="32.0" mnemonicParsing="false" onAction="#Hdelete" prefWidth="75.0" text="删除" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="32.0" />
                </children>
             </AnchorPane>
          </content>
