@@ -348,7 +348,7 @@ public class Manager {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        /*
+        /*ObservableList list = FXCollections.observableArrayList();
         for (int t = 0; t < 100; t++)
             list.add(new HouseInformation(RString(10), RString(15), (int) (Math.random() * 100), (int) (Math.random() * 9999), RString(30), RString(20)));
         list.add(new HouseInformation("a", "pingceng", 101, 2005, "pic", "我"));*/
@@ -366,8 +366,8 @@ public class Manager {
         //新增一个房源
     }
 
-    public ObservableList<HouseInformation> getRenter(String ID, String name, String sex, String tel, String wechat) {
-        ObservableList<HouseInformation> list = FXCollections.observableArrayList();
+    public ObservableList<RenterInformation> getRenter(String ID, String name, String sex, String tel, String wechat) {
+        ObservableList<RenterInformation> list = FXCollections.observableArrayList();
         return list;
     }
 

@@ -108,7 +108,6 @@ public class AdministratorController {
     public void HouseRefresh() {
         ObservableList<HouseInformation> list = manager.HouseSearch("所有地址",Huxing.getText(),Size.getText(),Price.getText(),"所有房东");
         FangXing.setItems(list);
-
     }
 
     @FXML
@@ -235,25 +234,25 @@ public class AdministratorController {
 
     @FXML
     public void Rrefresh() {
-        ObservableList<HouseInformation> list =  manager.getRenter("所有ID","所有姓名",Rsex.getText(),"所有手机号","所有微信号");
-        FangXing.setItems(list);
+        ObservableList<RenterInformation> list =  manager.getRenter("所有ID","所有姓名",Rsex.getText(),"所有手机号","所有微信号");
+        Rtable.setItems(list);
     }
     @FXML
     private void Rsearch(){
         if (!Rsousuo.getText().equals("")){
             switch(RsousuoT.getText()) {
                 case "ID":
-                    ObservableList<HouseInformation> list = manager.getRenter(Fsousuo.getText(), "所有姓名", "所有性别", "所有手机号", "所有微信号");
-                    FangXing.setItems(list);break;
+                    ObservableList<RenterInformation> list = manager.getRenter(Fsousuo.getText(), "所有姓名", "所有性别", "所有手机号", "所有微信号");
+                    Rtable.setItems(list);break;
                 case "姓名":
-                    ObservableList<HouseInformation> list1 = manager.getRenter("所有ID", Fsousuo.getText(), "所有性别", "所有手机号", "所有微信号");
-                    FangXing.setItems(list1);break;
+                    ObservableList<RenterInformation> list1 = manager.getRenter("所有ID", Fsousuo.getText(), "所有性别", "所有手机号", "所有微信号");
+                    Rtable.setItems(list1);break;
                 case "手机号":
-                    ObservableList<HouseInformation> list2 = manager.getRenter("所有ID", "所有姓名", "所有性别", Fsousuo.getText(), "所有微信号");
-                    FangXing.setItems(list2);break;
+                    ObservableList<RenterInformation> list2 = manager.getRenter("所有ID", "所有姓名", "所有性别", Fsousuo.getText(), "所有微信号");
+                    Rtable.setItems(list2);break;
                 case "微信号":
-                    ObservableList<HouseInformation> list3 = manager.getRenter("所有ID", "所有姓名", "所有性别", "所有手机号", Fsousuo.getText());
-                    FangXing.setItems(list3);break;
+                    ObservableList<RenterInformation> list3 = manager.getRenter("所有ID", "所有姓名", "所有性别", "所有手机号", Fsousuo.getText());
+                    Rtable.setItems(list3);break;
                 case "搜索条件":
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Error");
