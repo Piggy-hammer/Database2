@@ -205,10 +205,12 @@
 
 .tab-pane {
     -fx-background-color: black;
+    -fx-tab-min-height: 40;
 }
 /* 修改Tab的背景颜色 */
 .tab {
     -fx-background-color: #333333;
+    -fx-font-size: 18;
 }
 /* 修改顶栏的背景颜色 */
 .tab-pane>*.tab-header-area>*.tab-header-background

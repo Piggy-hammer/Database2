@@ -10,6 +10,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.LocalTime;
 
 
 public class AdministratorController {
@@ -31,9 +32,17 @@ public class AdministratorController {
         HC3.setCellValueFactory(cellData -> cellData.getValue().Sex);
         HC4.setCellValueFactory(cellData -> cellData.getValue().Tel);
         HC5.setCellValueFactory(cellData -> cellData.getValue().Wechat);
+        DC1.setCellValueFactory(cellData -> cellData.getValue().Dealid);
+        DC2.setCellValueFactory(cellData -> cellData.getValue().Renterid);
+        DC3.setCellValueFactory(cellData -> cellData.getValue().Holderid);
+        DC4.setCellValueFactory(cellData -> cellData.getValue().Loc);
+        DC5.setCellValueFactory(cellData -> cellData.getValue().Timefrom);
+        DC6.setCellValueFactory(cellData -> cellData.getValue().Timeto);
+        DC7.setCellValueFactory(cellData -> cellData.getValue().Price.asObject());
         HouseRefresh();
         Rrefresh();
         Hrefresh();
+        Drefresh();
     }
 
 
@@ -415,6 +424,39 @@ public class AdministratorController {
         add.show();
     }
 
+    //合同管理
+    @FXML DatePicker Datefrom;
+    @FXML TableView<DealInformation> Dtable;
+    @FXML TableColumn<DealInformation,String> DC1;
+    @FXML TableColumn<DealInformation,String> DC2;
+    @FXML TableColumn<DealInformation,String> DC3;
+    @FXML TableColumn<DealInformation,String> DC4;
+    @FXML TableColumn<DealInformation,String> DC5;
+    @FXML TableColumn<DealInformation,String> DC6;
+    @FXML TableColumn<DealInformation,Integer> DC7;
+    @FXML TextField Dsousuo;
+    @FXML MenuButton DsousuoT;
+    @FXML private void Did(){DsousuoT.setText("合约号");}
+    @FXML private void Drid(){DsousuoT.setText("租户ID");}
+    @FXML private void Dhid(){DsousuoT.setText("房东ID");}
+    @FXML private void Dloc(){DsousuoT.setText("房源地址");}
+    @FXML MenuButton Dprice;
+    @FXML private void D_2000(){Dprice.setText("<2000");}
+    @FXML private void D2000_4000(){Dprice.setText("2000~4000");}
+    @FXML private void D4000_6000(){Dprice.setText("4000~6000");}
+    @FXML private void D_6000(){Dprice.setText(">6000");}
+    @FXML DatePicker Dateto;
+
+
+
+
+
+
+    public void Drefresh(){
+        System.out.println(Datefrom.getValue().toString());
+        ObservableList<DealInformation> list = manager.RentingSearch("所有合约号","所有租户ID","所有房东ID","所有地址",Datefrom.getValue().toString(),Dateto.getValue().toString(),Dprice.getText());
+        Dtable.setItems(list);
+    }
 
 
 }

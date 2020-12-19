@@ -518,4 +518,10 @@ public class Manager {
     public void deleteH(String id) {
         //删除符合上述条件的房东
     }
+
+    public ObservableList<DealInformation> RentingSearch(String reningid, String renterid, String householderid, String location, String datefrom, String dateto, String price) {
+        //搜索符合上诉条件的renting信息
+        ObservableList<DealInformation> list = FXCollections.observableArrayList();
+        return list;
+    }
 }
