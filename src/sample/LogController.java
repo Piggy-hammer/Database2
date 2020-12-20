@@ -1,7 +1,11 @@
 package sample;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.scene.control.*;
 
@@ -38,8 +42,16 @@ public class LogController {
     }
 
     @FXML
-    private void Refresh(){
-        username.setText("");
-        code.setText("");
+    private void Rejest() throws IOException {
+        FXMLLoader loader = new FXMLLoader((Main.class.getResource("/register.fxml")));
+        AnchorPane pane = loader.load();
+        RegisterController Controller = loader.getController();
+        Stage stage1 = new Stage();
+        Controller.init1(manager,stage1);
+        Scene sceneMain = new Scene(pane);
+        stage1.setScene(sceneMain);
+        stage1.setTitle("注册为会员");
+        stage1.getIcons().add(new Image(Main.class.getResourceAsStream("/1.png")));
+        stage1.show();
     }
 }

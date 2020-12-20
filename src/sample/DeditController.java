@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter;
 
 
 public class DeditController {
-    static Manager manager;
+    Manager manager;
     Stage stage;
     AdministratorController administratorController;
     DateTimeFormatter yyyyMMdd = DateTimeFormatter.ofPattern("yyyyMMdd");

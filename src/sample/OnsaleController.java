@@ -2,6 +2,7 @@ package sample;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -10,6 +11,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -32,11 +35,19 @@ public class OnsaleController {
 
     @FXML
     public void Ping() throws IOException {
+        FXMLLoader loader1 = new FXMLLoader(Main.class.getResource("/Timepicker.fxml"));
+        AnchorPane pane = loader1.load();
+        DateController dateController = loader1.getController();
+        Scene scene = new Scene(pane);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        dateController.init(stage);
+        stage.show();
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("/ping.fxml"));
         ScrollPane anchorPane = loader.load();
         splitPane.getItems().set(1,anchorPane);
         GridPane gridPane = (GridPane)anchorPane.getContent();
-        List<House> list = manager.getPing();
+        List<House> list = manager.getPing(dateController.getDatefrom(),dateController.getDateto());
         int i = 1;
         for (House e: list
              ) {
@@ -47,7 +58,13 @@ public class OnsaleController {
             Button button = new Button();
             button.setText("立即入住");
             button.getStyleClass().add("labe-x");
-            button.setOnMouseClicked(event -> {manager.rent(e.Loca,user);});
+            button.setOnMouseClicked(event -> {
+                try {
+                    deal(e,user,dateController.getDatefrom(),dateController.getDateto());
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            });
             Loc.setText(e.Loca);
             Loc.setWrappingWidth(120);
             Loc.setFont(Font.font("system",15));
@@ -64,13 +81,32 @@ public class OnsaleController {
         }
     }
 
+    private void deal(House e, String user, String datefrom, String dateto) throws IOException {
+        FXMLLoader loader1 = new FXMLLoader(Main.class.getResource("/T.fxml"));
+        AnchorPane pane = loader1.load();
+        TController dateController = loader1.getController();
+        Scene scene = new Scene(pane);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        dateController.init(e,user,datefrom,dateto,stage,manager);
+        stage.show();
+    }
+
     @FXML
     public void Yue() throws IOException {
+        FXMLLoader loader1 = new FXMLLoader(Main.class.getResource("/Timepicker.fxml"));
+        AnchorPane pane = loader1.load();
+        DateController dateController = loader1.getController();
+        Scene scene = new Scene(pane);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        dateController.init(stage);
+        stage.show();
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("/ping.fxml"));
         ScrollPane anchorPane = loader.load();
         splitPane.getItems().set(1,anchorPane);
         GridPane gridPane = (GridPane)anchorPane.getContent();
-        List<House> list = manager.getYue();
+        List<House> list = manager.getYue(dateController.getDatefrom(),dateController.getDateto());
         int i = 1;
         for (House e: list
         ) {
@@ -81,7 +117,13 @@ public class OnsaleController {
             Button button = new Button();
             button.setText("立即入住");
             button.getStyleClass().add("labe-x");
-            button.setOnMouseClicked(event -> {manager.rent(e.Loca,user);});
+            button.setOnMouseClicked(event -> {
+                try {
+                    deal(e,user,dateController.getDatefrom(),dateController.getDateto());
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            });
             Loc.setText(e.Loca);
             Loc.setWrappingWidth(120);
             Loc.setFont(Font.font("system",15));
@@ -99,11 +141,19 @@ public class OnsaleController {
     }
     @FXML
     public void Shu() throws IOException {
+        FXMLLoader loader1 = new FXMLLoader(Main.class.getResource("/Timepicker.fxml"));
+        AnchorPane pane = loader1.load();
+        DateController dateController = loader1.getController();
+        Scene scene = new Scene(pane);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        dateController.init(stage);
+        stage.show();
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("/ping.fxml"));
         ScrollPane anchorPane = loader.load();
         splitPane.getItems().set(1,anchorPane);
         GridPane gridPane = (GridPane)anchorPane.getContent();
-        List<House> list = manager.getShu();
+        List<House> list = manager.getShu(dateController.getDatefrom(),dateController.getDateto());
         int i = 1;
         for (House e: list
         ) {
@@ -114,7 +164,13 @@ public class OnsaleController {
             Button button = new Button();
             button.setText("立即入住");
             button.getStyleClass().add("labe-x");
-            button.setOnMouseClicked(event -> {manager.rent(e.Loca,user);});
+            button.setOnMouseClicked(event -> {
+                try {
+                    deal(e,user,dateController.getDatefrom(),dateController.getDateto());
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            });
             Loc.setText(e.Loca);
             Loc.setWrappingWidth(120);
             Loc.setFont(Font.font("system",15));
@@ -130,5 +186,6 @@ public class OnsaleController {
             i++;
         }
     }
+
 
 }

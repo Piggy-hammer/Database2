@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="200.0" prefWidth="350.0" styleClass="background" stylesheets="@sample/DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.RegisterController">
+   <children>
+      <Label layoutX="17.0" layoutY="31.0" styleClass="label-header" text="注册成功！" AnchorPane.leftAnchor="65.0" />
+      <Button layoutX="125.0" layoutY="121.0" mnemonicParsing="false" onAction="#Quit" styleClass="label-bright" text="确定" />
+   </children>
+</AnchorPane>

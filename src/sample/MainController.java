@@ -19,21 +19,29 @@ public class MainController {
         stage = stageIn;
         manager = managerIn;
         this.user = user;
-        FXMLLoader loader;
-        if (authority == 2) {
-             loader = new FXMLLoader((Main.class.getResource("/manager.fxml")));
-            TabPane pane = loader.load();
-            AdministratorController administratorController = loader.getController();
-            administratorController.init(manager);
-            Scene sceneMain = new Scene(pane);
-            stage.setScene(sceneMain);
-            stage.centerOnScreen();
-        }else {
-             loader = new FXMLLoader((Main.class.getResource("/guest.fxml")));
-            splitPane = loader.load();
-            Scene sceneMain = new Scene(splitPane);
-            stage.setScene(sceneMain);
-            stage.centerOnScreen();
+        switch (authority){
+            case 2:
+                FXMLLoader loader = new FXMLLoader((Main.class.getResource("/manager.fxml")));
+                TabPane pane = loader.load();
+                AdministratorController administratorController = loader.getController();
+                administratorController.init(manager);
+                Scene sceneMain = new Scene(pane);
+                stage.setScene(sceneMain);
+                stage.centerOnScreen();break;
+            case 3:
+                FXMLLoader loader1 = new FXMLLoader((Main.class.getResource("/Supermanager.fxml")));
+                TabPane pane1 = loader1.load();
+                AdministratorController administratorController1 = loader1.getController();
+                administratorController1.init(manager);
+                Scene sceneMain1 = new Scene(pane1);
+                stage.setScene(sceneMain1);
+                stage.centerOnScreen();break;
+            case 1:
+                FXMLLoader loader2 = new FXMLLoader((Main.class.getResource("/guest.fxml")));
+                splitPane = loader2.load();
+                Scene sceneMain2 = new Scene(splitPane);
+                stage.setScene(sceneMain2);
+                stage.centerOnScreen();
         }
     }
 

@@ -6,7 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="280.0" prefWidth="500.0" styleClass="background" stylesheets="@sample/DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.HeditController">
+<AnchorPane prefHeight="335.0" prefWidth="500.0" styleClass="background" stylesheets="@sample/DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.RegisterController">
     <children>
         <Label layoutX="14.0" layoutY="23.0" styleClass="label-bright" text="ID" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0" />
         <TextField fx:id="ID" layoutX="77.0" layoutY="26.0" promptText="输入身份ID" style="-fx-background-color: derive(#1d1d1d,50%);" styleClass="background" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="21.0" />
@@ -21,8 +21,10 @@
                 <MenuItem mnemonicParsing="false" onAction="#female" text="女" />
             </items>
         </MenuButton>
-        <Label layoutX="33.0" layoutY="127.0" styleClass="label-bright" text="手机号" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="140.0" />
-        <TextField fx:id="Tel" layoutX="119.0" layoutY="142.0" promptText="输入身份ID" style="-fx-background-color: derive(#1d1d1d,50%);" styleClass="background" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="20.0" />
-        <Button layoutX="200.0" layoutY="200.0" mnemonicParsing="false" onAction="#confirm" styleClass="label-bright" text="确定" AnchorPane.topAnchor="200.0" />
+        <Label layoutX="33.0" layoutY="127.0" styleClass="label-bright" text="密码" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="200.0" />
+        <TextField fx:id="Tel" layoutX="119.0" layoutY="142.0" promptText="输入身份ID" style="-fx-background-color: derive(#1d1d1d,50%);" styleClass="background" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="142.0" />
+        <Button layoutX="200.0" layoutY="200.0" mnemonicParsing="false" onAction="#confirm" styleClass="label-bright" text="确定" AnchorPane.topAnchor="260.0" />
+      <Label layoutX="43.0" layoutY="137.0" styleClass="label-bright" text="手机号" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="140.0" />
+      <TextField fx:id="Code" layoutX="120.0" layoutY="202.0" promptText="输入密码" style="-fx-background-color: derive(#1d1d1d,50%);" styleClass="background" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="202.0" />
     </children>
 </AnchorPane>

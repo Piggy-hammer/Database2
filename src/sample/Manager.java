@@ -98,7 +98,7 @@ public class Manager {
         return resultSet;
     }
 
-    public List<House> getPing() throws IOException {
+    public List<House> getPing(String datefrom, String dateto) {
         List<House> list = new LinkedList();
         try {
             ResultSet resultSet = getHouse("平层");
@@ -118,7 +118,7 @@ public class Manager {
         return list;
     }
 
-    public List<House> getYue() {
+    public List<House> getYue(String datefrom, String dateto) {
         List<House> list = new LinkedList();
         try {
             ResultSet resultSet = getHouse("跃层");
@@ -138,7 +138,7 @@ public class Manager {
         return list;
     }
 
-    public List<House> getShu() {
+    public List<House> getShu(String datefrom, String dateto) {
         List<House> list = new LinkedList();
         try {
             ResultSet resultSet = getHouse("雅墅");
@@ -190,11 +190,11 @@ public class Manager {
         return list;
     }
 
-    public void rent(String loc, String user) {
+    public void rent(House e, String userId, String datefrom, String dateto) {
         /*
-        用户名为user的客户，租用了loc号房产
+        用户名为userId的客户，租用了loc号房产
          */
-        int md5 = user.hashCode();
+        int md5 = userId.hashCode();
         String RentingID = String.valueOf(md5);
         String sql1 = "update House set ForRentOrNot = '否' where HLocation =?";
         String sql2 = "insert into Renting values(?,?,?,?,?,?,?,?) ";
@@ -505,20 +505,6 @@ public class Manager {
         System.out.println("删除中发生错误");
     }
 
-    public ObservableList<HouseholderInformation> getHouseholder(String ID, String name, String sex, String tel, String wechat) {
-        //搜索符合上述条件的房东
-        ObservableList<HouseholderInformation> list = FXCollections.observableArrayList();
-        return list;
-    }
-
-    public void insertH(HouseholderInformation householderInformation) {
-        //插入符合上述条件的房东
-    }
-
-    public void deleteH(String id) {
-        //删除符合上述条件的房东
-    }
-
     public ObservableList<DealInformation> RentingSearch(String rentingId, String renterId, String householderId, String location, String datefrom, String dateto, String price) {
         //搜索符合上诉条件的renting信息, dafrom格式为"2020-12-19",除确定值外，可能传入"所有合约号","所有租户ID","所有房东ID","所有地址"或“2000~4000”
         ObservableList<DealInformation> list = FXCollections.observableArrayList();
@@ -531,5 +517,17 @@ public class Manager {
 
     public void insertD(DealInformation dealInformation) {
         //新建renting中记录
+    }
+
+    public ObservableList<AuthorityInformation> AuthoritySearch(String id, int authority) {
+        //搜索用户名为id, 权限等级为authority的用户,可能出现“所有用户名”,authority = 9代表搜索所有权限等级
+    }
+
+    public void deleteA(String id) {
+        //删除用户名为id的用户
+    }
+
+    public void insertA(AuthorityInformation authorityInformation) {
+        //插入用户
     }
 }

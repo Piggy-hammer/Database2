@@ -10,7 +10,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 
@@ -29,11 +28,6 @@ public class AdministratorController {
         RC3.setCellValueFactory(cellData -> cellData.getValue().Sex);
         RC4.setCellValueFactory(cellData -> cellData.getValue().Tel);
         RC5.setCellValueFactory(cellData -> cellData.getValue().Wechat);
-        HC1.setCellValueFactory(cellData -> cellData.getValue().ID);
-        HC2.setCellValueFactory(cellData -> cellData.getValue().Name);
-        HC3.setCellValueFactory(cellData -> cellData.getValue().Sex);
-        HC4.setCellValueFactory(cellData -> cellData.getValue().Tel);
-        HC5.setCellValueFactory(cellData -> cellData.getValue().Wechat);
         DC1.setCellValueFactory(cellData -> cellData.getValue().Dealid);
         DC2.setCellValueFactory(cellData -> cellData.getValue().Renterid);
         DC3.setCellValueFactory(cellData -> cellData.getValue().Holderid);
@@ -41,10 +35,13 @@ public class AdministratorController {
         DC5.setCellValueFactory(cellData -> cellData.getValue().Timefrom);
         DC6.setCellValueFactory(cellData -> cellData.getValue().Timeto);
         DC7.setCellValueFactory(cellData -> cellData.getValue().Price.asObject());
+        AC1.setCellValueFactory(cellData -> cellData.getValue().Id);
+        AC2.setCellValueFactory(cellData -> cellData.getValue().Code);
+        AC3.setCellValueFactory(cellData -> cellData.getValue().Authority.asObject());
         HouseRefresh();
         Rrefresh();
-        Hrefresh();
         Drefresh();
+        Arefresh();
     }
 
 
@@ -326,105 +323,6 @@ public class AdministratorController {
         add.show();
     }
 
-    //房东管理
-    @FXML
-    TableView<HouseholderInformation> Htable;
-    @FXML TableColumn <HouseholderInformation,String> HC1;
-    @FXML TableColumn <HouseholderInformation,String> HC2;
-    @FXML TableColumn <HouseholderInformation,String> HC3;
-    @FXML TableColumn <HouseholderInformation,String> HC4;
-    @FXML TableColumn <HouseholderInformation,String> HC5;
-    @FXML TextField Hsousuo;
-    @FXML MenuButton HsousuoT;
-    @FXML private void Hid(){HsousuoT.setText("ID");}
-    @FXML private void Hname(){HsousuoT.setText("姓名");}
-    @FXML private void Htel(){HsousuoT.setText("手机号");}
-    @FXML private void Hwechat(){HsousuoT.setText("微信号");}
-    @FXML MenuButton Hsex;
-    @FXML private void Hmale(){Rsex.setText("男");}
-    @FXML private void Hfemale(){Rsex.setText("女");}
-    @FXML private void Hallsex(){Rsex.setText("所有性别");}
-    @FXML
-    public void Hrefresh() {
-        ObservableList<HouseholderInformation> list =  manager.getHouseholder("所有ID","所有姓名",Rsex.getText(),"所有手机号","所有微信号");
-        Htable.setItems(list);
-    }
-    @FXML
-    private void Hsearch(){
-        if (!Hsousuo.getText().equals("")){
-            switch(HsousuoT.getText()) {
-                case "ID":
-                    ObservableList<HouseholderInformation> list = manager.getHouseholder(Fsousuo.getText(), "所有姓名", "所有性别", "所有手机号", "所有微信号");
-                    Htable.setItems(list);break;
-                case "姓名":
-                    ObservableList<HouseholderInformation> list1 = manager.getHouseholder("所有ID", Fsousuo.getText(), "所有性别", "所有手机号", "所有微信号");
-                    Htable.setItems(list1);break;
-                case "手机号":
-                    ObservableList<HouseholderInformation> list2 = manager.getHouseholder("所有ID", "所有姓名", "所有性别", Fsousuo.getText(), "所有微信号");
-                    Htable.setItems(list2);break;
-                case "微信号":
-                    ObservableList<HouseholderInformation> list3 = manager.getHouseholder("所有ID", "所有姓名", "所有性别", "所有手机号", Fsousuo.getText());
-                    Htable.setItems(list3);break;
-                case "搜索条件":
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Error");
-                    alert.setHeaderText("搜索条件缺失");
-                    alert.setContentText("选择一个您的搜索条件");
-                    alert.showAndWait();
-            }
-        }else {
-            error1();
-        }
-    }
-    @FXML
-    private void Hedit(){
-        try {
-            HouseholderInformation selectedItem = Htable.getSelectionModel().getSelectedItem();
-            manager.deleteH(selectedItem.getID());
-            FXMLLoader loader = new FXMLLoader((Main.class.getResource("/Hedit.fxml")));
-            AnchorPane pane = loader.load();
-            HeditController reditController = loader.getController();
-            Scene scene = new Scene(pane);
-            Stage add = new Stage();
-            reditController.init(manager,selectedItem,this,add);
-            add.setScene(scene);
-            add.setTitle("编辑房东");
-            add.getIcons().add(new Image(Main.class.getResourceAsStream("/1.png")));
-            add.show();
-        }catch (NullPointerException | IOException e){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("编辑目标缺失");
-            alert.setContentText("您必须选择一个目标以编辑");
-            alert.showAndWait();
-        }
-    }
-    @FXML
-    private void Hdelete(){
-        try {
-            HouseholderInformation selectedItem = Htable.getSelectionModel().getSelectedItem();
-            manager.deleteH(selectedItem.getID());
-        }catch (NullPointerException e){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("编辑目标缺失");
-            alert.setContentText("您必须选择一个目标以删除");
-            alert.showAndWait();
-        }
-    }
-    @FXML
-    private void Hadd() throws IOException {
-        FXMLLoader loader = new FXMLLoader((Main.class.getResource("/Hedit.fxml")));
-        AnchorPane pane = loader.load();
-        HeditController feditController = loader.getController();
-        Scene scene = new Scene(pane);
-        Stage add = new Stage();
-        feditController.init1(manager,this,add);
-        add.setScene(scene);
-        add.setTitle("添加房东");
-        add.getIcons().add(new Image(Main.class.getResourceAsStream("/1.png")));
-        add.show();
-    }
 
     //合同管理
     @FXML DatePicker Datefrom;
@@ -449,6 +347,7 @@ public class AdministratorController {
     @FXML private void D_6000(){Dprice.setText(">6000");}
     @FXML DatePicker Dateto;
 
+    @FXML
     public void Drefresh(){
         System.out.println(Datefrom.getValue().toString());
         ObservableList<DealInformation> list = manager.RentingSearch("所有合约号","所有租户ID","所有房东ID","所有地址",Datefrom.getValue().format(yyyyMMdd),Dateto.getValue().format(yyyyMMdd),Dprice.getText());
@@ -531,6 +430,83 @@ public class AdministratorController {
         feditController.init1(manager,this,add);
         add.setScene(scene);
         add.setTitle("添加合约");
+        add.getIcons().add(new Image(Main.class.getResourceAsStream("/1.png")));
+        add.show();
+    }
+
+    //权限管理
+    @FXML TableView<AuthorityInformation> Atable;
+    @FXML TableColumn<AuthorityInformation, String> AC1;
+    @FXML TableColumn<AuthorityInformation, String> AC2;
+    @FXML TableColumn<AuthorityInformation, Integer> AC3;
+    @FXML TextField Asousuo;
+    @FXML MenuButton Aset;
+    @FXML Label l;
+    int a = 9;
+    @FXML private void Aset1(){Aset.setText("1 用户");a = 1;}
+    @FXML private void Aset2(){Aset.setText("2 管理员"); a = 2;}
+    @FXML private void Aset3(){Aset.setText("3 超级管理员"); a=3;}
+    @FXML private void Aset4(){Aset.setText("所有权限等级");a=9;}
+    @FXML
+    public void Arefresh(){
+        ObservableList<AuthorityInformation> list = manager.AuthoritySearch("所有用户名", a);
+        Atable.setItems(list);
+    }
+    @FXML
+    private void Asearch() {
+        if (!Asousuo.getText().equals("")) {
+            ObservableList<AuthorityInformation> list = manager.AuthoritySearch(Asousuo.getText(), a);
+            Atable.setItems(list);
+        }else{
+            error1();
+        }
+    }
+    @FXML
+    private void Aedit(){
+        try {
+            AuthorityInformation selectedItem = Atable.getSelectionModel().getSelectedItem();
+            manager.deleteA(selectedItem.getId());
+            FXMLLoader loader = new FXMLLoader((Main.class.getResource("/Aedit.fxml")));
+            AnchorPane pane = loader.load();
+            AeditController reditController = loader.getController();
+            Scene scene = new Scene(pane);
+            Stage add = new Stage();
+            reditController.init(manager,selectedItem,this,add);
+            add.setScene(scene);
+            add.setTitle("编辑登录名");
+            add.getIcons().add(new Image(Main.class.getResourceAsStream("/1.png")));
+            add.show();
+        }catch (NullPointerException | IOException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("编辑目标缺失");
+            alert.setContentText("您必须选择一个目标以编辑");
+            alert.showAndWait();
+        }
+    }
+    @FXML
+    private void Adelete(){
+        try {
+           AuthorityInformation selectedItem = Atable.getSelectionModel().getSelectedItem();
+            manager.deleteA(selectedItem.getId());
+        }catch (NullPointerException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("编辑目标缺失");
+            alert.setContentText("您必须选择一个目标以删除");
+            alert.showAndWait();
+        }
+    }
+    @FXML
+    private void Aadd() throws IOException {
+        FXMLLoader loader = new FXMLLoader((Main.class.getResource("/Aedit.fxml")));
+        AnchorPane pane = loader.load();
+        AeditController feditController = loader.getController();
+        Scene scene = new Scene(pane);
+        Stage add = new Stage();
+        feditController.init1(manager,this,add);
+        add.setScene(scene);
+        add.setTitle("添加登录名");
         add.getIcons().add(new Image(Main.class.getResourceAsStream("/1.png")));
         add.show();
     }
