@@ -202,7 +202,7 @@ public class Manager {
         try {
             statement = connection.prepareStatement(sql1);
             statement.setString(1, loc);
-            statement.executeQuery();
+            statement.execute();
             statement = connection.prepareStatement(sql2);
             //statement.setString();
         } catch (SQLException e) {
@@ -217,13 +217,13 @@ public class Manager {
         /*
         用户名为holder的客户，删除了loca号房产
          */
-        String sql1 = "delete from House set where HLocation =?  ";
+        String sql1 = "delete from House where HLocation =?  ";
         String sql2 = "insert into Renting values(?,?,?,?,?,?,?,?) ";
         PreparedStatement statement = null;
         try {
             statement = connection.prepareStatement(sql1);
             statement.setString(1, loc);
-            statement.executeQuery();
+            statement.execute();
             statement = connection.prepareStatement(sql2);
             //statement.setString();
 
@@ -243,26 +243,36 @@ public class Manager {
         String loc = house.Loca;
         String structure = house.huXing;
         pic = house.Pic;
+        pic = "file:/" + pic.replaceAll("\\\\", "/");
+        System.out.println(pic+" ffff");
         int size = house.Size;
+        String sql = "select * from House where Hlocation = ?";
         String sql1 = "insert into House values(?,?,?,?,?,?,?,?,?,?) ";
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement(sql1);
+            statement = connection.prepareStatement(sql);
             statement.setString(1, loc);
-            statement.setInt(2, size);
-            statement.setString(3, structure);
-            statement.setString(4, pic);
-            statement.setString(5, holder);
-            statement.setInt(6, 0);
-            statement.setInt(7, 0);
-            statement.setString(8, "否");
-            statement.setString(9, "否");
-            statement.setString(10, "一川公司塘朗营业部");
-            statement.execute();
-            //statement.setString();
+            ResultSet resultSet = statement.executeQuery();
+            if (!resultSet.next()) {
 
-            System.out.println("成功添加");
-            return;
+                statement = connection.prepareStatement(sql1);
+                statement.setString(1, loc);
+                statement.setInt(2, size);
+                statement.setString(3, structure);
+                statement.setString(4, pic);
+                statement.setString(5, holder);
+                statement.setInt(6, 0);
+                statement.setInt(7, 0);
+                statement.setString(8, "否");
+                statement.setString(9, "否");
+                statement.setString(10, "一川公司塘朗营业部");
+                statement.execute();
+                //statement.setString();
+
+                System.out.println("成功添加");
+                return;
+            } else
+                System.out.println("已存在相同地址");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -277,7 +287,8 @@ public class Manager {
         其中 structure以“平层”或“所有房型”的形式给出； size以“<100”或“100~150”或具体值形式给出； price以“<2000”或“2000~4000”或具体值形式给出
         具体形式参见 AdministratorController
         全部则是*
-        and Size between ? and ? and SalePrice between ? and ?
+
+        20201219说明：没有实现防注入
          */
         String sql = "select * from House where ";
         PreparedStatement statement = null;
@@ -376,6 +387,8 @@ public class Manager {
         String loc = house.getLocation();
         String structure = house.getStructure();
         pic = house.getPic();
+        pic = "file:/" + pic.replaceAll("\\\\", "/");
+        System.out.println(pic+" bbbb");
         int size = house.getSize();
         String holder = house.getOwner();
         String sql1 = "insert into House values(?,?,?,?,?,?,?,?,?,?) ";
