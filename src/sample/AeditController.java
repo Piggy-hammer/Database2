@@ -12,18 +12,24 @@ public class AeditController {
     Manager manager;
     Stage stage;
     AdministratorController administratorController;
-    @FXML TextField Id;
+    @FXML TextField ID;
     @FXML TextField Code;
     @FXML MenuButton Authority;
     @FXML Label A;
-    @FXML private void Set1(){Id.setText("1");A.setText("用户");}
-    @FXML private void Set2(){Id.setText("2");A.setText("管理员");}
-    @FXML private void Set3(){Id.setText("1");A.setText("超级管理员");}
-    public void init(Manager manager1, AuthorityInformation selectedItem, AdministratorController administratorController1, Stage stage1) {
+    @FXML TextField Name;
+    @FXML MenuButton Sex;
+    @FXML private void male(){Sex.setText("男");}
+    @FXML private void female(){Sex.setText("女");}
+    @FXML TextField Wechat;
+    @FXML TextField Tel;
+    @FXML private void Set1(){Authority.setText("1");A.setText("用户");}
+    @FXML private void Set2(){Authority.setText("2");A.setText("管理员");}
+    @FXML private void Set3(){Authority.setText("1");A.setText("超级管理员");}
+    public void init(Manager manager1, RenterInformation selectedItem, AdministratorController administratorController1, Stage stage1) {
         manager = manager1;
         administratorController = administratorController1;
         stage = stage1;
-        Id.setText(selectedItem.getId());
+        ID.setText(selectedItem.getID());
         Code.setText(selectedItem.getCode());
         switch (selectedItem.getAuthority()){
             case 1: Set1();break;
@@ -35,9 +41,10 @@ public class AeditController {
         stage = stage1;
         administratorController = administratorController1;
     }
+    @FXML
     private void confirm(){
-        if (!Id.getText().equals("") && !Code.getText().equals("")) {
-            manager.insertA(new AuthorityInformation(Id.getText(),Code.getText(),Integer.parseInt(Authority.getText())));
+        if (!ID.getText().equals("") && !Code.getText().equals("") && !Wechat.getText().equals("") && !Code.getText().equals("") && !Tel.getText().equals("") && AddController.isNumeric(Authority.getText())) {
+            manager.insertR(new RenterInformation(ID.getText(),Name.getText(),Sex.getText(),Tel.getText(),Wechat.getText(),Code.getText(),Integer.parseInt(Authority.getText())));
             stage.close();
             administratorController.Arefresh();
         } else {

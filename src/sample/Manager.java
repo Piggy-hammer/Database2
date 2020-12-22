@@ -431,7 +431,8 @@ public class Manager {
     }
 
     public void insertR(RenterInformation renterInformation) {
-        //新增一个租房客
+        //新增一个用户，可以是管理员
+
         String id = renterInformation.getID();
         String name = renterInformation.getName();
         String sex = renterInformation.getSex();
@@ -459,7 +460,7 @@ public class Manager {
     }
 
     public void deleteR(String id) {
-        //删除一个提供id的租房客
+        //删除一个提供id的用户
         String sql1 = "delete from Renter where RenterID = ? ";
         PreparedStatement statement = null;
         try {
@@ -488,15 +489,9 @@ public class Manager {
         //新建renting中记录
     }
 
-    public ObservableList<AuthorityInformation> AuthoritySearch(String id, int authority) {
+    public ObservableList<RenterInformation> AuthoritySearch(String id, int authority) {
         //搜索用户名为id, 权限等级为authority的用户,可能出现“所有用户名”,authority = 9代表搜索所有权限等级
+
     }
 
-    public void deleteA(String id) {
-        //删除用户名为id的用户
-    }
-
-    public void insertA(AuthorityInformation authorityInformation) {
-        //插入用户
-    }
 }

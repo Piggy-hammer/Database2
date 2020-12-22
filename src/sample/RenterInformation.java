@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -9,13 +11,33 @@ public class RenterInformation {
     StringProperty Sex;
     StringProperty Tel;
     StringProperty Wechat;
+    StringProperty Code;
+    IntegerProperty Authority;
 
-    public RenterInformation(String id, String name, String sex, String tel, String wechat){
+    public String getCode() {
+        return Code.get();
+    }
+
+    public StringProperty codeProperty() {
+        return Code;
+    }
+
+    public int getAuthority() {
+        return Authority.get();
+    }
+
+    public IntegerProperty authorityProperty() {
+        return Authority;
+    }
+
+    public RenterInformation(String id, String name, String sex, String tel, String wechat, String code, int authority){
         ID = new SimpleStringProperty(id);
         Name = new SimpleStringProperty(name);
         Sex = new SimpleStringProperty(sex);
         Tel = new SimpleStringProperty(tel);
         Wechat = new SimpleStringProperty(wechat);
+        Code = new SimpleStringProperty(code);
+        Authority = new SimpleIntegerProperty(authority);
     }
 
     public String getID() {

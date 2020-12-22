@@ -35,7 +35,7 @@ public class AdministratorController {
         DC5.setCellValueFactory(cellData -> cellData.getValue().Timefrom);
         DC6.setCellValueFactory(cellData -> cellData.getValue().Timeto);
         DC7.setCellValueFactory(cellData -> cellData.getValue().Price.asObject());
-        AC1.setCellValueFactory(cellData -> cellData.getValue().Id);
+        AC1.setCellValueFactory(cellData -> cellData.getValue().ID);
         AC2.setCellValueFactory(cellData -> cellData.getValue().Code);
         AC3.setCellValueFactory(cellData -> cellData.getValue().Authority.asObject());
         HouseRefresh();
@@ -178,7 +178,7 @@ public class AdministratorController {
             FeditController feditController = loader.getController();
             Scene scene = new Scene(pane);
             Stage add = new Stage();
-            feditController.init(manager,selectedItem,this,add);
+            feditController.init1(manager,this,add,selectedItem);
             add.setScene(scene);
             add.setTitle("编辑房屋");
             add.getIcons().add(new Image(Main.class.getResourceAsStream("/1.png")));
@@ -198,7 +198,7 @@ public class AdministratorController {
         FeditController feditController = loader.getController();
         Scene scene = new Scene(pane);
         Stage add = new Stage();
-        feditController.init1(manager,this,add);
+        feditController.init(manager,add,this);
         add.setScene(scene);
         add.setTitle("添加房屋");
         add.getIcons().add(new Image(Main.class.getResourceAsStream("/1.png")));
@@ -278,14 +278,14 @@ public class AdministratorController {
         try {
             RenterInformation selectedItem = Rtable.getSelectionModel().getSelectedItem();
             manager.deleteR(selectedItem.getID());
-            FXMLLoader loader = new FXMLLoader((Main.class.getResource("/Redit.fxml")));
+            FXMLLoader loader = new FXMLLoader((Main.class.getResource("/register.fxml")));
             AnchorPane pane = loader.load();
-            ReditController reditController = loader.getController();
+            RegisterController reditController = loader.getController();
             Scene scene = new Scene(pane);
             Stage add = new Stage();
             reditController.init(manager,selectedItem,this,add);
             add.setScene(scene);
-            add.setTitle("编辑租户");
+            add.setTitle("编辑用户");
             add.getIcons().add(new Image(Main.class.getResourceAsStream("/1.png")));
             add.show();
         }catch (NullPointerException | IOException e){
@@ -311,12 +311,12 @@ public class AdministratorController {
     }
     @FXML
     private void Radd() throws IOException {
-        FXMLLoader loader = new FXMLLoader((Main.class.getResource("/Redit.fxml")));
+        FXMLLoader loader = new FXMLLoader((Main.class.getResource("/register.fxml")));
         AnchorPane pane = loader.load();
-        ReditController feditController = loader.getController();
+        RegisterController feditController = loader.getController();
         Scene scene = new Scene(pane);
         Stage add = new Stage();
-        feditController.init1(manager,this,add);
+        feditController.init2(manager,this,add);
         add.setScene(scene);
         add.setTitle("添加租户");
         add.getIcons().add(new Image(Main.class.getResourceAsStream("/1.png")));
@@ -435,10 +435,10 @@ public class AdministratorController {
     }
 
     //权限管理
-    @FXML TableView<AuthorityInformation> Atable;
-    @FXML TableColumn<AuthorityInformation, String> AC1;
-    @FXML TableColumn<AuthorityInformation, String> AC2;
-    @FXML TableColumn<AuthorityInformation, Integer> AC3;
+            @FXML TableView<RenterInformation> Atable;
+    @FXML TableColumn<RenterInformation, String> AC1;
+    @FXML TableColumn<RenterInformation, String> AC2;
+    @FXML TableColumn<RenterInformation, Integer> AC3;
     @FXML TextField Asousuo;
     @FXML MenuButton Aset;
     @FXML Label l;
@@ -449,13 +449,13 @@ public class AdministratorController {
     @FXML private void Aset4(){Aset.setText("所有权限等级");a=9;}
     @FXML
     public void Arefresh(){
-        ObservableList<AuthorityInformation> list = manager.AuthoritySearch("所有用户名", a);
+        ObservableList<RenterInformation> list = manager.AuthoritySearch("所有用户名", a);
         Atable.setItems(list);
     }
     @FXML
     private void Asearch() {
         if (!Asousuo.getText().equals("")) {
-            ObservableList<AuthorityInformation> list = manager.AuthoritySearch(Asousuo.getText(), a);
+            ObservableList<RenterInformation> list = manager.AuthoritySearch(Asousuo.getText(), a);
             Atable.setItems(list);
         }else{
             error1();
@@ -464,8 +464,8 @@ public class AdministratorController {
     @FXML
     private void Aedit(){
         try {
-            AuthorityInformation selectedItem = Atable.getSelectionModel().getSelectedItem();
-            manager.deleteA(selectedItem.getId());
+            RenterInformation selectedItem = Atable.getSelectionModel().getSelectedItem();
+            manager.deleteR(selectedItem.getID());
             FXMLLoader loader = new FXMLLoader((Main.class.getResource("/Aedit.fxml")));
             AnchorPane pane = loader.load();
             AeditController reditController = loader.getController();
@@ -487,8 +487,8 @@ public class AdministratorController {
     @FXML
     private void Adelete(){
         try {
-           AuthorityInformation selectedItem = Atable.getSelectionModel().getSelectedItem();
-            manager.deleteA(selectedItem.getId());
+           RenterInformation selectedItem = Atable.getSelectionModel().getSelectedItem();
+            manager.deleteR(selectedItem.getID());
         }catch (NullPointerException e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");

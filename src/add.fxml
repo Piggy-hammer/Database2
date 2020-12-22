@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="265.0" prefWidth="550.0" styleClass="background" stylesheets="@sample/DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AddController">
+<AnchorPane prefHeight="570.0" prefWidth="550.0" styleClass="background" stylesheets="@sample/DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AddController">
    <children>
       <MenuButton fx:id="Huxing" layoutX="103.0" layoutY="22.0" mnemonicParsing="false" prefWidth="100.0" style="-fx-background-color: derive(#1d1d1d,50%);" text="选择户型" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="22.0">
         <items>
@@ -29,8 +29,33 @@
             <Font size="39.0" />
          </font>
       </Label>
-      <Button layoutX="230.0" layoutY="197.0" mnemonicParsing="false" onAction="#confirm" styleClass="label-bright" text="确定" AnchorPane.leftAnchor="230.0" AnchorPane.topAnchor="197.0" />
+      <Button layoutX="230.0" layoutY="197.0" mnemonicParsing="false" onAction="#confirm" styleClass="label-bright" text="确定" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="230.0" />
       <Label layoutX="205.0" layoutY="21.0" styleClass="label-bright" text="面积" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="20.0" />
       <TextField fx:id="Size" layoutX="235.0" layoutY="26.0" prefWidth="85.0" promptText="填入面积" style="-fx-background-color: derive(#1d1d1d,50%);" AnchorPane.leftAnchor="280.0" AnchorPane.topAnchor="22.0" />
+      <Label layoutX="59.0" layoutY="210.0" styleClass="label-bright" text="详情图1" AnchorPane.leftAnchor="3.0" AnchorPane.topAnchor="200.0" />
+      <Label layoutX="69.0" layoutY="220.0" styleClass="label-bright" text="详情图2" AnchorPane.leftAnchor="3.0" AnchorPane.topAnchor="260.0" />
+      <TextField fx:id="Pic2" layoutX="100.0" layoutY="152.0" promptText="拖曳文件至此或填入地址" style="-fx-background-color: derive(#1d1d1d,50%);" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="140.0" AnchorPane.topAnchor="202.0" />
+      <TextField fx:id="Pic3" layoutX="110.0" layoutY="162.0" promptText="拖曳文件至此或填入地址" style="-fx-background-color: derive(#1d1d1d,50%);" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="140.0" AnchorPane.topAnchor="262.0" />
+      <Label layoutX="355.0" layoutY="157.0" styleClass="label-bright" text="或" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="200.0">
+         <font>
+            <Font size="39.0" />
+         </font>
+      </Label>
+      <Label layoutX="365.0" layoutY="167.0" styleClass="label-bright" text="或" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="260.0">
+         <font>
+            <Font size="39.0" />
+         </font>
+      </Label>
+      <Button layoutX="355.0" layoutY="151.0" mnemonicParsing="false" onAction="#selectPic2" styleClass="l" text="选择文件" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="202.0" />
+      <Button layoutX="365.0" layoutY="161.0" mnemonicParsing="false" onAction="#selectPic3" styleClass="l" text="选择文件" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="262.0" />
+      <CheckBox fx:id="Breakfast" layoutX="37.0" layoutY="310.0" mnemonicParsing="false" text="提供早餐" textFill="#e4dfdf" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="310.0" />
+      <CheckBox fx:id="Park" layoutX="246.0" layoutY="310.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="69.0" text="提供车位" textFill="#e4dfdf" AnchorPane.leftAnchor="190.0" AnchorPane.topAnchor="310.0" />
+      <CheckBox fx:id="Tv" layoutX="422.0" layoutY="310.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="69.0" text="内有电视" textFill="#e4dfdf" AnchorPane.leftAnchor="320.0" AnchorPane.topAnchor="310.0" />
+      <CheckBox fx:id="Subway" layoutX="315.0" layoutY="347.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="69.0" text="临近地铁" textFill="#e4dfdf" AnchorPane.leftAnchor="320.0" AnchorPane.topAnchor="350.0" />
+      <CheckBox fx:id="Bus" layoutX="61.0" layoutY="347.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="69.0" text="临近公交" textFill="#e4dfdf" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="350.0" />
+      <CheckBox fx:id="Wifi" layoutX="193.0" layoutY="347.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="75.0" text="免费WIFI" textFill="#e4dfdf" AnchorPane.leftAnchor="190.0" AnchorPane.topAnchor="350.0" />
+      <TextArea fx:id="Describe" layoutX="99.0" layoutY="378.0" prefHeight="100.0" prefWidth="400.0" promptText="详细描述该房源的特征" wrapText="true" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="380.0" />
+      <Label layoutX="28.0" layoutY="380.0" styleClass="label-bright" text="描述" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="390.0" />
+      <CheckBox fx:id="Pot" layoutX="432.0" layoutY="320.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="69.0" text="内有厨具" textFill="#e4dfdf" AnchorPane.leftAnchor="440.0" AnchorPane.topAnchor="310.0" />
    </children>
 </AnchorPane>
