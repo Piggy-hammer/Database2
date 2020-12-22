@@ -189,7 +189,7 @@ public class Manager {
         return list;
     }
 
-    public String rent(HouseInformation e, String userId, String datefrom, String dateto) {
+    public String rent(String loc, String userId, String datefrom, String dateto) {
         /*
         用户名为userId的客户，租用了loc号房产，返回合约号
          */

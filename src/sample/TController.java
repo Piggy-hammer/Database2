@@ -73,7 +73,7 @@ public class TController {
             FXMLLoader loader1 = new FXMLLoader(Main.class.getResource("/Success.fxml"));
             AnchorPane pane = loader1.load();
             loader1.setController(this);
-            String s = manager.rent(e, user, datefrom, dateto);
+            String s = manager.rent(e.getLocation(), user, datefrom, dateto);
             code.setText(s);
             Scene scene = new Scene(pane);
             Stage stage = new Stage();

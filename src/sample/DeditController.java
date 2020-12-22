@@ -16,15 +16,9 @@ public class DeditController {
     AdministratorController administratorController;
     DateTimeFormatter yyyyMMdd = DateTimeFormatter.ofPattern("yyyyMMdd");
     @FXML
-    TextField ID;
-    @FXML
     TextField RID;
     @FXML
-    TextField HID;
-    @FXML
     TextField Loc;
-    @FXML
-    TextField Price;
     @FXML
     DatePicker Datefrom;
     @FXML
@@ -32,11 +26,8 @@ public class DeditController {
     public void init(Manager manage, DealInformation dealInformation,AdministratorController administratorController1,Stage stage1) {
         manager = manage;
         administratorController = administratorController1;
-        ID.setText(dealInformation.getDealid());
         RID.setText(dealInformation.getRenterid());
-        HID.setText(dealInformation.getHolderid());
         Loc.setText(dealInformation.getLoc());
-        Price.setText(dealInformation.getPrice()+"");
         Datefrom.setValue(LocalDate.parse(dealInformation.getTimefrom(), DateTimeFormatter.ofPattern("yyyyMMdd")));
         Dateto.setValue(LocalDate.parse(dealInformation.getTimeto(), DateTimeFormatter.ofPattern("yyyyMMdd")));
         stage = stage1;
@@ -48,16 +39,13 @@ public class DeditController {
     }
     @FXML
     private void confirm(){
-       String id = ID.getText();
        String rid = RID.getText();
-       String hid = HID.getText();
        String loc = Loc.getText();
-       String price = Price.getText();
        String datefrom = Datefrom.getValue().format(yyyyMMdd);
        String dateto = Dateto.getValue().format(yyyyMMdd);
-        if (!id.equals("") && AddController.isNumeric(price) && !loc.equals("") && !rid.equals("") && !hid.equals("") && !datefrom.equals("") && !dateto.equals("")) {
+        if ( !loc.equals("")  && !rid.equals("") && !datefrom.equals("") && !dateto.equals("")) {
             if (Integer.parseInt(dateto) > Integer.parseInt(datefrom)) {
-                if(manager.insertD(new DealInformation(id,rid,hid,loc,datefrom,dateto,Integer.parseInt(price)))){
+                if(manager.rent(loc,rid,datefrom,dateto) != null){
                     stage.close();
                     administratorController.Drefresh();
                 }else{
