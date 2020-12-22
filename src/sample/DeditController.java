@@ -57,9 +57,16 @@ public class DeditController {
        String dateto = Dateto.getValue().format(yyyyMMdd);
         if (!id.equals("") && AddController.isNumeric(price) && !loc.equals("") && !rid.equals("") && !hid.equals("") && !datefrom.equals("") && !dateto.equals("")) {
             if (Integer.parseInt(dateto) > Integer.parseInt(datefrom)) {
-                manager.insertD(new DealInformation(id,rid,hid,loc,datefrom,dateto,Integer.parseInt(price)));
-                stage.close();
-                administratorController.Drefresh();
+                if(manager.insertD(new DealInformation(id,rid,hid,loc,datefrom,dateto,Integer.parseInt(price)))){
+                    stage.close();
+                    administratorController.Drefresh();
+                }else{
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("已存在该合约记录");
+                    alert.setContentText("请检查您的合约信息");
+                    alert.showAndWait();
+                }
             }else error2();
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);

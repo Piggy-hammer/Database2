@@ -3,6 +3,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -68,14 +69,23 @@ public class TController {
     }
 
     @FXML private void confirm() throws IOException {
-        FXMLLoader loader1 = new FXMLLoader(Main.class.getResource("/Success.fxml"));
-        AnchorPane pane = loader1.load();
-        loader1.setController(this);
-        code.setText(manager.rent(e, user, datefrom, dateto));
-        Scene scene = new Scene(pane);
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.show();
+        try {
+            FXMLLoader loader1 = new FXMLLoader(Main.class.getResource("/Success.fxml"));
+            AnchorPane pane = loader1.load();
+            loader1.setController(this);
+            String s = manager.rent(e, user, datefrom, dateto);
+            code.setText(s);
+            Scene scene = new Scene(pane);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+        }catch (NullPointerException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("已存在该交易");
+            alert.setContentText("请检查您交易信息");
+            alert.showAndWait();
+        }
     }
     @FXML private void cancel(){
         stage.close();

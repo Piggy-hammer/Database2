@@ -336,7 +336,7 @@ public class Manager {
         return o;
     }
 
-    public void insertF(HouseInformation houseInformation) {
+    public boolean insertF(HouseInformation houseInformation) {
         //新增一个房源
         HouseInformation house = houseInformation;
         String pic = null;
@@ -365,11 +365,12 @@ public class Manager {
             //statement.setString();
 
             System.out.println("成功添加");
-            return;
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
         }
         System.out.println("添加中发生错误");
+        return false;
     }
 
     public ObservableList<RenterInformation> getRenter(String ID, String name, String sex, String tel, String wechat) {
@@ -430,7 +431,7 @@ public class Manager {
         return list;
     }
 
-    public void insertR(RenterInformation renterInformation) {
+    public boolean insertR(RenterInformation renterInformation) {
         //新增一个用户，可以是管理员
 
         String id = renterInformation.getID();
@@ -452,11 +453,12 @@ public class Manager {
             //statement.setString();
 
             System.out.println("成功添加");
-            return;
+            return false;
         } catch (SQLException e) {
             e.printStackTrace();
         }
         System.out.println("添加中发生错误");
+        return false;
     }
 
     public void deleteR(String id) {
@@ -485,8 +487,9 @@ public class Manager {
         //删除合约号为rentingId的renting记录
     }
 
-    public void insertD(DealInformation dealInformation) {
+    public boolean insertD(DealInformation dealInformation) {
         //新建renting中记录
+        return false;
     }
 
     public ObservableList<RenterInformation> AuthoritySearch(String id, int authority) {
