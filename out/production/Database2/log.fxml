@@ -13,6 +13,6 @@
         <Label layoutX="20.0" layoutY="100.0" text="密   码" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="20.0" />
         <TextField fx:id="code" layoutX="177.0" layoutY="72.0" AnchorPane.bottomAnchor="60.0" AnchorPane.rightAnchor="15.0" />
         <Button layoutX="56.0" layoutY="163.0" mnemonicParsing="false" onAction="#Login" text="登录" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="40.0" />
-        <Button layoutX="176.0" layoutY="168.0" mnemonicParsing="false" onAction="#Refresh" text="重置" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="40.0" />
+        <Button layoutX="176.0" layoutY="168.0" mnemonicParsing="false" onAction="#Rejest" text="注册" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="40.0" />
     </children>
 </AnchorPane>

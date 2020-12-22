@@ -10,8 +10,6 @@ import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
-import java.io.File;
 import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -74,7 +72,7 @@ public class AddController {
         String pic = Pic.getText();
         String size = Size.getText();
         if(!huxing.equals("选择户型") && isNumeric(rent) && !loc.equals("") && !pic.equals("") && isNumeric(size)){
-            manager.insert(new House(huxing,Integer.parseInt(rent),pic,loc,Integer.parseInt(size)),user);
+            manager.insertF(new HouseInformation(loc,huxing,Integer.parseInt(size),Integer.parseInt(rent),pic,user));
             holderController.init(manager,user);
             stage.close();
         }else {

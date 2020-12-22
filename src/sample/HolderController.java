@@ -26,11 +26,11 @@ public class HolderController {
     public void init(Manager manager, String user) throws IOException {
         this.manager = manager;
         this.user = user;
-        List<House> list = manager.getHolder(user);
+        List<HouseInformation> list = manager.getHolder(user);
         int i = 1;
-        for (House e : list
+        for (HouseInformation e : list
         ) {
-            Image image = new Image(e.Pic);
+            Image image = new Image(e.getPic());
             ImageView imageView = new ImageView(image);
             Label rent = new Label();
             Text Loc = new Text();
@@ -38,13 +38,13 @@ public class HolderController {
             button.setText("删除房屋");
             button.getStyleClass().add("labe-x");
             button.setOnMouseClicked(event -> {
-                manager.delete(e.Loca, user);
+                manager.delete(e.getLocation(), user);
             });
-            Loc.setText(e.Loca);
+            Loc.setText(e.getLocation());
             Loc.setWrappingWidth(120);
             Loc.setFont(Font.font("system", 15));
             Loc.setFill(Color.WHITE);
-            rent.setText(e.Size+"m²"+"\n"+"￥"+e.rent);
+            rent.setText(e.Size+"m²"+"\n"+"￥"+e.getPrice());
             rent.getStyleClass().add("label-bright");
             imageView.setFitHeight(100);
             imageView.setFitWidth(100);

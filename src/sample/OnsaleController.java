@@ -47,16 +47,16 @@ public class OnsaleController {
         ScrollPane anchorPane = loader.load();
         splitPane.getItems().set(1,anchorPane);
         GridPane gridPane = (GridPane)anchorPane.getContent();
-        List<House> list = manager.getPing(dateController.getDatefrom(),dateController.getDateto());
+        List<HouseInformation> list = manager.getPing(dateController.getDatefrom(),dateController.getDateto());
         int i = 1;
-        for (House e: list
+        for (HouseInformation e: list
              ) {
-            Image image = new Image(e.Pic);
+            Image image = new Image(e.getPic());
             ImageView imageView = new ImageView(image);
             Label rent = new Label();
             Text Loc = new Text();
             Button button = new Button();
-            button.setText("立即入住");
+            button.setText("查看详情");
             button.getStyleClass().add("labe-x");
             button.setOnMouseClicked(event -> {
                 try {
@@ -65,11 +65,11 @@ public class OnsaleController {
                     ex.printStackTrace();
                 }
             });
-            Loc.setText(e.Loca);
+            Loc.setText(e.getLocation());
             Loc.setWrappingWidth(120);
             Loc.setFont(Font.font("system",15));
             Loc.setFill(Color.WHITE);
-            rent.setText(e.Size+"m²"+"\n"+"￥"+e.rent);
+            rent.setText(e.Size+"m²"+"\n"+"￥"+e.getPrice());
             rent.getStyleClass().add("label-bright");
             imageView.setFitHeight(100);
             imageView.setFitWidth(100);
@@ -81,7 +81,7 @@ public class OnsaleController {
         }
     }
 
-    private void deal(House e, String user, String datefrom, String dateto) throws IOException {
+    private void deal(HouseInformation e, String user, String datefrom, String dateto) throws IOException {
         FXMLLoader loader1 = new FXMLLoader(Main.class.getResource("/T.fxml"));
         AnchorPane pane = loader1.load();
         TController dateController = loader1.getController();
@@ -106,16 +106,16 @@ public class OnsaleController {
         ScrollPane anchorPane = loader.load();
         splitPane.getItems().set(1,anchorPane);
         GridPane gridPane = (GridPane)anchorPane.getContent();
-        List<House> list = manager.getYue(dateController.getDatefrom(),dateController.getDateto());
+        List<HouseInformation> list = manager.getYue(dateController.getDatefrom(),dateController.getDateto());
         int i = 1;
-        for (House e: list
+        for (HouseInformation e: list
         ) {
-            Image image = new Image(e.Pic);
+            Image image = new Image(e.getPic());
             ImageView imageView = new ImageView(image);
             Label rent = new Label();
             Text Loc = new Text();
             Button button = new Button();
-            button.setText("立即入住");
+            button.setText("查看详情");
             button.getStyleClass().add("labe-x");
             button.setOnMouseClicked(event -> {
                 try {
@@ -124,11 +124,11 @@ public class OnsaleController {
                     ex.printStackTrace();
                 }
             });
-            Loc.setText(e.Loca);
+            Loc.setText(e.getLocation());
             Loc.setWrappingWidth(120);
             Loc.setFont(Font.font("system",15));
             Loc.setFill(Color.WHITE);
-            rent.setText(e.Size+"m²"+"\n"+"￥"+e.rent);
+            rent.setText(e.Size+"m²"+"\n"+"￥"+e.getPrice());
             rent.getStyleClass().add("label-bright");
             imageView.setFitHeight(100);
             imageView.setFitWidth(100);
@@ -153,16 +153,16 @@ public class OnsaleController {
         ScrollPane anchorPane = loader.load();
         splitPane.getItems().set(1,anchorPane);
         GridPane gridPane = (GridPane)anchorPane.getContent();
-        List<House> list = manager.getShu(dateController.getDatefrom(),dateController.getDateto());
+        List<HouseInformation> list = manager.getShu(dateController.getDatefrom(),dateController.getDateto());
         int i = 1;
-        for (House e: list
+        for (HouseInformation e: list
         ) {
-            Image image = new Image(e.Pic);
+            Image image = new Image(e.getPic());
             ImageView imageView = new ImageView(image);
             Label rent = new Label();
             Text Loc = new Text();
             Button button = new Button();
-            button.setText("立即入住");
+            button.setText("查看详情");
             button.getStyleClass().add("labe-x");
             button.setOnMouseClicked(event -> {
                 try {
@@ -171,11 +171,11 @@ public class OnsaleController {
                     ex.printStackTrace();
                 }
             });
-            Loc.setText(e.Loca);
+            Loc.setText(e.getLocation());
             Loc.setWrappingWidth(120);
             Loc.setFont(Font.font("system",15));
             Loc.setFill(Color.WHITE);
-            rent.setText(e.Size+"m²"+"\n"+"￥"+e.rent);
+            rent.setText(e.Size+"m²"+"\n"+"￥"+e.getPrice());
             rent.getStyleClass().add("label-bright");
             imageView.setFitHeight(100);
             imageView.setFitWidth(100);
