@@ -487,10 +487,6 @@ public class Manager {
         //删除合约号为rentingId的renting记录
     }
 
-    public boolean insertD(DealInformation dealInformation) {
-        //新建renting中记录
-        return false;
-    }
 
     public ObservableList<RenterInformation> AuthoritySearch(String id, int authority) {
         //搜索用户名为id, 权限等级为authority的用户,可能出现“所有用户名”,authority = 9代表搜索所有权限等级
