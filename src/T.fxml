@@ -27,8 +27,8 @@
       <Label fx:id="Holder" layoutX="274.0" layoutY="160.0" styleClass="label-x" text="Label" AnchorPane.topAnchor="165.0" />
       <Label layoutX="220.0" layoutY="198.0" styleClass="label-x" text="房型" />
       <Label fx:id="Structure" layoutX="274.0" layoutY="198.0" styleClass="label-x" text="Label" />
-      <Label fx:id="Size" layoutX="32.0" layoutY="241.0" styleClass="label-x" text="Label" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="245.0" />
-      <Label fx:id="Breakfast" layoutX="84.0" layoutY="241.0" styleClass="label-x" text="Label" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="245.0" />
+      <Label fx:id="Size" layoutX="32.0" layoutY="241.0" styleClass="label-x" text="不提供早餐" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="245.0" />
+      <Label fx:id="Breakfast" layoutX="84.0" layoutY="241.0" styleClass="label-x" text="提供WIFI" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="245.0" />
       <Label fx:id="Wifi" layoutX="184.0" layoutY="231.0" styleClass="label-x" text="Label" AnchorPane.leftAnchor="190.0" AnchorPane.topAnchor="245.0" />
       <Label fx:id="Park" layoutX="266.0" layoutY="245.0" styleClass="label-x" text="Label" AnchorPane.leftAnchor="270.0" AnchorPane.topAnchor="245.0" />
       <Label fx:id="Tv" layoutX="42.0" layoutY="251.0" styleClass="label-x" text="Label" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="280.0" />
@@ -37,7 +37,7 @@
       <Label fx:id="Bus" layoutX="306.0" layoutY="285.0" styleClass="label-x" text="Label" AnchorPane.leftAnchor="270.0" AnchorPane.topAnchor="280.0" />
       <Button layoutX="70.0" layoutY="533.0" mnemonicParsing="false" onAction="#confirm" text="确认" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="70.0" />
       <Button layoutX="80.0" layoutY="543.0" mnemonicParsing="false" onAction="#cancel" text="取消" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="70.0" />
-      <Text fx:id="Describe" fill="#fffafa" layoutX="32.0" layoutY="340.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="320.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="330.0">
+      <Text fx:id="Describe" fill="#fffafa" layoutX="32.0" layoutY="340.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="320.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="330.0">
          <font>
             <Font size="15.0" />
          </font>

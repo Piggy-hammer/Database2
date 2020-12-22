@@ -1,11 +1,19 @@
 package sample;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.sql.Struct;
+import java.util.ArrayList;
 
 
 public class TController {
@@ -21,7 +29,9 @@ public class TController {
     @FXML Label Subway;
     @FXML Label Bus;
     @FXML Text Describe;
-
+    @FXML Label code;
+    @FXML
+    ImageView Pic;
 
     Stage stage;
     Manager manager;
@@ -29,6 +39,8 @@ public class TController {
     String user;
     String datefrom;
     String dateto;
+    String [] pics;
+    int t ;
 
     public void init(HouseInformation e, String user, String datefrom, String dateto, Stage stage, Manager manager) {
         this.stage = stage;
@@ -49,15 +61,36 @@ public class TController {
         Subway.setText(e.Subway == 1?"临近地铁":"远离地铁");
         Bus.setText(e.Bus == 1 ?"临近公交":"远离公交");
         Describe.setText(e.Describe);
+        pics = new String[3];
+        pics[0] = e.Pic1; pics[1] = e.Pic2; pics[2] = e.Pic3;
+        t=0;
+        Pic.setImage(new Image(pics[t]));
     }
 
-    @FXML private void confirm(){
-        String ID = manager.rent(e, user, datefrom, dateto);
-        stage.close();
+    @FXML private void confirm() throws IOException {
+        FXMLLoader loader1 = new FXMLLoader(Main.class.getResource("/Success.fxml"));
+        AnchorPane pane = loader1.load();
+        loader1.setController(this);
+        code.setText(manager.rent(e, user, datefrom, dateto));
+        Scene scene = new Scene(pane);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
     }
     @FXML private void cancel(){
         stage.close();
     }
 
 
+    public void last() {
+        if(t == 2) t = -1;
+        t++;
+        Pic.setImage(new Image(pics[t]));
+    }
+
+    public void next() {
+        if(t == 0) t = 2;
+        t--;
+        Pic.setImage(new Image(pics[t]));
+    }
 }

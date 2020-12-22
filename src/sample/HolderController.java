@@ -30,7 +30,7 @@ public class HolderController {
         int i = 1;
         for (HouseInformation e : list
         ) {
-            Image image = new Image(e.getPic());
+            Image image = new Image(e.Pic1);
             ImageView imageView = new ImageView(image);
             Label rent = new Label();
             Text Loc = new Text();

@@ -2,10 +2,7 @@ package sample;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.stage.FileChooser;
@@ -28,15 +25,44 @@ public class AddController {
     @FXML
     TextField Pic;
     @FXML
+    TextField Pic2;
+    @FXML
+    TextField Pic3;
+    @FXML
     TextField Size;
+    @FXML
+    TextArea Describe;
+    @FXML
+    CheckBox Breakfast;
+    @FXML
+    CheckBox Tv;
+    @FXML
+    CheckBox Wifi;
+    @FXML
+    CheckBox Bus;
+    @FXML
+    CheckBox Subway;
+    @FXML
+    CheckBox Park;
+    @FXML
+    CheckBox Pot;
 
     public void init(Manager manage,Stage stage,String user,HolderController holderController) {
         manager = manage;
-
         Pic.setOnDragOver(event -> {
             Dragboard dragboard = event.getDragboard();
             String s = dragboard.getFiles().get(0).getPath();
             Pic.setText(s);
+        });
+        Pic2.setOnDragOver(event -> {
+            Dragboard dragboard = event.getDragboard();
+            String s = dragboard.getFiles().get(0).getPath();
+            Pic2.setText(s);
+        });
+        Pic3.setOnDragOver(event -> {
+            Dragboard dragboard = event.getDragboard();
+            String s = dragboard.getFiles().get(0).getPath();
+            Pic3.setText(s);
         });
         this.stage = stage;
         this.user = user;
@@ -65,14 +91,41 @@ public class AddController {
         Pic.setText(fileChooser.showOpenDialog(new Stage()).getPath());
     }
     @FXML
+    private void selectPic2(){
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(
+                "选择预览图片文件 (*.png/*.jpg)", "*.jpg","*.png");
+        fileChooser.getExtensionFilters().add(extFilter);
+        fileChooser.setTitle("选择预览图片文件");
+        Pic2.setText(fileChooser.showOpenDialog(new Stage()).getPath());
+    }
+    @FXML
+    private void selectPic3(){
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(
+                "选择预览图片文件 (*.png/*.jpg)", "*.jpg","*.png");
+        fileChooser.getExtensionFilters().add(extFilter);
+        fileChooser.setTitle("选择预览图片文件");
+        Pic3.setText(fileChooser.showOpenDialog(new Stage()).getPath());
+    }
+    @FXML
     private void confirm() throws IOException {
         String huxing = Huxing.getText();
         String rent = Rent.getText();
         String loc = Loc.getText();
         String pic = Pic.getText();
         String size = Size.getText();
-        if(!huxing.equals("选择户型") && isNumeric(rent) && !loc.equals("") && !pic.equals("") && isNumeric(size)){
-            manager.insertF(new HouseInformation(loc,huxing,Integer.parseInt(size),Integer.parseInt(rent),pic,user));
+        String pic2 = Pic2.getText();
+        String pic3 = Pic3.getText();
+        int breakfast = Breakfast.isSelected() ? 1 : 0;
+        int wifi = Wifi.isSelected() ? 1 : 0 ;
+        int subway = Subway.isSelected() ? 1 : 0;
+        int park = Park.isSelected() ? 1 : 0;
+        int tv = Park.isSelected() ? 1 : 0;
+        int pot = Pot.isSelected() ? 1: 0;
+        int bus = Bus.isSelected() ? 1: 0;
+        if(!huxing.equals("选择户型") && isNumeric(rent) && !loc.equals("") && !pic.equals("") && isNumeric(size) && !pic2.equals("") && !pic3.equals("")){
+            manager.insertF(new HouseInformation(loc,huxing,Integer.parseInt(size),Integer.parseInt(rent),pic,pic2,pic3,user,breakfast,wifi,subway,park,tv,pot,bus,Describe.getText()));
             holderController.init(manager,user);
             stage.close();
         }else {

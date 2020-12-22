@@ -1,7 +1,5 @@
 package sample;
 
-import com.sun.glass.ui.Size;
-import javafx.beans.value.ObservableListValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -48,7 +46,7 @@ public class Manager {
         普通权限返回1
         没有该用户返回0
          */
-        String sql = "select * from UserInformation where ID =? and Password =?";
+        String sql = "select * from UserName where ID =? and Password =?";
         //System.out.println(username+" "+password);
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -99,8 +97,8 @@ public class Manager {
         return resultSet;
     }
 
-    public List<House> getPing(String datefrom, String dateto) {
-        List<House> list = new LinkedList();
+    public List<HouseInformation> getPing(String datefrom, String dateto) {
+        List<HouseInformation> list = new LinkedList();
         try {
             ResultSet resultSet = getHouse("平层");
             while (resultSet.next()) {
@@ -110,7 +108,7 @@ public class Manager {
                 String picture = resultSet.getString(4);
                 int price = resultSet.getInt(6);
                 System.out.println(structure + price + picture + location);
-                House house = new House(structure, price, picture, location, size);
+                HouseInformation house = new HouseInformation(structure, price, picture, location, size,);
                 list.add(house);
             }
         } catch (SQLException e) {
@@ -119,8 +117,8 @@ public class Manager {
         return list;
     }
 
-    public List<House> getYue(String datefrom, String dateto) {
-        List<House> list = new LinkedList();
+    public List<HouseInformation> getYue(String datefrom, String dateto) {
+        List<HouseInformation> list = new LinkedList();
         try {
             ResultSet resultSet = getHouse("跃层");
             while (resultSet.next()) {
@@ -139,7 +137,7 @@ public class Manager {
         return list;
     }
 
-    public List<House> getShu(String datefrom, String dateto) {
+    public List<HouseInformation> getShu(String datefrom, String dateto) {
         List<House> list = new LinkedList();
         try {
             ResultSet resultSet = getHouse("雅墅");
@@ -159,7 +157,7 @@ public class Manager {
         return list;
     }
 
-    public List<House> getHolder(String user) throws IOException {
+    public List<HouseInformation> getHolder(String user) throws IOException {
         /*
         执行对所有房东是user的房屋的查询，以List<House>返回
         user:房屋持有者的身份证号
@@ -191,13 +189,12 @@ public class Manager {
         return list;
     }
 
-    public void rent(House e, String userID, String datefrom, String dateto) {
+    public String rent(HouseInformation e, String userId, String datefrom, String dateto) {
         /*
-        用户名为userId的客户，租用了loc号房产
+        用户名为userId的客户，租用了loc号房产，返回合约号
          */
-        int md5 = userID.hashCode();
+        int md5 = userId.hashCode();
         String RentingID = String.valueOf(md5);
-        String loc = e.Loca;
         String sql1 = "update House set ForRentOrNot = '否' where HLocation =?";
         String sql2 = "insert into Renting values(?,?,?,?,?,?,?,?) ";
         PreparedStatement statement = null;
@@ -207,12 +204,13 @@ public class Manager {
             statement.execute();
             statement = connection.prepareStatement(sql2);
             //statement.setString();
-        } catch (SQLException e1) {
-            e1.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
-        System.out.println(userID + "fsgag" + loc);
+        System.out.println(user + "fsgag" + loc);
 
+        return RentingID;
     }
 
     public void delete(String loc, String holder) {
@@ -235,49 +233,6 @@ public class Manager {
             e.printStackTrace();
         }
         System.out.println("删除过程中出现错误");
-    }
-
-    public void insert(House house, String holder) {
-        /*
-        用户名为holder的客户，添加了loca号房产，holder是房东
-         */
-        String pic = null;
-        String loc = house.Loca;
-        String structure = house.huXing;
-        pic = house.Pic;
-        pic = "file:/" + pic.replaceAll("\\\\", "/");
-        System.out.println(pic+" ffff");
-        int size = house.Size;
-        String sql = "select * from House where Hlocation = ?";
-        String sql1 = "insert into House values(?,?,?,?,?,?,?,?,?) ";
-        PreparedStatement statement = null;
-        try {
-            statement = connection.prepareStatement(sql);
-            statement.setString(1, loc);
-            ResultSet resultSet = statement.executeQuery();
-            if (!resultSet.next()) {
-
-                statement = connection.prepareStatement(sql1);
-                statement.setString(1, loc);
-                statement.setInt(2, size);
-                statement.setString(3, structure);
-                statement.setString(4, pic);
-                statement.setString(5, holder);
-                statement.setInt(6, 0);
-                statement.setString(7, "否");
-                statement.setString(8, "一川公司塘朗营业部");
-                statement.setInt(9,10);
-                statement.execute();
-                //statement.setString();
-
-                System.out.println("成功添加");
-                return;
-            } else
-                System.out.println("已存在相同地址");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        System.out.println("添加中发生错误");
     }
 
 
@@ -419,7 +374,7 @@ public class Manager {
 
     public ObservableList<RenterInformation> getRenter(String ID, String name, String sex, String tel, String wechat) {
         ObservableList<RenterInformation> list = FXCollections.observableArrayList();
-        String sql = "select * from UserInformation where ";
+        String sql = "select * from Renter where ";
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
@@ -482,11 +437,11 @@ public class Manager {
         String sex = renterInformation.getSex();
         String tel = renterInformation.getTel();
         String wechat = renterInformation.getWechat();
-        String sql1 = "insert into UserInformation values(?,?,?,?,?,?,?,?) ";
+        String sql1 = "insert into Renter values(?,?,?,?,?) ";
         PreparedStatement statement = null;
         try {
             statement = connection.prepareStatement(sql1);
-            statement.setString(1, tel);
+            statement.setString(1, id);
             statement.setString(2, name);
             statement.setString(3, sex);
             statement.setString(4, tel);
@@ -505,7 +460,7 @@ public class Manager {
 
     public void deleteR(String id) {
         //删除一个提供id的租房客
-        String sql1 = "delete from UserInformation where RenterID = ? ";
+        String sql1 = "delete from Renter where RenterID = ? ";
         PreparedStatement statement = null;
         try {
             statement = connection.prepareStatement(sql1);
@@ -535,9 +490,6 @@ public class Manager {
 
     public ObservableList<AuthorityInformation> AuthoritySearch(String id, int authority) {
         //搜索用户名为id, 权限等级为authority的用户,可能出现“所有用户名”,authority = 9代表搜索所有权限等级
-        ObservableList<AuthorityInformation> search = FXCollections.observableArrayList();
-
-        return search;
     }
 
     public void deleteA(String id) {
@@ -547,5 +499,4 @@ public class Manager {
     public void insertA(AuthorityInformation authorityInformation) {
         //插入用户
     }
-
 }
