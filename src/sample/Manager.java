@@ -7,6 +7,8 @@ import javafx.collections.ObservableList;
 
 import java.io.IOException;
 import java.sql.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -247,6 +249,20 @@ public class Manager {
         return list;
     }
 
+    public Date treatDate(String time) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+        java.sql.Date sdate = null; //初始化
+
+        try {
+            java.util.Date udate = sdf.parse(time);
+            sdate = new java.sql.Date(udate.getTime()); //
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return sdate;
+    }
+
+
     public String rent(String loc, String userID, String dateFrom, String dateEnd) {
         /*
         用户名为userId的客户，租用了loc号房产，返回合约号
@@ -256,7 +272,7 @@ public class Manager {
         String RentingID = String.valueOf(md5);
         String sql = "select * from House where HLocation = ?";
         String sql1 = "update House set ForRentOrNot = '否' where HLocation =?";
-        String sql2 = "insert into Renting values(?,?,?,?,?,?,?) ";
+        String sql2 = "insert into Renting values(?,?,?,?,?,?) ";
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
@@ -275,10 +291,10 @@ public class Manager {
             statement.setString(1, RentingID);
             statement.setString(2, userID);
             statement.setInt(3, HID);
-            statement.setString(4, dateFrom);
-            statement.setString(5, dateEnd);
+            statement.setDate(4, treatDate(dateFrom));
+            statement.setDate(5, treatDate(dateEnd));
             statement.setString(6, "否");
-            statement.setString(7, ownerID);
+            //statement.setString(7, ownerID);
             statement.execute();
             return RentingID;
         } catch (SQLException e) {
@@ -368,11 +384,11 @@ public class Manager {
                 } else if (price.substring(0, 1).equals("<")) {
                     sql += " and RentPrice = " + price + " ";
                 } else {
-                    String price_new[] = size.split("~");
+                    String price_new[] = price.split("~");
                     price_up = price_new[1];
                     price_do = price_new[0];
                     String statement_size = "between " + price_do + " and " + price_up;
-                    sql += " and Price = " + statement_size + " ";
+                    sql += " and RentPrice = " + statement_size + " ";
                 }
             }
             if (Owner.equals("所有房东")) {
@@ -584,8 +600,69 @@ public class Manager {
     }
 
     public ObservableList<DealInformation> RentingSearch(String rentingId, String renterId, String householderId, String location, String datefrom, String dateto, String price) {
-        //搜索符合上诉条件的renting信息, dafrom格式为"2020-12-19",除确定值外，可能传入"所有合约号","所有租户ID","所有房东ID","所有地址"或“2000~4000”
+        //搜索符合上诉条件的renting信息, dafrom格式为"2020-12-19",除确定值外，可能传入"所有合约号","所有租户ID","所有房东ID","所有地址"或,“所有价格”，“所有日期”“2000~4000”
         ObservableList<DealInformation> list = FXCollections.observableArrayList();
+        String sql = "select * from Renting, House where ";
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        try {
+            //--rentingID, renterID, rengtingHouseID, RentingStart, RentingEnd, ReturnOrNot, HouseholderID
+            if ("所有合约号".equals(rentingId)) {
+                sql += " rentingID = Renting.rentingID";
+            } else {
+                sql += " rentingID = " + rentingId;
+            }
+            if ("所有租户ID".equals(renterId))
+                sql += " and renterID = Renting.renterID ";
+            else
+                sql += " and renterID = " + renterId;
+            if ("所有房东ID".equals(householderId))
+                sql += " and HouseHolderID = House.HouseHolderID ";
+            else
+                sql += " and HouseHolderID = " + householderId;
+            if ("所有地址".equals(location))
+                sql += " and HLocation = House.HLocation ";
+            else
+                sql += " and HLocation = " + location;
+            if ("所有价格".equals(price))
+                sql += " and RentPrice = House.RentPrice ";
+            else {
+                String price_up;//higher bound
+                String price_do;//lowwer bound
+                if (price.substring(0, 1).equals(">")) {
+                    sql += " and RentPrice = " + price + " ";
+                } else if (price.substring(0, 1).equals("<")) {
+                    sql += " and RentPrice = " + price + " ";
+                } else {
+                    String price_new[] = price.split("~");
+                    price_up = price_new[1];
+                    price_do = price_new[0];
+                    String statement_size = "between " + price_do + " and " + price_up;
+                    sql += " and RentPrice = " + statement_size + " ";
+                }
+            }
+            statement = connection.prepareStatement(sql);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                String dealID = resultSet.getString("RentingID");
+                String Renterid = resultSet.getString("RenterID");
+                String Holderid = resultSet.getString("HouseholderID");
+                String Loc = resultSet.getString("HLocation");
+                int TimeFrom = Integer.parseInt(resultSet.getDate("RentingStart").toString());
+                int TimeTo = Integer.parseInt(resultSet.getDate("RentingEnd").toString());
+                int newPrice = resultSet.getInt("RentPrice");
+                System.out.println(6);
+                if(TimeFrom >= Integer.parseInt(datefrom) && TimeTo <= Integer.parseInt(dateto)){
+                DealInformation dealInfo = new DealInformation(dealID, Renterid, Holderid, Loc, String.valueOf(TimeFrom),String.valueOf(TimeTo), 1);
+                list.add(dealInfo);
+                }
+            }
+            return list;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         return list;
     }
 
@@ -601,16 +678,17 @@ public class Manager {
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
-            statement = connection.prepareStatement(sql);
+
             if ("所有用户名".equals(id)) {
                 sql += " UID = UserInformation.UID";
             } else {
                 sql += " UID = " + id;
             }
             if (9 == authority)
-                sql += " Power = UserInformation.UID ";
+                sql += " and Power = UserInformation.Power ";
             else
-                sql += " Power = " + authority;
+                sql += " and Power = " + authority;
+            statement = connection.prepareStatement(sql);
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 String newTel = resultSet.getString(1);
