@@ -26,7 +26,7 @@ public class HolderController {
     public void init(Manager manager, String user) throws IOException {
         this.manager = manager;
         this.user = user;
-        List<HouseInformation> list = manager.getHolder(user);
+        List<HouseInformation> list = manager.getHolder(manager.getRenter("所有ID", "所有姓名","所有性别",user,"所有微信号").get(0).getID());
         int i = 1;
         for (HouseInformation e : list
         ) {
