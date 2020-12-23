@@ -88,16 +88,16 @@ public class AdministratorController {
     @FXML
     MenuButton Price;
     @FXML private void select_100(){
-        Price.setText("<100");
+        Size.setText("<100");
     }
     @FXML private void s100_150(){
-        Price.setText("100~150");
+        Size.setText("100~150");
     }
     @FXML private void s150_200(){
-        Price.setText("150~200");
+        Size.setText("150~200");
     }
     @FXML private void select_200(){
-        Price.setText(">200");
+        Size.setText(">200");
     }
     @FXML private void selectAP(){
         Price.setText("所有价格");
@@ -106,16 +106,16 @@ public class AdministratorController {
     @FXML
     MenuButton Size;
     @FXML private void select_2000(){
-        Size.setText("<2000");
+        Price.setText("<2000");
     }
     @FXML private void s2000_4000(){
-        Size.setText("2000~4000");
+        Price.setText("2000~4000");
     }
     @FXML private void s4000_6000(){
-        Size.setText("4000~6000");
+        Price.setText("4000~6000");
     }
     @FXML private void select_6000(){
-        Size.setText(">6000");
+        Price.setText(">6000");
     }
     @FXML private void selectAS(){Size.setText("所有面积");}
     @FXML
