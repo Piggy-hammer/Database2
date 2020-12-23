@@ -351,7 +351,11 @@ public class AdministratorController {
     @FXML
     public void Drefresh(){
         System.out.println("zeh");
-        ObservableList<DealInformation> list = manager.RentingSearch("所有合约号","所有租户ID","所有房东ID","所有地址",Datefrom.getValue().format(yyyyMMdd),Dateto.getValue().format(yyyyMMdd),Dprice.getText());
+        String from = "所有日期";
+        String to = "所有日期";
+        if (Datefrom.getValue() != null) from = Datefrom.getValue().format(yyyyMMdd);
+        if (Dateto.getValue() != null) to = Dateto.getValue().format(yyyyMMdd);
+        ObservableList<DealInformation> list = manager.RentingSearch("所有合约号","所有租户ID","所有房东ID","所有地址",from,to,Dprice.getText());
         Dtable.setItems(list);
     }
     @FXML
