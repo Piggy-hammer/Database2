@@ -293,8 +293,8 @@ public class Manager {
             statement.setString(1, RentingID);
             statement.setString(2, userID);
             statement.setInt(3, HID);
-            statement.setDate(4, treatDate(dateFrom));
-            statement.setDate(5, treatDate(dateEnd));
+            statement.setString(4, dateFrom);
+            statement.setString(5, dateEnd);
             statement.setString(6, "否");
             //statement.setString(7, ownerID);
             statement.execute();
@@ -574,8 +574,8 @@ public class Manager {
             statement.setString(4, name);
             statement.setString(5, sex);
             statement.setString(6, id);
-            statement.setString(7,wechat);
-            statement.setInt(8,123);
+            statement.setString(7, wechat);
+            statement.setInt(8, 123);
 
             statement.execute();
             //statement.setString();
@@ -603,6 +603,20 @@ public class Manager {
             e.printStackTrace();
         }
         System.out.println("删除中发生错误");
+    }
+
+    public static String DATE_YYYY_MM_DD = "yyyy-MM-dd";
+
+    public static long convert2int(String date, String format) {
+        try {
+            if (date != null && !"".equals(date) && format != null && !"".equals(format)) {
+                SimpleDateFormat sf = new SimpleDateFormat(format);
+                return sf.parse(date).getTime();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0l;
     }
 
     public ObservableList<DealInformation> RentingSearch(String rentingId, String renterId, String householderId, String location, String datefrom, String dateto, String price) {
@@ -649,18 +663,34 @@ public class Manager {
             }
             statement = connection.prepareStatement(sql);
             resultSet = statement.executeQuery();
+
             while (resultSet.next()) {
                 String dealID = resultSet.getString("RentingID");
                 String Renterid = resultSet.getString("RenterID");
                 String Holderid = resultSet.getString("HouseholderID");
                 String Loc = resultSet.getString("HLocation");
-                int TimeFrom = Integer.parseInt(resultSet.getDate("RentingStart").toString());
-                int TimeTo = Integer.parseInt(resultSet.getDate("RentingEnd").toString());
+                int TimeFrom = Integer.parseInt(resultSet.getString("RentingStart"));
+                int TimeTo = Integer.parseInt(resultSet.getString("RentingEnd"));
                 int newPrice = resultSet.getInt("RentPrice");
                 System.out.println(6);
-                if(TimeFrom >= Integer.parseInt(datefrom) && TimeTo <= Integer.parseInt(dateto)){
-                DealInformation dealInfo = new DealInformation(dealID, Renterid, Holderid, Loc, String.valueOf(TimeFrom),String.valueOf(TimeTo), 1);
-                list.add(dealInfo);
+                if (datefrom.equals("所有日期") && dateto.equals("所有日期")) {
+                    DealInformation dealInfo = new DealInformation(dealID, Renterid, Holderid, Loc, String.valueOf(TimeFrom), String.valueOf(TimeTo), newPrice);
+                    list.add(dealInfo);
+                } else if (datefrom.equals("所有日期") && !dateto.equals("所有日期")) {
+                    if (TimeTo <= Integer.parseInt(dateto)) {
+                        DealInformation dealInfo = new DealInformation(dealID, Renterid, Holderid, Loc, String.valueOf(TimeFrom), String.valueOf(TimeTo), newPrice);
+                        list.add(dealInfo);
+                    }
+                } else if (dateto.equals("所有日期") && !datefrom.equals("所有日期")) {
+                    if (TimeFrom >= Integer.parseInt(datefrom)) {
+                        DealInformation dealInfo = new DealInformation(dealID, Renterid, Holderid, Loc, String.valueOf(TimeFrom), String.valueOf(TimeTo), newPrice);
+                        list.add(dealInfo);
+                    }
+                } else {
+                    if (TimeFrom >= Integer.parseInt(datefrom) && TimeTo <= Integer.parseInt(dateto)) {
+                        DealInformation dealInfo = new DealInformation(dealID, Renterid, Holderid, Loc, String.valueOf(TimeFrom), String.valueOf(TimeTo), newPrice);
+                        list.add(dealInfo);
+                    }
                 }
             }
             return list;
