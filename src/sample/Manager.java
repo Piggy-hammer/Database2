@@ -273,7 +273,6 @@ public class Manager {
         String RentingID = String.valueOf(md5);
         String sql = "select * from House where HLocation = ?";
         String sql00 = "select * from Renting where RentingHouseID = ? ";
-        String sql1 = "update House set ForRentOrNot = '否' where HID =?";
         String sql2 = "insert into Renting values(?,?,?,?,?,?) ";
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -305,10 +304,6 @@ public class Manager {
             }
 
             if (run1) {
-                //更新House 表
-                statement = connection.prepareStatement(sql1);
-                statement.setInt(1, HID);
-                statement.execute();
 
 
                 statement = connection.prepareStatement(sql2);
@@ -366,7 +361,7 @@ public class Manager {
 
         20201219说明：没有实现防注入
          */
-        String sql = "select * from House where ";
+        String sql = "select * from House where ForRentOrNot = '是' and ";
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         ObservableList<HouseInformation> list = FXCollections.observableArrayList();
@@ -514,7 +509,7 @@ public class Manager {
             statement.setInt(14, house.Pot);
             statement.setInt(15, house.Bus);
             statement.setString(16, house.Describe);
-            statement.setString(17, "否");
+            statement.setString(17, "是");
             statement.setInt(18, 123);
             statement.setInt(19, house.HID);
             statement.execute();
