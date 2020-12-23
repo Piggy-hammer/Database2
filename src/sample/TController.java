@@ -51,7 +51,8 @@ public class TController {
         this.datefrom = datefrom;
         this.dateto = dateto;
         Price.setText(e.getPrice()+"");
-        Holder.setText(e.getOwner());
+        String name = manager.getRenter("所有ID","所有姓名","所有性别",e.getOwner(),"所有微信号").get(0).getName();
+        Holder.setText(name);
         Structure.setText(e.getStructure());
         Size.setText(e.getSize()+"");
         Breakfast.setText(e.Breakfast == 1 ? "提供早餐":"无早餐");
@@ -69,23 +70,24 @@ public class TController {
     }
 
     @FXML private void confirm() throws IOException {
-        try {
             FXMLLoader loader1 = new FXMLLoader(Main.class.getResource("/Success.fxml"));
             AnchorPane pane = loader1.load();
             loader1.setController(this);
             String s = manager.rent(e.getLocation(), user, datefrom, dateto);
-            code.setText(s);
-            Scene scene = new Scene(pane);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.show();
-        }catch (NullPointerException e){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("已存在该交易");
-            alert.setContentText("请检查您交易信息");
-            alert.showAndWait();
-        }
+            System.out.println(s);
+            if (!AddController.isNumeric(s)) {
+                code.setText(s);
+                Scene scene = new Scene(pane);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.show();
+            }else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("房源被占用");
+                alert.setContentText("请检查您交易信息");
+                alert.showAndWait();
+            }
     }
     @FXML private void cancel(){
         stage.close();
