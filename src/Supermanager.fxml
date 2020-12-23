@@ -147,11 +147,11 @@
                         </MenuButton>
                         <DatePicker fx:id="Datefrom" layoutX="110.0" layoutY="35.0" prefWidth="120.0" promptText="起始时间" styleClass="background" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="37.0" />
                         <DatePicker fx:id="Dateto" layoutX="230.0" layoutY="37.0" prefWidth="120.0" promptText="结束时间" styleClass="background" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="37.0" />
-                        <Button fx:id="Dsearch" layoutX="831.0" layoutY="25.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="75.0" text="搜索" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="5.0" />
-                        <Button fx:id="Drefresh" layoutX="820.0" layoutY="41.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="75.0" text="刷新" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="36.0" />
-                        <Button fx:id="Dedit" layoutX="764.0" layoutY="40.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="75.0" text="编辑" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="36.0" />
-                        <Button fx:id="Ddelete" layoutX="693.0" layoutY="41.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="75.0" text="删除" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="36.0" />
-                        <Button fx:id="Dadd" layoutX="613.0" layoutY="41.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="75.0" text="添加" AnchorPane.rightAnchor="225.0" AnchorPane.topAnchor="36.0" />
+                        <Button layoutX="831.0" layoutY="25.0" mnemonicParsing="false" onAction="#Dsearch" prefHeight="32.0" prefWidth="75.0" text="搜索" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="5.0" />
+                        <Button layoutX="820.0" layoutY="41.0" mnemonicParsing="false" onAction="#Drefresh" prefHeight="32.0" prefWidth="75.0" text="刷新" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="36.0" />
+                        <Button layoutX="764.0" layoutY="40.0" mnemonicParsing="false" onAction="#Dedit" prefHeight="32.0" prefWidth="75.0" text="编辑" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="36.0" />
+                        <Button layoutX="693.0" layoutY="41.0" mnemonicParsing="false" onAction="#Ddelete" prefHeight="32.0" prefWidth="75.0" text="删除" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="36.0" />
+                        <Button layoutX="613.0" layoutY="41.0" mnemonicParsing="false" onAction="#Dadd" prefHeight="32.0" prefWidth="75.0" text="添加" AnchorPane.rightAnchor="225.0" AnchorPane.topAnchor="36.0" />
                     </children>
                 </AnchorPane>
             </content>

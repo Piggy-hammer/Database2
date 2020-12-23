@@ -269,6 +269,7 @@ public class Manager {
         rentingID,renterID,HouseID,rentingStart,end,ReturnOrNot,HouseholderID
          */
         int md5 = userID.hashCode();
+        System.out.println("rentPart");
         String RentingID = String.valueOf(md5);
         String sql = "select * from House where HLocation = ?";
         String sql1 = "update House set ForRentOrNot = '否' where HLocation =?";
@@ -277,6 +278,7 @@ public class Manager {
         ResultSet resultSet = null;
         try {
             statement = connection.prepareStatement(sql);
+            statement.setString(1, loc);
             resultSet = statement.executeQuery();
             int HID = -23;
             String ownerID = null;
@@ -555,21 +557,25 @@ public class Manager {
 
     public boolean insertR(RenterInformation renterInformation) {
         //新增一个用户，可以是管理员
-
+        String password = renterInformation.getCode();
+        int power = renterInformation.getAuthority();
         String id = renterInformation.getID();
         String name = renterInformation.getName();
         String sex = renterInformation.getSex();
         String tel = renterInformation.getTel();
         String wechat = renterInformation.getWechat();
-        String sql1 = "insert into Renter values(?,?,?,?,?) ";
+        String sql1 = "insert into UserInformation values(?,?,?,?,?,?,?,?) ";
         PreparedStatement statement = null;
         try {
             statement = connection.prepareStatement(sql1);
-            statement.setString(1, id);
-            statement.setString(2, name);
-            statement.setString(3, sex);
-            statement.setString(4, tel);
-            statement.setString(5, wechat);
+            statement.setString(1, tel);
+            statement.setString(2, password);
+            statement.setInt(3, power);
+            statement.setString(4, name);
+            statement.setString(5, sex);
+            statement.setString(6, id);
+            statement.setString(7,wechat);
+            statement.setInt(8,123);
 
             statement.execute();
             //statement.setString();
@@ -585,7 +591,7 @@ public class Manager {
 
     public void deleteR(String id) {
         //删除一个提供id的用户
-        String sql1 = "delete from Renter where RenterID = ? ";
+        String sql1 = "delete from UserInformation where UID = ? ";
         PreparedStatement statement = null;
         try {
             statement = connection.prepareStatement(sql1);
@@ -668,6 +674,15 @@ public class Manager {
 
     public void deleteD(String dealId) {
         //删除合约号为rentingId的renting记录
+        String sql = "delete from Renting where RentingID = ?";
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        try {
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, dealId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -697,9 +712,10 @@ public class Manager {
                 String newSex = resultSet.getString(5);
                 String newID = resultSet.getString(6);
                 String newWechat = resultSet.getString(5);
+                int power = resultSet.getInt(3);
                 System.out.println(6);
                 System.out.println(newID + "," + newName + "," + newSex + "," + newTel + "," + newWechat);
-                RenterInformation renterInfo = new RenterInformation(newID, newName, newSex, newTel, newWechat, password, 1);
+                RenterInformation renterInfo = new RenterInformation(newID, newName, newSex, newTel, newWechat, password, power);
                 list.add(renterInfo);
             }
             return list;
