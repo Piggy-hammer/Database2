@@ -435,7 +435,7 @@ public class AdministratorController {
     }
 
     //权限管理
-            @FXML TableView<RenterInformation> Atable;
+    @FXML TableView<RenterInformation> Atable;
     @FXML TableColumn<RenterInformation, String> AC1;
     @FXML TableColumn<RenterInformation, String> AC2;
     @FXML TableColumn<RenterInformation, Integer> AC3;

@@ -125,9 +125,16 @@ public class AddController {
         int pot = Pot.isSelected() ? 1: 0;
         int bus = Bus.isSelected() ? 1: 0;
         if(!huxing.equals("选择户型") && isNumeric(rent) && !loc.equals("") && !pic.equals("") && isNumeric(size) && !pic2.equals("") && !pic3.equals("")){
-            manager.insertF(new HouseInformation(loc,huxing,Integer.parseInt(size),Integer.parseInt(rent),pic,pic2,pic3,user,breakfast,wifi,subway,park,tv,pot,bus,Describe.getText()));
-            holderController.init(manager,user);
-            stage.close();
+            if (manager.insertF(new HouseInformation(loc,huxing,Integer.parseInt(size),Integer.parseInt(rent),pic,pic2,pic3,user,breakfast,wifi,subway,park,tv,pot,bus,Describe.getText()))) {
+                holderController.init(manager, user);
+                stage.close();
+            }else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("已存在该房产");
+                alert.setContentText("请检查您的房产信息");
+                alert.showAndWait();
+            }
         }else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");

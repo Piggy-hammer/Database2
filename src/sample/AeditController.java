@@ -44,9 +44,16 @@ public class AeditController {
     @FXML
     private void confirm(){
         if (!ID.getText().equals("") && !Code.getText().equals("") && !Wechat.getText().equals("") && !Code.getText().equals("") && !Tel.getText().equals("") && AddController.isNumeric(Authority.getText())) {
-            manager.insertR(new RenterInformation(ID.getText(),Name.getText(),Sex.getText(),Tel.getText(),Wechat.getText(),Code.getText(),Integer.parseInt(Authority.getText())));
-            stage.close();
-            administratorController.Arefresh();
+            if(manager.insertR(new RenterInformation(ID.getText(),Name.getText(),Sex.getText(),Tel.getText(),Wechat.getText(),Code.getText(),Integer.parseInt(Authority.getText())))) {
+                stage.close();
+                administratorController.Arefresh();
+            }else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("已存在该用户");
+                alert.setContentText("请检查您的用户信息格式");
+                alert.showAndWait();
+            }
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");

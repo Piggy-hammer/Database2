@@ -45,20 +45,27 @@ public class RegisterController {
         String wechat = Wechat.getText();
         String code = Code.getText();
         if (!id.equals("") && AddController.isNumeric(tel) && !name.equals("") && !wechat.equals("") && !code.equals("")) {
-            manager.insertR(new RenterInformation(id,name,sex,tel,wechat,code,1));
-            stage.close();
-            if (administratorController != null){
-                administratorController.Arefresh();
-                administratorController.Rrefresh();
+            if(manager.insertR(new RenterInformation(id,name,sex,tel,wechat,code,1))) {
+                stage.close();
+                if (administratorController != null) {
+                    administratorController.Arefresh();
+                    administratorController.Rrefresh();
+                } else {
+                    FXMLLoader loader = new FXMLLoader((Main.class.getResource("/C.fxml")));
+                    AnchorPane pane = loader.load();
+                    stage1 = new Stage();
+                    Scene sceneMain = new Scene(pane);
+                    stage1.setScene(sceneMain);
+                    stage1.setTitle("注册成功");
+                    stage1.getIcons().add(new Image(Main.class.getResourceAsStream("/1.png")));
+                    stage1.show();
+                }
             }else {
-                FXMLLoader loader = new FXMLLoader((Main.class.getResource("/C.fxml")));
-                AnchorPane pane = loader.load();
-                stage1 = new Stage();
-                Scene sceneMain = new Scene(pane);
-                stage1.setScene(sceneMain);
-                stage1.setTitle("注册成功");
-                stage1.getIcons().add(new Image(Main.class.getResourceAsStream("/1.png")));
-                stage1.show();
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("已存在该用户");
+                alert.setContentText("请检查您的注册信息");
+                alert.showAndWait();
             }
 
         } else {
