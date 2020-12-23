@@ -27,16 +27,24 @@ public class LogController {
 
     @FXML
     private void Login() throws IOException {
-        int authority = manager.login(username.getText(),code.getText());
-        if(authority != 0){
-            MainController mainController = new MainController();
-            stage.setTitle("范德豪斯  我们用爱守护您家的温暖");
-            mainController.init(stage,manager,authority,username.getText());
-        }else{
+        if (AddController.isNumeric(code.getText()) && code.getText().length()==11) {
+            int authority = manager.login(username.getText(), code.getText());
+            if (authority != 0) {
+                MainController mainController = new MainController();
+                stage.setTitle("范德豪斯  我们用爱守护您家的温暖");
+                mainController.init(stage, manager, authority, username.getText());
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("不存在该用户");
+                alert.setContentText("请检查您的手机号和密码是否输入准确");
+                alert.showAndWait();
+            }
+        }else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
-            alert.setHeaderText("不存在该用户");
-            alert.setContentText("请检查您的用户名和密码是否输入准确");
+            alert.setHeaderText("用户名格式错误");
+            alert.setContentText("请检查您的手机号是否输入准确");
             alert.showAndWait();
         }
     }
