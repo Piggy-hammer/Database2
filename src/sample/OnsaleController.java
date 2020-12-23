@@ -32,7 +32,6 @@ public class OnsaleController {
         this.user = user;
         splitPane.getItems().set(1,anchorPane);
     }
-
     @FXML
     public void Ping() throws IOException {
         FXMLLoader loader1 = new FXMLLoader(Main.class.getResource("/Timepicker.fxml"));
@@ -41,8 +40,10 @@ public class OnsaleController {
         Scene scene = new Scene(pane);
         Stage stage = new Stage();
         stage.setScene(scene);
-        dateController.init(stage);
+        dateController.init(stage,1,this);
         stage.show();
+    }
+    public void P1(DateController dateController) throws IOException {
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("/ping.fxml"));
         ScrollPane anchorPane = loader.load();
         splitPane.getItems().set(1,anchorPane);
@@ -50,7 +51,7 @@ public class OnsaleController {
         List<HouseInformation> list = manager.getPing(dateController.getDatefrom(),dateController.getDateto());
         int i = 1;
         for (HouseInformation e: list
-             ) {
+        ) {
             Image image = new Image(e.Pic1);
             ImageView imageView = new ImageView(image);
             Label rent = new Label();
@@ -80,7 +81,6 @@ public class OnsaleController {
             i++;
         }
     }
-
     private void deal(HouseInformation e, String user, String datefrom, String dateto) throws IOException {
         FXMLLoader loader1 = new FXMLLoader(Main.class.getResource("/T.fxml"));
         AnchorPane pane = loader1.load();
@@ -100,8 +100,10 @@ public class OnsaleController {
         Scene scene = new Scene(pane);
         Stage stage = new Stage();
         stage.setScene(scene);
-        dateController.init(stage);
+        dateController.init(stage, 2,this);
         stage.show();
+    }
+    public void Y1(DateController dateController) throws IOException {
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("/ping.fxml"));
         ScrollPane anchorPane = loader.load();
         splitPane.getItems().set(1,anchorPane);
@@ -147,8 +149,10 @@ public class OnsaleController {
         Scene scene = new Scene(pane);
         Stage stage = new Stage();
         stage.setScene(scene);
-        dateController.init(stage);
+        dateController.init(stage,3,this);
         stage.show();
+    }
+    public void S1(DateController dateController) throws IOException {
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("/ping.fxml"));
         ScrollPane anchorPane = loader.load();
         splitPane.getItems().set(1,anchorPane);

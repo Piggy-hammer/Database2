@@ -22,7 +22,7 @@
             </items>
         </MenuButton>
         <Label layoutX="33.0" layoutY="127.0" styleClass="label-bright" text="密码" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="200.0" />
-        <TextField fx:id="Tel" layoutX="119.0" layoutY="142.0" promptText="输入身份ID" style="-fx-background-color: derive(#1d1d1d,50%);" styleClass="background" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="142.0" />
+        <TextField fx:id="Tel" layoutX="119.0" layoutY="142.0" promptText="输入手机号" style="-fx-background-color: derive(#1d1d1d,50%);" styleClass="background" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="142.0" />
         <Button layoutX="200.0" layoutY="200.0" mnemonicParsing="false" onAction="#confirm" styleClass="label-bright" text="确定" AnchorPane.topAnchor="315.0" />
         <Label layoutX="43.0" layoutY="137.0" styleClass="label-bright" text="手机号" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="140.0" />
         <TextField fx:id="Code" layoutX="120.0" layoutY="202.0" promptText="输入密码" style="-fx-background-color: derive(#1d1d1d,50%);" styleClass="background" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="202.0" />

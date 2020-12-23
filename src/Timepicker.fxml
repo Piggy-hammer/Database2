@@ -7,13 +7,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane prefHeight="210.0" prefWidth="330.0" styleClass="background" stylesheets="@sample/DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.DateController">
    <children>
-      <DatePicker layoutX="235.0" layoutY="58.0" prefWidth="150.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="21.0" />
-      <DatePicker layoutX="235.0" layoutY="118.0" prefWidth="150.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="81.0" />
+      <DatePicker fx:id="Datefrom" layoutX="235.0" layoutY="58.0" prefWidth="150.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="21.0" />
+      <DatePicker fx:id="Dateto" layoutX="235.0" layoutY="118.0" prefWidth="150.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="81.0" />
       <Label layoutX="99.0" layoutY="66.0" styleClass="label-bright" text="起始时间" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0" />
       <Label layoutX="109.0" layoutY="76.0" styleClass="label-bright" text="起始时间" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="80.0" />
-      <Button layoutX="115.0" layoutY="154.0" mnemonicParsing="false" styleClass="label-bright" text="确认" AnchorPane.topAnchor="140.0" />
+      <Button layoutX="115.0" layoutY="154.0" mnemonicParsing="false" onAction="#confirm" styleClass="label-bright" text="确认" AnchorPane.topAnchor="140.0" />
    </children>
 </AnchorPane>
