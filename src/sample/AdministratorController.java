@@ -252,16 +252,16 @@ public class AdministratorController {
         if (!Rsousuo.getText().equals("")){
             switch(RsousuoT.getText()) {
                 case "ID":
-                    ObservableList<RenterInformation> list = manager.getRenter(Fsousuo.getText(), "所有姓名", "所有性别", "所有手机号", "所有微信号");
+                    ObservableList<RenterInformation> list = manager.getRenter(Rsousuo.getText(), "所有姓名", "所有性别", "所有手机号", "所有微信号");
                     Rtable.setItems(list);break;
                 case "姓名":
-                    ObservableList<RenterInformation> list1 = manager.getRenter("所有ID", Fsousuo.getText(), "所有性别", "所有手机号", "所有微信号");
+                    ObservableList<RenterInformation> list1 = manager.getRenter("所有ID", Rsousuo.getText(), "所有性别", "所有手机号", "所有微信号");
                     Rtable.setItems(list1);break;
                 case "手机号":
-                    ObservableList<RenterInformation> list2 = manager.getRenter("所有ID", "所有姓名", "所有性别", Fsousuo.getText(), "所有微信号");
+                    ObservableList<RenterInformation> list2 = manager.getRenter("所有ID", "所有姓名", "所有性别", Rsousuo.getText(), "所有微信号");
                     Rtable.setItems(list2);break;
                 case "微信号":
-                    ObservableList<RenterInformation> list3 = manager.getRenter("所有ID", "所有姓名", "所有性别", "所有手机号", Fsousuo.getText());
+                    ObservableList<RenterInformation> list3 = manager.getRenter("所有ID", "所有姓名", "所有性别", "所有手机号", Rsousuo.getText());
                     Rtable.setItems(list3);break;
                 case "搜索条件":
                     Alert alert = new Alert(Alert.AlertType.ERROR);

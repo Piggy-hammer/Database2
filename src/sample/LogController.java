@@ -29,6 +29,7 @@ public class LogController {
     private void Login() throws IOException {
         if (AddController.isNumeric(username.getText()) && username.getText().length()==11) {
             int authority = manager.login(username.getText(), code.getText());
+            System.out.println(authority);
             if (authority != 0) {
                 MainController mainController = new MainController();
                 stage.setTitle("范德豪斯  我们用爱守护您家的温暖");

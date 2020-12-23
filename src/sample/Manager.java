@@ -26,7 +26,7 @@ public class Manager {
             e.printStackTrace();
             System.out.println("fail");
         }
-        String password = "password=694907182";//自己的密码
+        String password = "password=654321";//自己的密码
         String url = "jdbc:sqlserver://127.0.0.1:1433;DatabaseName=HouseManager;user=sa;";
         url += password;
         try {
@@ -49,7 +49,7 @@ public class Manager {
         普通权限返回1
         没有该用户返回0
          */
-        String sql = "select * from UserInformation where Tel =? and Password =?";
+        String sql = "select * from UserInformation where Tel = ? and Password =?";
         //System.out.println(username+" "+password);
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -337,13 +337,14 @@ public class Manager {
         用户名为holder的客户，删除了loca号房产
          */
         String sql1 = "delete from House where HLocation =?  ";
-        String sql2 = "insert into Renting values(?,?,?,?,?,?,?,?) ";
+        //String sql2 = "insert into Renting values(?,?,?,?,?,?,?,?) ";
         PreparedStatement statement = null;
         try {
+            System.out.println("即将删除："+loc);
             statement = connection.prepareStatement(sql1);
             statement.setString(1, loc);
             statement.execute();
-            statement = connection.prepareStatement(sql2);
+           // statement = connection.prepareStatement(sql2);
             //statement.setString();
 
             System.out.println("成功删除");

@@ -135,40 +135,48 @@ public class FeditController {
     }
     @FXML
     private void confirm() throws IOException {
-        String huxing = Huxing.getText();
-        String rent = Rent.getText();
-        String loc = Loc.getText();
-        String pic = Pic.getText();
-        String size = Size.getText();
-        String pic2 = Pic2.getText();
-        String pic3 = Pic3.getText();
-        String user = User.getText();
-        int breakfast = Breakfast.isSelected() ? 1 : 0;
-        int wifi = Wifi.isSelected() ? 1 : 0 ;
-        int subway = Subway.isSelected() ? 1 : 0;
-        int park = Park.isSelected() ? 1 : 0;
-        int tv = Park.isSelected() ? 1 : 0;
-        int pot = Pot.isSelected() ? 1: 0;
-        int bus = Bus.isSelected() ? 1: 0;
-        if(!huxing.equals("选择户型") && isNumeric(rent) && !loc.equals("") && !pic.equals("") && isNumeric(size) && !pic2.equals("") && !pic3.equals("") && user.equals("")){
-            if(manager.insertF(new HouseInformation(loc,huxing,Integer.parseInt(size),Integer.parseInt(rent),pic,pic2,pic3,user,breakfast,wifi,subway,park,tv,pot,bus,Describe.getText()))) {
-                holderController.HouseRefresh();
-                stage.close();
-            }else {
+        try {
+            String huxing = Huxing.getText();
+            String rent = Rent.getText();
+            String loc = Loc.getText();
+            String pic = Pic.getText();
+            String size = Size.getText();
+            String pic2 = Pic2.getText();
+            String pic3 = Pic3.getText();
+            String user = User.getText();
+            int breakfast = Breakfast.isSelected() ? 1 : 0;
+            int wifi = Wifi.isSelected() ? 1 : 0;
+            int subway = Subway.isSelected() ? 1 : 0;
+            int park = Park.isSelected() ? 1 : 0;
+            int tv = Park.isSelected() ? 1 : 0;
+            int pot = Pot.isSelected() ? 1 : 0;
+            int bus = Bus.isSelected() ? 1 : 0;
+            if (!huxing.equals("选择户型") && isNumeric(rent) && !loc.equals("") && !pic.equals("") && isNumeric(size) && !pic2.equals("") && !pic3.equals("") && !user.equals("")) {
+                if (manager.insertF(new HouseInformation(loc, huxing, Integer.parseInt(size), Integer.parseInt(rent), pic, pic2, pic3, user, breakfast, wifi, subway, park, tv, pot, bus, Describe.getText()))) {
+                    holderController.HouseRefresh();
+                    stage.close();
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("已存在该房源信息");
+                    alert.setContentText("请检查您的房产信息");
+                    alert.showAndWait();
+                }
+            } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
-                alert.setHeaderText("已存在该房源信息");
-                alert.setContentText("请检查您的房产信息");
+                alert.setHeaderText("房产信息缺失或格式问题");
+                alert.setContentText("请检查您的房产信息格式与完整性");
                 alert.showAndWait();
             }
-        }else {
+            System.out.println(Huxing.getText() + "  " + Rent.getText() + " " + Pic.getText() + " " + Loc.getText());
+        }catch (NullPointerException e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("房产信息缺失或格式问题");
             alert.setContentText("请检查您的房产信息格式与完整性");
             alert.showAndWait();
         }
-        System.out.println(Huxing.getText()+"  "+Rent.getText()+" "+Pic.getText()+" "+Loc.getText());
     }
 
     public static boolean isNumeric(String str){
