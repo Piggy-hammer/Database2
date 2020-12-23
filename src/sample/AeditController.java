@@ -31,6 +31,10 @@ public class AeditController {
         stage = stage1;
         ID.setText(selectedItem.getID());
         Code.setText(selectedItem.getCode());
+        Tel.setText(selectedItem.getTel());
+        Wechat.setText(selectedItem.getWechat());
+        Sex.setText(selectedItem.getSex());
+        Name.setText(selectedItem.getName());
         switch (selectedItem.getAuthority()){
             case 1: Set1();break;
             case 2: Set2();break;

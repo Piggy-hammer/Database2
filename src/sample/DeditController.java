@@ -45,15 +45,16 @@ public class DeditController {
        String dateto = Dateto.getValue().format(yyyyMMdd);
         if ( !loc.equals("")  && !rid.equals("") && !datefrom.equals("") && !dateto.equals("")) {
             if (Integer.parseInt(dateto) > Integer.parseInt(datefrom)) {
-                if(manager.rent(loc,rid,datefrom,dateto) != null){
-                    stage.close();
-                    administratorController.Drefresh();
-                }else{
+                if(AddController.isNumeric(manager.rent(loc,rid,datefrom,dateto))){
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Error");
-                    alert.setHeaderText("已存在该合约记录");
-                    alert.setContentText("请检查您的合约信息");
+                    alert.setHeaderText("无法成立订单");
+                    alert.setContentText("该房源不空闲或该用户未注册\n" +
+                            "请检查您的合约信息");
                     alert.showAndWait();
+                }else{
+                    stage.close();
+                    administratorController.Drefresh();
                 }
             }else error2();
         } else {
