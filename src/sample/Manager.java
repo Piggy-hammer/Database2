@@ -322,7 +322,7 @@ public class Manager {
                 statement.execute();
                 return RentingID;
             } else
-                return "0";//房间不存在
+                return "房间不存在或房间已被占用";//房间不存在
         } catch (SQLException e) {
             e.printStackTrace();
         }
