@@ -322,13 +322,13 @@ public class Manager {
                 statement.execute();
                 return RentingID;
             } else
-                return "房间不存在或房间已被占用";//房间不存在
+                return "0";//房间不存在或房间已被占用
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
         System.out.println("renting");
-        return "添加中出现错误";//(可能由于房间已经被占用)
+        return "1";//(可能由于房间已经被占用)
 
     }
 
