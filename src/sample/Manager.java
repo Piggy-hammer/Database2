@@ -26,7 +26,7 @@ public class Manager {
             e.printStackTrace();
             System.out.println("fail");
         }
-        String password = "password=654321";//自己的密码
+        String password = "password=694907182";//自己的密码
         String url = "jdbc:sqlserver://127.0.0.1:1433;DatabaseName=HouseManager;user=sa;";
         url += password;
         try {
@@ -340,11 +340,11 @@ public class Manager {
         //String sql2 = "insert into Renting values(?,?,?,?,?,?,?,?) ";
         PreparedStatement statement = null;
         try {
-            System.out.println("即将删除："+loc);
+            System.out.println("即将删除：" + loc);
             statement = connection.prepareStatement(sql1);
             statement.setString(1, loc);
             statement.execute();
-           // statement = connection.prepareStatement(sql2);
+            // statement = connection.prepareStatement(sql2);
             //statement.setString();
 
             System.out.println("成功删除");
@@ -392,13 +392,14 @@ public class Manager {
                     sql += " and Size  " + size + " ";
                 } else if (size.substring(0, 1).equals("<")) {
                     sql += " and Size  " + size + " ";
-                } else {
+                } else if (size.contains("~")) {
                     String size_new[] = size.split("~");
                     size_up = size_new[1];
                     size_do = size_new[0];
                     String statement_size = "between " + size_do + " and " + size_up;
                     sql += " and Size  " + statement_size + " ";
-                }
+                } else
+                    return list;
             }
             if (price.equals("所有价格")) {
                 sql += " and RentPrice = House.RentPrice";
@@ -410,13 +411,14 @@ public class Manager {
                     sql += " and RentPrice  " + price + " ";
                 } else if (price.substring(0, 1).equals("<")) {
                     sql += " and RentPrice  " + price + " ";
-                } else {
+                } else if (price.contains("~")) {
                     String price_new[] = price.split("~");
                     price_up = price_new[1];
                     price_do = price_new[0];
                     String statement_size = "between " + price_do + " and " + price_up;
                     sql += " and RentPrice  " + statement_size + " ";
-                }
+                } else
+                    return list;
             }
             if (Owner.equals("所有房东")) {
                 sql += " and HouseHolderID =  House.HouseHolderID";
@@ -513,7 +515,7 @@ public class Manager {
             statement.setInt(15, house.Bus);
             statement.setString(16, house.Describe);
             statement.setString(17, "否");
-            statement.setInt(18,123);
+            statement.setInt(18, 123);
             statement.setInt(19, house.HID);
             statement.execute();
             //statement.setString();
@@ -670,11 +672,11 @@ public class Manager {
             if ("所有房东ID".equals(householderId))
                 sql += " and HouseHolderID = House.HouseHolderID ";
             else
-                sql += " and HouseHolderID = \'" + householderId+ "\'";
+                sql += " and HouseHolderID = \'" + householderId + "\'";
             if ("所有地址".equals(location))
                 sql += " and HLocation = House.HLocation ";
             else
-                sql += " and HLocation = \'" + location+ "\'";
+                sql += " and HLocation = \'" + location + "\'";
             if ("所有价格".equals(price))
                 sql += " and RentPrice = House.RentPrice ";
             else {
@@ -759,7 +761,7 @@ public class Manager {
             if ("所有用户名".equals(id)) {
                 sql += " UID = UserInformation.UID";
             } else {
-                sql += " UID = \'" + id +"\'";
+                sql += " UID = \'" + id + "\'";
             }
             if (9 == authority)
                 sql += " and Power = UserInformation.Power ";
