@@ -771,7 +771,7 @@ public class Manager {
                 String newName = resultSet.getString(4);
                 String newSex = resultSet.getString(5);
                 String newID = resultSet.getString(6);
-                String newWechat = resultSet.getString(5);
+                String newWechat = resultSet.getString(7);
                 int power = resultSet.getInt(3);
                 System.out.println(6);
                 System.out.println(newID + "," + newName + "," + newSex + "," + newTel + "," + newWechat);

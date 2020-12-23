@@ -12,7 +12,7 @@
         <Label layoutX="26.0" layoutY="14.0" styleClass="label-bright" text="我的房产" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0" />
         <Line endX="100.0" layoutX="121.0" layoutY="53.0" startX="-100.0" stroke="WHITE" strokeWidth="2.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="50.0" />
         <Button layoutX="378.0" layoutY="19.0" mnemonicParsing="false" onAction="#addnew" text="添加新房产" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="19.0" />
-        <ScrollPane layoutX="21.0" layoutY="65.0" prefHeight="0.0" prefWidth="512.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="65.0">
+        <ScrollPane layoutX="21.0" layoutY="65.0" prefHeight="0.0" prefWidth="512.0" style="-fx-background-color: black;" styleClass="background" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="65.0">
             <content>
                 <GridPane fx:id="gridPane" prefWidth="496.0" styleClass="background">
                     <columnConstraints>
