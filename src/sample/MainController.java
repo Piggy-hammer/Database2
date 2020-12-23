@@ -24,7 +24,7 @@ public class MainController {
                 FXMLLoader loader = new FXMLLoader((Main.class.getResource("/manager.fxml")));
                 TabPane pane = loader.load();
                 AdministratorController administratorController = loader.getController();
-                administratorController.init(manager);
+                administratorController.init1(manager);
                 Scene sceneMain = new Scene(pane);
                 stage.setScene(sceneMain);
                 stage.centerOnScreen();break;

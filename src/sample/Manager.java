@@ -394,7 +394,7 @@ public class Manager {
                     String statement_size = "between " + size_do + " and " + size_up;
                     sql += " and Size  " + statement_size + " ";
                 } else
-                    return list;
+                    sql += " and Size = " + size + " ";
             }
             if (price.equals("所有价格")) {
                 sql += " and RentPrice = House.RentPrice";
@@ -413,7 +413,7 @@ public class Manager {
                     String statement_size = "between " + price_do + " and " + price_up;
                     sql += " and RentPrice  " + statement_size + " ";
                 } else
-                    return list;
+                    sql += " and RentPrice = " + price + " ";
             }
             if (Owner.equals("所有房东")) {
                 sql += " and HouseHolderID =  House.HouseHolderID";
@@ -567,7 +567,7 @@ public class Manager {
                 String newName = resultSet.getString(4);
                 String newSex = resultSet.getString(5);
                 String newID = resultSet.getString(6);
-                String newWechat = resultSet.getString(5);
+                String newWechat = resultSet.getString(7);
                 System.out.println(6);
                 System.out.println(newID + "," + newName + "," + newSex + "," + newTel + "," + newWechat);
                 RenterInformation renterInfo = new RenterInformation(newID, newName, newSex, newTel, newWechat, password, 1);
@@ -681,13 +681,14 @@ public class Manager {
                     sql += " and RentPrice " + price + " ";
                 } else if (price.substring(0, 1).equals("<")) {
                     sql += " and RentPrice  " + price + " ";
-                } else {
+                } else if (price.contains("~")) {
                     String price_new[] = price.split("~");
                     price_up = price_new[1];
                     price_do = price_new[0];
                     String statement_size = "between " + price_do + " and " + price_up;
                     sql += " and RentPrice  " + statement_size + " ";
-                }
+                } else
+                    sql += " and RentPrice = " + price + " ";
             }
             statement = connection.prepareStatement(sql);
             resultSet = statement.executeQuery();

@@ -44,6 +44,29 @@ public class AdministratorController {
         Drefresh();
         Arefresh();
     }
+    public void init1(Manager manager1) {
+        manager = manager1;
+        FC1.setCellValueFactory(cellData -> cellData.getValue().Location);
+        FC2.setCellValueFactory(cellData -> cellData.getValue().Structure);
+        FC3.setCellValueFactory(cellData -> cellData.getValue().Size.asObject());
+        FC4.setCellValueFactory(cellData -> cellData.getValue().Price.asObject());
+        FC5.setCellValueFactory(cellData -> cellData.getValue().Owner);
+        RC1.setCellValueFactory(cellData -> cellData.getValue().ID);
+        RC2.setCellValueFactory(cellData -> cellData.getValue().Name);
+        RC3.setCellValueFactory(cellData -> cellData.getValue().Sex);
+        RC4.setCellValueFactory(cellData -> cellData.getValue().Tel);
+        RC5.setCellValueFactory(cellData -> cellData.getValue().Wechat);
+        DC1.setCellValueFactory(cellData -> cellData.getValue().Dealid);
+        DC2.setCellValueFactory(cellData -> cellData.getValue().Renterid);
+        DC3.setCellValueFactory(cellData -> cellData.getValue().Holderid);
+        DC4.setCellValueFactory(cellData -> cellData.getValue().Loc);
+        DC5.setCellValueFactory(cellData -> cellData.getValue().Timefrom);
+        DC6.setCellValueFactory(cellData -> cellData.getValue().Timeto);
+        DC7.setCellValueFactory(cellData -> cellData.getValue().Price.asObject());
+        HouseRefresh();
+        Rrefresh();
+        Drefresh();
+    }
 
 
 
