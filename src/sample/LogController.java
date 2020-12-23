@@ -27,7 +27,7 @@ public class LogController {
 
     @FXML
     private void Login() throws IOException {
-        if (AddController.isNumeric(code.getText()) && code.getText().length()==11) {
+        if (AddController.isNumeric(username.getText()) && username.getText().length()==11) {
             int authority = manager.login(username.getText(), code.getText());
             if (authority != 0) {
                 MainController mainController = new MainController();

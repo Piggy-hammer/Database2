@@ -22,6 +22,7 @@ public class HouseInformation {
     int Pot;
     int Subway;
     int Bus;
+    int HID;
 
     public HouseInformation(String location, String structure, int size, int price, String pic1, String pic2, String pic3,String owner, int breakfast, int wifi, int subway, int park, int tv, int pot, int bus, String describe){
         Location = new SimpleStringProperty(location);
@@ -40,6 +41,7 @@ public class HouseInformation {
         Bus = bus;
         Wifi = wifi;
         Describe = describe;
+        HID = Location.hashCode();
     }
 
     public String getLocation() {

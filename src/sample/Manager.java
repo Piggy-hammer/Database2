@@ -1,5 +1,6 @@
 package sample;
 
+import com.sun.xml.internal.ws.util.StringUtils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -46,7 +47,7 @@ public class Manager {
         普通权限返回1
         没有该用户返回0
          */
-        String sql = "select * from UserName where ID =? and Password =?";
+        String sql = "select * from UserInformation where Tel =? and Password =?";
         //System.out.println(username+" "+password);
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -56,6 +57,7 @@ public class Manager {
             statement.setString(1, username);
             statement.setString(2, password);
             resultSet = statement.executeQuery();
+            System.out.println(username);
             if (resultSet.next()) {
                 int num = resultSet.getInt(3);
                 System.out.println("您的权限是" + num);
@@ -105,10 +107,24 @@ public class Manager {
                 String location = resultSet.getString(1);
                 int size = resultSet.getInt(2);
                 String structure = resultSet.getString(3);
-                String picture = resultSet.getString(4);
-                int price = resultSet.getInt(6);
+                String picture = resultSet.getString(5);
+                int price = resultSet.getInt(4);
+                String picture2 = resultSet.getString(6);
+                String picture3 = resultSet.getString(7);
+                String ownerID = resultSet.getString(8);
+                int breakfast = resultSet.getInt(9);
+                int wifi = resultSet.getInt(10);
+                int subway = resultSet.getInt(11);
+                int park = resultSet.getInt(12);
+                int tv = resultSet.getInt(13);
+                int pot = resultSet.getInt(14);
+                int bus = resultSet.getInt(15);
+                String describe = resultSet.getString(16);
+
                 System.out.println(structure + price + picture + location);
-                HouseInformation house = new HouseInformation(structure, price, picture, location, size,);
+                HouseInformation house = new HouseInformation(location, structure, size,
+                        price, picture, picture2, picture3, ownerID, breakfast
+                        , wifi, subway, park, tv, pot, bus, describe);
                 list.add(house);
             }
         } catch (SQLException e) {
@@ -125,10 +141,24 @@ public class Manager {
                 String location = resultSet.getString(1);
                 int size = resultSet.getInt(2);
                 String structure = resultSet.getString(3);
-                String picture = resultSet.getString(4);
-                int price = resultSet.getInt(6);
+                String picture = resultSet.getString(5);
+                int price = resultSet.getInt(4);
+                String picture2 = resultSet.getString(6);
+                String picture3 = resultSet.getString(7);
+                String ownerID = resultSet.getString(8);
+                int breakfast = resultSet.getInt(9);
+                int wifi = resultSet.getInt(10);
+                int subway = resultSet.getInt(11);
+                int park = resultSet.getInt(12);
+                int tv = resultSet.getInt(13);
+                int pot = resultSet.getInt(14);
+                int bus = resultSet.getInt(15);
+                String describe = resultSet.getString(16);
+
                 System.out.println(structure + price + picture + location);
-                House house = new House(structure, price, picture, location, size);
+                HouseInformation house = new HouseInformation(location, structure, size,
+                        price, picture, picture2, picture3, ownerID, breakfast
+                        , wifi, subway, park, tv, pot, bus, describe);
                 list.add(house);
             }
         } catch (SQLException e) {
@@ -138,17 +168,31 @@ public class Manager {
     }
 
     public List<HouseInformation> getShu(String datefrom, String dateto) {
-        List<House> list = new LinkedList();
+        List<HouseInformation> list = new LinkedList();
         try {
             ResultSet resultSet = getHouse("雅墅");
             while (resultSet.next()) {
                 String location = resultSet.getString(1);
                 int size = resultSet.getInt(2);
                 String structure = resultSet.getString(3);
-                String picture = resultSet.getString(4);
-                int price = resultSet.getInt(6);
+                String picture = resultSet.getString(5);
+                int price = resultSet.getInt(4);
+                String picture2 = resultSet.getString(6);
+                String picture3 = resultSet.getString(7);
+                String ownerID = resultSet.getString(8);
+                int breakfast = resultSet.getInt(9);
+                int wifi = resultSet.getInt(10);
+                int subway = resultSet.getInt(11);
+                int park = resultSet.getInt(12);
+                int tv = resultSet.getInt(13);
+                int pot = resultSet.getInt(14);
+                int bus = resultSet.getInt(15);
+                String describe = resultSet.getString(16);
+
                 System.out.println(structure + price + picture + location);
-                House house = new House(structure, price, picture, location, size);
+                HouseInformation house = new HouseInformation(location, structure, size,
+                        price, picture, picture2, picture3, ownerID, breakfast
+                        , wifi, subway, park, tv, pot, bus, describe);
                 list.add(house);
             }
         } catch (SQLException e) {
@@ -165,7 +209,7 @@ public class Manager {
         String sql = "select * from House where HouseHolderID =?";
         PreparedStatement statement = null;
         ResultSet resultSet = null;
-        List<House> list = new LinkedList();
+        List<HouseInformation> list = new LinkedList();
         try {
             statement = connection.prepareStatement(sql);
             statement.setString(1, user);
@@ -174,10 +218,24 @@ public class Manager {
                 String location = resultSet.getString(1);
                 int size = resultSet.getInt(2);
                 String structure = resultSet.getString(3);
-                String picture = resultSet.getString(4);
-                int price = resultSet.getInt(6);
+                String picture = resultSet.getString(5);
+                int price = resultSet.getInt(4);
+                String picture2 = resultSet.getString(6);
+                String picture3 = resultSet.getString(7);
+                String ownerID = resultSet.getString(8);
+                int breakfast = resultSet.getInt(9);
+                int wifi = resultSet.getInt(10);
+                int subway = resultSet.getInt(11);
+                int park = resultSet.getInt(12);
+                int tv = resultSet.getInt(13);
+                int pot = resultSet.getInt(14);
+                int bus = resultSet.getInt(15);
+                String describe = resultSet.getString(16);
+
                 System.out.println(structure + price + picture + location);
-                House house = new House(structure, price, picture, location, size);
+                HouseInformation house = new HouseInformation(location, structure, size,
+                        price, picture, picture2, picture3, ownerID, breakfast
+                        , wifi, subway, park, tv, pot, bus, describe);
                 list.add(house);
             }
         } catch (SQLException e) {
@@ -189,28 +247,47 @@ public class Manager {
         return list;
     }
 
-    public String rent(String loc, String userId, String datefrom, String dateto) {
+    public String rent(String loc, String userID, String dateFrom, String dateEnd) {
         /*
         用户名为userId的客户，租用了loc号房产，返回合约号
+        rentingID,renterID,HouseID,rentingStart,end,ReturnOrNot,HouseholderID
          */
-        int md5 = userId.hashCode();
+        int md5 = userID.hashCode();
         String RentingID = String.valueOf(md5);
+        String sql = "select * from House where HLocation = ?";
         String sql1 = "update House set ForRentOrNot = '否' where HLocation =?";
-        String sql2 = "insert into Renting values(?,?,?,?,?,?,?,?) ";
+        String sql2 = "insert into Renting values(?,?,?,?,?,?,?) ";
         PreparedStatement statement = null;
+        ResultSet resultSet = null;
         try {
+            statement = connection.prepareStatement(sql);
+            resultSet = statement.executeQuery();
+            int HID = -23;
+            String ownerID = null;
+            while (resultSet.next()) {
+                ownerID = resultSet.getString(8);
+                HID = resultSet.getInt(17);
+            }
             statement = connection.prepareStatement(sql1);
             statement.setString(1, loc);
             statement.execute();
             statement = connection.prepareStatement(sql2);
-            //statement.setString();
+            statement.setString(1, RentingID);
+            statement.setString(2, userID);
+            statement.setInt(3, HID);
+            statement.setString(4, dateFrom);
+            statement.setString(5, dateEnd);
+            statement.setString(6, "否");
+            statement.setString(7, ownerID);
+            statement.execute();
+            return RentingID;
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        System.out.println(user + "fsgag" + loc);
+        System.out.println(userID + "fsgag" + loc);
+        return "添加中出现错误";//
 
-        return RentingID;
     }
 
     public void delete(String loc, String holder) {
@@ -237,7 +314,7 @@ public class Manager {
 
 
     public ObservableList<HouseInformation>
-    HouseSearch(String Location, String stucture, String size, String price, String Owner) {
+    HouseSearch(String Location, String structure, String size, String price, String Owner) {
         /*
         返回符合上诉条件的房源信息
         其中 structure以“平层”或“所有房型”的形式给出； size以“<100”或“100~150”或具体值形式给出； price以“<2000”或“2000~4000”或具体值形式给出
@@ -257,11 +334,11 @@ public class Manager {
                 System.out.println("1");
             } else
                 sql += "HLocation = " + Location + " ";
-            if (stucture.equals("所有户型")) {
+            if (structure.equals("所有户型")) {
                 sql += " and Structure = House.Structure";
                 System.out.println("2");
             } else
-                sql += " and Stucture = " + stucture + " ";
+                sql += " and Stucture = " + structure + " ";
             if (size.equals("所有面积")) {
                 sql += " and Size = House.Size";
                 System.out.println("3");
@@ -281,15 +358,15 @@ public class Manager {
                 }
             }
             if (price.equals("所有价格")) {
-                sql += " and SalePrice = House.SalePrice";
+                sql += " and RentPrice = House.RentPrice";
                 System.out.println("4");
             } else {
                 String price_up;//higher bound
                 String price_do;//lowwer bound
                 if (price.substring(0, 1).equals(">")) {
-                    sql += " and Price = " + price + " ";
+                    sql += " and RentPrice = " + price + " ";
                 } else if (price.substring(0, 1).equals("<")) {
-                    sql += " and Price = " + price + " ";
+                    sql += " and RentPrice = " + price + " ";
                 } else {
                     String price_new[] = size.split("~");
                     price_up = price_new[1];
@@ -307,16 +384,28 @@ public class Manager {
             statement = connection.prepareStatement(sql);
             System.out.println(sql);
             resultSet = statement.executeQuery();
+            //loc,size,struc,renPrice,p1,p2,p3,ID,breaf,wifi,sub,park,tv,pot,bus,describe,FororNot,branchNo,Hid.
             while (resultSet.next()) {
                 String location = resultSet.getString(1);
                 int size_new = resultSet.getInt(2);
-                String structure = resultSet.getString(3);
-                String picture = resultSet.getString(4);
-                int price_new = resultSet.getInt(6);
-                System.out.println(7);
-                String ownerID = resultSet.getString(5);
+                structure = resultSet.getString(3);
+                int price_new = resultSet.getInt(4);
+                String picture = resultSet.getString(5);
+                String picture2 = resultSet.getString(6);
+                String picture3 = resultSet.getString(7);
+                String ownerID = resultSet.getString(8);
+                int breakfast = resultSet.getInt(9);
+                int wifi = resultSet.getInt(10);
+                int sub = resultSet.getInt(11);
+                int park = resultSet.getInt(12);
+                int tv = resultSet.getInt(13);
+                int pot = resultSet.getInt(14);
+                int bus = resultSet.getInt(15);
+                String describe = resultSet.getString(16);
                 System.out.println(structure + "," + price_new + "," + picture + "," + location);
-                HouseInformation houseIn = new HouseInformation(location, structure, size_new, price_new, picture, ownerID);
+                HouseInformation houseIn = new HouseInformation(location, structure, size_new, price_new, picture,
+                        picture2, picture3, ownerID, breakfast, wifi, sub, park, tv
+                        , pot, bus, describe);
                 list.add(houseIn);
             }
         } catch (SQLException e) {
@@ -336,31 +425,47 @@ public class Manager {
         return o;
     }
 
+    public String treatPath(String filepath) {
+        if (filepath != null || !"".equals(filepath))
+            filepath = "file:/" + filepath.replaceAll("\\\\", "/");
+        return filepath;
+    }
+
     public boolean insertF(HouseInformation houseInformation) {
         //新增一个房源
         HouseInformation house = houseInformation;
-        String pic = null;
+        String pic1 = null;//缩略图
+        String pic2 = null;
+        String pic3 = null;
         String loc = house.getLocation();
         String structure = house.getStructure();
-        pic = house.getPic();
-        pic = "file:/" + pic.replaceAll("\\\\", "/");
-        System.out.println(pic+" bbbb");
+        pic1 = treatPath(house.Pic1);
+        pic2 = treatPath(house.Pic2);
+        pic3 = treatPath(house.Pic3);
+        //System.out.println(pic1+" bbbb");
         int size = house.getSize();
         String holder = house.getOwner();
-        String sql1 = "insert into House values(?,?,?,?,?,?,?,?,?,?) ";
+        String sql1 = "insert into House values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
         PreparedStatement statement = null;
         try {
+            //loc,size,struc,rentPrice,p1,p2,p3,ID,breaf,wifi,sub,park,tv,pot,bus,describe,FororNot,branchNo,Hid.
             statement = connection.prepareStatement(sql1);
             statement.setString(1, loc);
             statement.setInt(2, size);
             statement.setString(3, structure);
-            statement.setString(4, pic);
-            statement.setString(5, holder);
-            statement.setInt(6, 0);
-            statement.setInt(7, 0);
-            statement.setString(8, "否");
-            statement.setString(9, "否");
-            statement.setString(10, "一川公司塘朗营业部");
+            statement.setString(4, pic1);
+            statement.setString(5, pic2);
+            statement.setString(6, pic3);
+            statement.setString(7, holder);
+            statement.setInt(8, house.Breakfast);
+            statement.setInt(9, house.Wifi);
+            statement.setInt(10, house.Subway);
+            statement.setInt(11, house.Park);
+            statement.setInt(12, house.Tv);
+            statement.setInt(13, house.Pot);
+            statement.setInt(14, house.Bus);
+            statement.setString(15, house.Describe);
+            statement.setInt(16, house.HID);
             statement.execute();
             //statement.setString();
 
@@ -375,50 +480,51 @@ public class Manager {
 
     public ObservableList<RenterInformation> getRenter(String ID, String name, String sex, String tel, String wechat) {
         ObservableList<RenterInformation> list = FXCollections.observableArrayList();
-        String sql = "select * from Renter where ";
+        String sql = "select * from UserInformation where Power = 1 and ";
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
             if (ID.equals("所有ID")) {
-                sql += " RenterID = Renter.RenterID";
+                sql += " UID = UserInformation.UID";
                 System.out.println("1");
             } else
-                sql += " RenterID = " + ID + " ";
+                sql += " UID = " + ID + " ";
             if (name.equals("所有姓名")) {
-                sql += " and RenterName = Renter.RenterName";
+                sql += " and Name = UserInformation.Name";
                 System.out.println("2");
             } else
-                sql += " and RenterName = " + name + " ";
+                sql += " and Name = " + name + " ";
             if (sex.equals("所有性别")) {
-                sql += " and RSex = Renter.RSex";
+                sql += " and Sex = UserInformation.Sex";
                 System.out.println("3");
             } else {
-                sql += " and RSex = " + sex;
+                sql += " and Sex = " + sex;
             }
             if (tel.equals("所有手机号")) {
-                sql += " and RTel = Renter.RTel";
+                sql += " and Tel = UserInformation.Tel";
                 System.out.println("4");
             } else {
-                sql += " and RTel = " + tel;
+                sql += " and Tel = " + tel;
             }
             if (wechat.equals("所有微信号")) {
-                sql += " and RWechat = Renter.RWechat";
+                sql += " and Wechat = UserInformation.Wechat";
                 System.out.println("5");
             } else {
-                sql += " and RWechat = " + wechat;
+                sql += " and Wechat = " + wechat;
             }
             statement = connection.prepareStatement(sql);
             System.out.println(sql);
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                String newID = resultSet.getString(1);
-                String newName = resultSet.getString(2);
-                String newSex = resultSet.getString(3);
-                String newTel = resultSet.getString(4);
+                String newTel = resultSet.getString(1);
+                String password = resultSet.getString(2);
+                String newName = resultSet.getString(4);
+                String newSex = resultSet.getString(5);
+                String newID = resultSet.getString(6);
                 String newWechat = resultSet.getString(5);
                 System.out.println(6);
                 System.out.println(newID + "," + newName + "," + newSex + "," + newTel + "," + newWechat);
-                RenterInformation renterInfo = new RenterInformation(newID, newName, newSex, newTel, newWechat);
+                RenterInformation renterInfo = new RenterInformation(newID, newName, newSex, newTel, newWechat, password, 1);
                 list.add(renterInfo);
             }
         } catch (SQLException e) {
@@ -453,7 +559,7 @@ public class Manager {
             //statement.setString();
 
             System.out.println("成功添加");
-            return false;
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -490,7 +596,40 @@ public class Manager {
 
     public ObservableList<RenterInformation> AuthoritySearch(String id, int authority) {
         //搜索用户名为id, 权限等级为authority的用户,可能出现“所有用户名”,authority = 9代表搜索所有权限等级
+        ObservableList<RenterInformation> list = FXCollections.observableArrayList();
+        String sql = "select * from UserInformation where ";
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        try {
+            statement = connection.prepareStatement(sql);
+            if ("所有用户名".equals(id)) {
+                sql += " UID = UserInformation.UID";
+            } else {
+                sql += " UID = " + id;
+            }
+            if (9 == authority)
+                sql += " Power = UserInformation.UID ";
+            else
+                sql += " Power = " + authority;
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                String newTel = resultSet.getString(1);
+                String password = resultSet.getString(2);
+                String newName = resultSet.getString(4);
+                String newSex = resultSet.getString(5);
+                String newID = resultSet.getString(6);
+                String newWechat = resultSet.getString(5);
+                System.out.println(6);
+                System.out.println(newID + "," + newName + "," + newSex + "," + newTel + "," + newWechat);
+                RenterInformation renterInfo = new RenterInformation(newID, newName, newSex, newTel, newWechat, password, 1);
+                list.add(renterInfo);
+            }
+            return list;
 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 
 }

@@ -11,7 +11,7 @@ public class RenterInformation {
     StringProperty Sex;
     StringProperty Tel;
     StringProperty Wechat;
-    StringProperty Code;
+    StringProperty Code;//password
     IntegerProperty Authority;
 
     public String getCode() {
