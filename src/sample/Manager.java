@@ -484,10 +484,13 @@ public class Manager {
         pic1 = treatPath(house.Pic1);
         pic2 = treatPath(house.Pic2);
         pic3 = treatPath(house.Pic3);
+        System.out.println(pic1);
+        System.out.println(pic2);
+        System.out.println(pic3);
         //System.out.println(pic1+" bbbb");
         int size = house.getSize();
         String holder = house.getOwner();
-        String sql1 = "insert into House values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
+        String sql1 = "insert into House values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
         PreparedStatement statement = null;
         try {
             //loc,size,struc,rentPrice,p1,p2,p3,ID,breaf,wifi,sub,park,tv,pot,bus,describe,FororNot,branchNo,Hid.
@@ -495,19 +498,22 @@ public class Manager {
             statement.setString(1, loc);
             statement.setInt(2, size);
             statement.setString(3, structure);
-            statement.setString(4, pic1);
-            statement.setString(5, pic2);
-            statement.setString(6, pic3);
-            statement.setString(7, holder);
-            statement.setInt(8, house.Breakfast);
-            statement.setInt(9, house.Wifi);
-            statement.setInt(10, house.Subway);
-            statement.setInt(11, house.Park);
-            statement.setInt(12, house.Tv);
-            statement.setInt(13, house.Pot);
-            statement.setInt(14, house.Bus);
-            statement.setString(15, house.Describe);
-            statement.setInt(16, house.HID);
+            statement.setInt(4, house.getPrice());
+            statement.setString(5, pic1);
+            statement.setString(6, pic2);
+            statement.setString(7, pic3);
+            statement.setString(8, holder);
+            statement.setInt(9, house.Breakfast);
+            statement.setInt(10, house.Wifi);
+            statement.setInt(11, house.Subway);
+            statement.setInt(12, house.Park);
+            statement.setInt(13, house.Tv);
+            statement.setInt(14, house.Pot);
+            statement.setInt(15, house.Bus);
+            statement.setString(16, house.Describe);
+            statement.setString(17, "否");
+            statement.setInt(18,123);
+            statement.setInt(19, house.HID);
             statement.execute();
             //statement.setString();
 
