@@ -30,7 +30,6 @@ public class TController {
     @FXML Label Subway;
     @FXML Label Bus;
     @FXML Text Describe;
-    @FXML Label code;
     @FXML
     ImageView Pic;
 
@@ -51,10 +50,10 @@ public class TController {
         this.datefrom = datefrom;
         this.dateto = dateto;
         Price.setText(e.getPrice()+"");
-        String name = manager.getRenter("所有ID","所有姓名","所有性别",e.getOwner(),"所有微信号").get(0).getName();
+        String name = manager.getRenter(e.getOwner(),"所有姓名","所有性别","所有手机号","所有微信号").get(0).getName();
         Holder.setText(name);
         Structure.setText(e.getStructure());
-        Size.setText(e.getSize()+"");
+        Size.setText(e.getSize()+"平米");
         Breakfast.setText(e.Breakfast == 1 ? "提供早餐":"无早餐");
         Wifi.setText(e.Wifi == 1 ? "免费WIFI":"无WIFI");
         Park.setText(e.Park == 1 ? "提供车位":"无车位");
@@ -72,14 +71,14 @@ public class TController {
     @FXML private void confirm() throws IOException {
             FXMLLoader loader1 = new FXMLLoader(Main.class.getResource("/Success.fxml"));
             AnchorPane pane = loader1.load();
-            loader1.setController(this);
             String s = manager.rent(e.getLocation(), user, datefrom, dateto);
             System.out.println(s);
             if (!AddController.isNumeric(s)) {
-                code.setText(s);
                 Scene scene = new Scene(pane);
                 Stage stage = new Stage();
                 stage.setScene(scene);
+                Wssb wssb = loader1.getController();
+                wssb.init(s,stage);
                 stage.show();
             }else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -89,7 +88,8 @@ public class TController {
                 alert.showAndWait();
             }
     }
-    @FXML private void cancel(){
+    @FXML
+    private void cancel(){
         stage.close();
     }
 

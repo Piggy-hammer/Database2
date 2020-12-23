@@ -8,9 +8,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="350.0" styleClass="background" stylesheets="@sample/DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.TController">
+<AnchorPane prefHeight="500.0" prefWidth="250.0" styleClass="background" stylesheets="@sample/DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.TController">
    <children>
-      <ImageView fx:id="Pic" fitHeight="150.0" fitWidth="350.0" layoutX="58.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <ImageView fx:id="Pic" fitHeight="150.0" fitWidth="250.0" layoutX="58.0" pickOnBounds="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <Button layoutY="64.0" mnemonicParsing="false" onAction="#last" opacity="0.4" prefHeight="150.0" styleClass="button-1" text="&lt;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <font>
             <Font size="50.0" />
@@ -21,23 +21,23 @@
             <Font size="50.0" />
          </font>
       </Button>
-      <Label layoutX="29.0" layoutY="150.0" styleClass="label-header" text="￥" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="155.0" />
-      <Label fx:id="Price" layoutX="74.0" layoutY="177.0" styleClass="label-header" text="0" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="155.0" />
-      <Label layoutX="252.0" layoutY="143.0" styleClass="label-x" text="房东" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="165.0" />
-      <Label fx:id="Holder" layoutX="274.0" layoutY="160.0" styleClass="label-x" text="Label" AnchorPane.topAnchor="165.0" />
-      <Label layoutX="220.0" layoutY="198.0" styleClass="label-x" text="房型" />
-      <Label fx:id="Structure" layoutX="274.0" layoutY="198.0" styleClass="label-x" text="Label" />
-      <Label fx:id="Size" layoutX="32.0" layoutY="241.0" styleClass="label-x" text="不提供早餐" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="245.0" />
-      <Label fx:id="Breakfast" layoutX="84.0" layoutY="241.0" styleClass="label-x" text="提供WIFI" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="245.0" />
-      <Label fx:id="Wifi" layoutX="184.0" layoutY="231.0" styleClass="label-x" text="Label" AnchorPane.leftAnchor="190.0" AnchorPane.topAnchor="245.0" />
-      <Label fx:id="Park" layoutX="266.0" layoutY="245.0" styleClass="label-x" text="Label" AnchorPane.leftAnchor="270.0" AnchorPane.topAnchor="245.0" />
-      <Label fx:id="Tv" layoutX="42.0" layoutY="251.0" styleClass="label-x" text="Label" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="280.0" />
-      <Label fx:id="Pot" layoutX="104.0" layoutY="261.0" styleClass="label-x" text="Label" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="280.0" />
-      <Label fx:id="Subway" layoutX="214.0" layoutY="261.0" styleClass="label-x" text="Label" AnchorPane.leftAnchor="190.0" AnchorPane.topAnchor="280.0" />
-      <Label fx:id="Bus" layoutX="306.0" layoutY="285.0" styleClass="label-x" text="Label" AnchorPane.leftAnchor="270.0" AnchorPane.topAnchor="280.0" />
-      <Button layoutX="70.0" layoutY="533.0" mnemonicParsing="false" onAction="#confirm" text="确认" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="70.0" />
-      <Button layoutX="80.0" layoutY="543.0" mnemonicParsing="false" onAction="#cancel" text="取消" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="70.0" />
-      <Text fx:id="Describe" fill="#fffafa" layoutX="32.0" layoutY="340.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="320.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="330.0">
+      <Label layoutX="40.0" layoutY="173.0" styleClass="label-bright" text="￥" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="175.0" />
+      <Label fx:id="Price" layoutX="74.0" layoutY="173.0" styleClass="label-bright" text="0" AnchorPane.leftAnchor="55.0" AnchorPane.topAnchor="175.0" />
+      <Label layoutX="252.0" layoutY="143.0" styleClass="label-x" text="房东" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="165.0" />
+      <Label fx:id="Holder" layoutX="274.0" layoutY="160.0" styleClass="label-x" text="Label" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="165.0" />
+      <Label layoutX="220.0" layoutY="209.0" styleClass="label-x" text="房型" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="200.0" />
+      <Label fx:id="Structure" layoutX="274.0" layoutY="198.0" styleClass="label-x" text="Label" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="200.0" />
+      <Label fx:id="Size" layoutX="32.0" layoutY="241.0" styleClass="label-x" text="不提供早餐" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="245.0" />
+      <Label fx:id="Breakfast" layoutX="84.0" layoutY="241.0" styleClass="label-x" text="提供WIFI" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="245.0" />
+      <Label fx:id="Wifi" layoutX="184.0" layoutY="231.0" styleClass="label-x" text="Label" AnchorPane.leftAnchor="180.0" AnchorPane.topAnchor="245.0" />
+      <Label fx:id="Park" layoutX="30.0" layoutY="309.0" styleClass="label-x" text="Label" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="315.0" />
+      <Label fx:id="Tv" layoutX="42.0" layoutY="251.0" styleClass="label-x" text="Label" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="280.0" />
+      <Label fx:id="Pot" layoutX="104.0" layoutY="261.0" styleClass="label-x" text="Label" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="280.0" />
+      <Label fx:id="Subway" layoutX="214.0" layoutY="261.0" styleClass="label-x" text="Label" AnchorPane.leftAnchor="180.0" AnchorPane.topAnchor="280.0" />
+      <Label fx:id="Bus" layoutX="110.0" layoutY="320.0" styleClass="label-x" text="Label" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="315.0" />
+      <Button layoutX="70.0" layoutY="533.0" mnemonicParsing="false" onAction="#confirm" text="确认" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" />
+      <Button layoutX="80.0" layoutY="543.0" mnemonicParsing="false" onAction="#cancel" text="取消" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="30.0" />
+      <Text fx:id="Describe" fill="#fffafa" layoutX="32.0" layoutY="340.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="180.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="360.0">
          <font>
             <Font size="15.0" />
          </font>

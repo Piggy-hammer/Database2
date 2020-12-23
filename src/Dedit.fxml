@@ -8,8 +8,8 @@
 
 <AnchorPane prefHeight="320.0" prefWidth="400.0" styleClass="background" stylesheets="@sample/DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.DeditController">
    <children>
-      <Label layoutX="272.0" layoutY="87.0" styleClass="label-bright" text="租客ID" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0" />
-      <TextField fx:id="RID" layoutX="348.0" layoutY="83.0" prefWidth="150.0" promptText="输入租户ID" AnchorPane.leftAnchor="135.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="22.0" />
+      <Label layoutX="272.0" layoutY="87.0" styleClass="label-bright" text="租客手机" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0" />
+      <TextField fx:id="Tel" layoutX="348.0" layoutY="83.0" prefWidth="150.0" promptText="输入租户手机号" AnchorPane.leftAnchor="135.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="22.0" />
       <Label layoutX="121.0" layoutY="45.0" styleClass="label-bright" text="房源地址" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="80.0" />
       <TextField fx:id="Loc" layoutX="135.0" layoutY="82.0" promptText="输入房源地址" AnchorPane.leftAnchor="135.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="82.0" />
       <Label layoutX="39.0" layoutY="82.0" styleClass="label-bright" text="起始时间" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="140.0" />

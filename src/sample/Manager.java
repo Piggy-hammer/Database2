@@ -26,7 +26,7 @@ public class Manager {
             e.printStackTrace();
             System.out.println("fail");
         }
-        String password = "password=654321";//自己的密码
+        String password = "password=694907182";//自己的密码
         String url = "jdbc:sqlserver://127.0.0.1:1433;DatabaseName=HouseManager;user=sa;";
         url += password;
         try {
@@ -268,12 +268,12 @@ public class Manager {
         用户名为userId的客户，租用了loc号房产，返回合约号
         rentingID,renterID,HouseID,rentingStart,end,ReturnOrNot,HouseholderID
          */
-        int md5 = userID.hashCode();
+        int md5 = (loc+dateEnd+dateFrom).hashCode();
         System.out.println("rentPart");
         String RentingID = String.valueOf(md5);
         String sql = "select * from House where HLocation = ?";
+        userID = getRenter("所有ID", "所有姓名","所有性别",userID,"所有微信号").get(0).getID();
         String sql00 = "select * from Renting where RentingHouseID = ? ";
-        String sql2 = "insert into Renting values(?,?,?,?,?,?) ";
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
@@ -287,9 +287,10 @@ public class Manager {
             while (resultSet.next()) {
                 ownerID = resultSet.getString(8);
                 HID = resultSet.getInt("HID");
-                run1 = false;
-            }
 
+            }
+            if(HID==-100)
+                run1 = false;
             //查询renting中是否有时间冲突的情况
             statement = connection.prepareStatement(sql00);
             statement.setInt(1, HID);
@@ -299,13 +300,18 @@ public class Manager {
                 int date1 = Integer.parseInt(dateEnd);
                 int dateBegin = Integer.parseInt(resultSet.getString("RentingStart"));
                 int dateFinish = Integer.parseInt(resultSet.getString("RentingEnd"));
-                if (date0 < dateBegin && date0 > dateFinish) run1 = false;
-                if (date1 > dateFinish && date1 < dateBegin) run1 = false;
+                if (date0 < dateBegin && date0 > dateFinish) {
+                    run1 = false;
+                    break;
+                }
+                if (date1 > dateFinish && date1 < dateBegin) {
+                    run1 = false;
+                    break;
+                }
             }
 
             if (run1) {
-
-
+                String sql2 = "insert into Renting values(?,?,?,?,?,?) ";
                 statement = connection.prepareStatement(sql2);
                 statement.setString(1, RentingID);
                 statement.setString(2, userID);
@@ -737,9 +743,11 @@ public class Manager {
         String sql = "delete from Renting where RentingID = ?";
         PreparedStatement statement = null;
         ResultSet resultSet = null;
+        System.out.println(dealId);
         try {
             statement = connection.prepareStatement(sql);
             statement.setString(1, dealId);
+            statement.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -16,7 +16,7 @@ public class DeditController {
     AdministratorController administratorController;
     DateTimeFormatter yyyyMMdd = DateTimeFormatter.ofPattern("yyyyMMdd");
     @FXML
-    TextField RID;
+    TextField Tel;
     @FXML
     TextField Loc;
     @FXML
@@ -26,7 +26,7 @@ public class DeditController {
     public void init(Manager manage, DealInformation dealInformation,AdministratorController administratorController1,Stage stage1) {
         manager = manage;
         administratorController = administratorController1;
-        RID.setText(dealInformation.getRenterid());
+        Tel.setText(manager.getRenter(dealInformation.getRenterid(), "所有姓名","所有性别","所有手机号","所有微信号").get(0).getTel());
         Loc.setText(dealInformation.getLoc());
         Datefrom.setValue(LocalDate.parse(dealInformation.getTimefrom(), DateTimeFormatter.ofPattern("yyyyMMdd")));
         Dateto.setValue(LocalDate.parse(dealInformation.getTimeto(), DateTimeFormatter.ofPattern("yyyyMMdd")));
@@ -39,13 +39,13 @@ public class DeditController {
     }
     @FXML
     private void confirm(){
-       String rid = RID.getText();
+       String TEl = Tel.getText();
        String loc = Loc.getText();
        String datefrom = Datefrom.getValue().format(yyyyMMdd);
        String dateto = Dateto.getValue().format(yyyyMMdd);
-        if ( !loc.equals("")  && !rid.equals("") && !datefrom.equals("") && !dateto.equals("")) {
+        if ( !loc.equals("")  && !TEl.equals("") && !datefrom.equals("") && !dateto.equals("")) {
             if (Integer.parseInt(dateto) > Integer.parseInt(datefrom)) {
-                if(AddController.isNumeric(manager.rent(loc,rid,datefrom,dateto))){
+                if(AddController.isNumeric(manager.rent(loc,TEl,datefrom,dateto))){
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Error");
                     alert.setHeaderText("无法成立订单");
