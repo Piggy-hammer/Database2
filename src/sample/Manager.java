@@ -26,7 +26,7 @@ public class Manager {
             e.printStackTrace();
             System.out.println("fail");
         }
-        String password = "password=694907182";//自己的密码
+        String password = "password=654321";//自己的密码
         String url = "jdbc:sqlserver://127.0.0.1:1433;DatabaseName=HouseManager;user=sa;";
         url += password;
         try {
@@ -50,7 +50,6 @@ public class Manager {
         没有该用户返回0
          */
         String sql = "select * from UserInformation where Tel = ? and Password =?";
-        //System.out.println(username+" "+password);
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         int power = 0;
