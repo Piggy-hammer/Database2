@@ -125,7 +125,7 @@ public class AddController {
         int pot = Pot.isSelected() ? 1: 0;
         int bus = Bus.isSelected() ? 1: 0;
         if(!huxing.equals("选择户型") && isNumeric(rent) && !loc.equals("") && !pic.equals("") && isNumeric(size) && !pic2.equals("") && !pic3.equals("")){
-            if (manager.insertF(new HouseInformation(loc,huxing,Integer.parseInt(size),Integer.parseInt(rent),pic,pic2,pic3,user,breakfast,wifi,subway,park,tv,pot,bus,Describe.getText()))) {
+            if (manager.insertF(new HouseInformation(loc,huxing,Integer.parseInt(size),Integer.parseInt(rent),pic,pic2,pic3,manager.getRenter("所有ID","所有姓名","所有性别",user,"所有微信号").get(0).getID(),breakfast,wifi,subway,park,tv,pot,bus,Describe.getText()))) {
                 holderController.init(manager, user);
                 stage.close();
             }else {

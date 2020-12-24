@@ -17,6 +17,7 @@ public class RegisterController {
     static Manager manager;
     Stage stage;
     AdministratorController administratorController;
+    boolean e = false;
 
     @FXML TextField ID;
     @FXML TextField Name;
@@ -24,7 +25,7 @@ public class RegisterController {
     @FXML TextField Tel;
     @FXML MenuButton Sex;
     @FXML TextField Code;
-    Stage stage1;
+
     @FXML private void male(){Sex.setText("男");}
     @FXML private void female(){Sex.setText("女");}
 
@@ -32,9 +33,7 @@ public class RegisterController {
         stage = stage1;
         manager = manager1;
     }
-    @FXML private void Quit(){
-        stage1.close();
-    }
+
 
     @FXML
     private void confirm() throws IOException {
@@ -45,27 +44,52 @@ public class RegisterController {
         String wechat = Wechat.getText();
         String code = Code.getText();
         if (!id.equals("") && AddController.isNumeric(tel) && !name.equals("") && !wechat.equals("") && !code.equals("")) {
-            if(manager.insertR(new RenterInformation(id,name,sex,tel,wechat,code,1))) {
-                stage.close();
-                if (administratorController != null) {
-                    administratorController.Arefresh();
-                    administratorController.Rrefresh();
+            if(e){
+                if (manager.updateR(new RenterInformation(id, name, sex, tel, wechat, code, 1))) {
+                    stage.close();
+                    if (administratorController != null) {
+                        administratorController.Arefresh();
+                        administratorController.Rrefresh();
+                    } else {
+                        FXMLLoader loader = new FXMLLoader((Main.class.getResource("/C.fxml")));
+                        AnchorPane pane = loader.load();
+                        Stage stage1 = new Stage();
+                        Scene sceneMain = new Scene(pane);
+                        stage1.setScene(sceneMain);
+                        stage1.setTitle("注册成功");
+                        stage1.getIcons().add(new Image(Main.class.getResourceAsStream("/1.png")));
+                        stage1.show();
+                    }
                 } else {
-                    FXMLLoader loader = new FXMLLoader((Main.class.getResource("/C.fxml")));
-                    AnchorPane pane = loader.load();
-                    stage1 = new Stage();
-                    Scene sceneMain = new Scene(pane);
-                    stage1.setScene(sceneMain);
-                    stage1.setTitle("注册成功");
-                    stage1.getIcons().add(new Image(Main.class.getResourceAsStream("/1.png")));
-                    stage1.show();
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("已存在该用户");
+                    alert.setContentText("请检查您的注册信息");
+                    alert.showAndWait();
                 }
             }else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setHeaderText("已存在该用户");
-                alert.setContentText("请检查您的注册信息");
-                alert.showAndWait();
+                if (manager.insertR(new RenterInformation(id, name, sex, tel, wechat, code, 1))) {
+                    stage.close();
+                    if (administratorController != null) {
+                        administratorController.Arefresh();
+                        administratorController.Rrefresh();
+                    } else {
+                        FXMLLoader loader = new FXMLLoader((Main.class.getResource("/C.fxml")));
+                        AnchorPane pane = loader.load();
+                        Stage stage1 = new Stage();
+                        Scene sceneMain = new Scene(pane);
+                        stage1.setScene(sceneMain);
+                        stage1.setTitle("注册成功");
+                        stage1.getIcons().add(new Image(Main.class.getResourceAsStream("/1.png")));
+                        stage1.show();
+                    }
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("已存在该用户");
+                    alert.setContentText("请检查您的注册信息");
+                    alert.showAndWait();
+                }
             }
 
         } else {
@@ -86,6 +110,7 @@ public class RegisterController {
     public void init(Manager manager1, RenterInformation selectedItem, AdministratorController administratorController1, Stage add) {
         stage = add;
         manager = manager1;
+        e =true;
         administratorController = administratorController1;
         ID.setText(selectedItem.getID());
         Name.setText(selectedItem.getName());

@@ -13,6 +13,7 @@ import java.time.format.DateTimeFormatter;
 public class DeditController {
     Manager manager;
     Stage stage;
+    boolean e = false;
     AdministratorController administratorController;
     DateTimeFormatter yyyyMMdd = DateTimeFormatter.ofPattern("yyyyMMdd");
     @FXML
@@ -31,6 +32,7 @@ public class DeditController {
         Datefrom.setValue(LocalDate.parse(dealInformation.getTimefrom(), DateTimeFormatter.ofPattern("yyyyMMdd")));
         Dateto.setValue(LocalDate.parse(dealInformation.getTimeto(), DateTimeFormatter.ofPattern("yyyyMMdd")));
         stage = stage1;
+        e = true;
     }
     public void init1(Manager manager1,AdministratorController administratorController1,Stage stage1){
         manager = manager1;
@@ -45,16 +47,30 @@ public class DeditController {
        String dateto = Dateto.getValue().format(yyyyMMdd);
         if ( !loc.equals("")  && !TEl.equals("") && !datefrom.equals("") && !dateto.equals("")) {
             if (Integer.parseInt(dateto) > Integer.parseInt(datefrom)) {
-                if(AddController.isNumeric(manager.rent(loc,TEl,datefrom,dateto))){
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Error");
-                    alert.setHeaderText("无法成立订单");
-                    alert.setContentText("该房源不空闲或该用户未注册\n" +
-                            "请检查您的合约信息");
-                    alert.showAndWait();
-                }else{
-                    stage.close();
-                    administratorController.Drefresh();
+                if (e){
+                    if (AddController.isNumeric(manager.u(loc, TEl, datefrom, dateto))) {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Error");
+                        alert.setHeaderText("无法成立订单");
+                        alert.setContentText("该房源不空闲或该用户未注册\n" +
+                                "请检查您的合约信息");
+                        alert.showAndWait();
+                    } else {
+                        stage.close();
+                        administratorController.Drefresh();
+                    }
+                }else {
+                    if (AddController.isNumeric(manager.rent(loc, TEl, datefrom, dateto))) {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Error");
+                        alert.setHeaderText("无法成立订单");
+                        alert.setContentText("该房源不空闲或该用户未注册\n" +
+                                "请检查您的合约信息");
+                        alert.showAndWait();
+                    } else {
+                        stage.close();
+                        administratorController.Drefresh();
+                    }
                 }
             }else error2();
         } else {

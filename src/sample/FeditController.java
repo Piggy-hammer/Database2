@@ -15,6 +15,7 @@ public class FeditController {
     static Manager manager;
     Stage stage;
     AdministratorController holderController;
+    Boolean e = false;
     @FXML
     MenuButton Huxing;
     @FXML
@@ -69,6 +70,7 @@ public class FeditController {
         this.holderController = holderController;
     }
     public void init1(Manager manager1, AdministratorController holderController1, Stage add, HouseInformation selectedItem) {
+        e = true;
         manager = manager1;
         Pic.setOnDragOver(event -> {
             Dragboard dragboard = event.getDragboard();
@@ -152,15 +154,28 @@ public class FeditController {
             int pot = Pot.isSelected() ? 1 : 0;
             int bus = Bus.isSelected() ? 1 : 0;
             if (!huxing.equals("选择户型") && isNumeric(rent) && !loc.equals("") && !pic.equals("") && isNumeric(size) && !pic2.equals("") && !pic3.equals("") && !user.equals("")) {
-                if (manager.updateHouse(new HouseInformation(loc, huxing, Integer.parseInt(size), Integer.parseInt(d), pic, pic2, pic3, user, breakfast, wifi, subway, park, tv, pot, bus, Describe.getText()))) {
-                    holderController.HouseRefresh();
-                    stage.close();
-                } else {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Error");
-                    alert.setHeaderText("房源信息不可修改");
-                    alert.setContentText("请检查您的房产信息，该房源可能已加入订单");
-                    alert.showAndWait();
+                if(e){
+                    if (manager.updateHouse(new HouseInformation(loc, huxing, Integer.parseInt(size), Integer.parseInt(rent), pic, pic2, pic3, user, breakfast, wifi, subway, park, tv, pot, bus, Describe.getText()))) {
+                        holderController.HouseRefresh();
+                        stage.close();
+                    } else {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Error");
+                        alert.setHeaderText("房源信息不可修改");
+                        alert.setContentText("请检查您的房产信息，该房源可能已加入订单");
+                        alert.showAndWait();
+                    }
+                }else {
+                    if (manager.insertF(new HouseInformation(loc, huxing, Integer.parseInt(size), Integer.parseInt(rent), pic, pic2, pic3, user, breakfast, wifi, subway, park, tv, pot, bus, Describe.getText()))) {
+                        holderController.HouseRefresh();
+                        stage.close();
+                    } else {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Error");
+                        alert.setHeaderText("房源信息不可修改");
+                        alert.setContentText("请检查您的房产信息，该房源可能已加入订单");
+                        alert.showAndWait();
+                    }
                 }
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);

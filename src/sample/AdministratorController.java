@@ -300,7 +300,6 @@ public class AdministratorController {
     private void Redit(){
         try {
             RenterInformation selectedItem = Rtable.getSelectionModel().getSelectedItem();
-            manager.deleteR(selectedItem.getID());
             FXMLLoader loader = new FXMLLoader((Main.class.getResource("/register.fxml")));
             AnchorPane pane = loader.load();
             RegisterController reditController = loader.getController();
@@ -415,7 +414,6 @@ public class AdministratorController {
     private void Dedit(){
         try {
             DealInformation selectedItem = Dtable.getSelectionModel().getSelectedItem();
-            manager.deleteD(selectedItem.getDealid());
             FXMLLoader loader = new FXMLLoader((Main.class.getResource("/Dedit.fxml")));
             AnchorPane pane = loader.load();
             DeditController reditController = loader.getController();
