@@ -158,8 +158,8 @@ public class FeditController {
                 } else {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Error");
-                    alert.setHeaderText("已存在该房源信息");
-                    alert.setContentText("请检查您的房产信息");
+                    alert.setHeaderText("房源信息不可修改");
+                    alert.setContentText("请检查您的房产信息，该房源可能已加入订单");
                     alert.showAndWait();
                 }
             } else {
