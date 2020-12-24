@@ -26,7 +26,7 @@ public class Manager {
             e.printStackTrace();
             System.out.println("fail");
         }
-        String password = "password=654321";//自己的密码
+        String password = "password=694907182";//自己的密码
         String url = "jdbc:sqlserver://127.0.0.1:1433;DatabaseName=HouseManager;user=sa;";
         url += password;
         try {
@@ -331,6 +331,60 @@ public class Manager {
         return "1";//(可能由于房间已经被占用)
 
     }
+    public boolean updateHouse(HouseInformation houseInformation){
+        String sql = "update  House set HLocation=?, Size = ?, Structure = ?, RentPrice = ?, Picture= ?, Picture2 = ?, Picture3 = ?, " +
+                "HouseHolderID = ?, breakfast = ?, wifi = ?, subway = ?, park = ?, tv = ?, pot = ?, bus = ?, decribe = ?, ForRentOrNot =? where HLocation = ? or HID = ? ";
+
+        HouseInformation house = houseInformation;
+        String pic1 = null;//缩略图
+        String pic2 = null;
+        String pic3 = null;
+        String loc = house.getLocation();
+        String structure = house.getStructure();
+        pic1 = treatPath(house.Pic1);
+        pic2 = treatPath(house.Pic2);
+        pic3 = treatPath(house.Pic3);
+        System.out.println(pic1);
+        System.out.println(pic2);
+        System.out.println(pic3);
+        System.out.println(house.HID);
+        //System.out.println(pic1+" bbbb");
+        int size = house.getSize();
+        String holder = house.getOwner();
+        PreparedStatement statement = null;
+        try {
+            //loc,size,struc,rentPrice,p1,p2,p3,ID,breaf,wifi,sub,park,tv,pot,bus,describe,FororNot,branchNo,Hid.
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, loc);
+            statement.setInt(2, size);
+            statement.setString(3, structure);
+            statement.setInt(4, house.getPrice());
+            statement.setString(5, pic1);
+            statement.setString(6, pic2);
+            statement.setString(7, pic3);
+            statement.setString(8, holder);
+            statement.setInt(9, house.Breakfast);
+            statement.setInt(10, house.Wifi);
+            statement.setInt(11, house.Subway);
+            statement.setInt(12, house.Park);
+            statement.setInt(13, house.Tv);
+            statement.setInt(14, house.Pot);
+            statement.setInt(15, house.Bus);
+            statement.setString(16, house.Describe);
+            statement.setString(17, "是");
+            statement.setString(18,house.getLocation());
+            statement.setInt(19,house.HID);
+            statement.execute();
+            //statement.setString();
+
+            System.out.println("成功修改");
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println("修改中发生错误");
+        return false;
+    }
 
     public void delete(String loc, String holder) {
         /*
@@ -586,6 +640,40 @@ public class Manager {
             list.add(new HouseInformation(RString(10), RString(15), (int) (Math.random() * 100), (int) (Math.random() * 9999), RString(30), RString(20)));
         list.add(new HouseInformation("a", "pingceng", 101, 2005, "pic", "我"));*/
         return list;
+    }
+
+    public boolean updateR(RenterInformation renterInformation){
+        String password = renterInformation.getCode();
+        int power = renterInformation.getAuthority();
+        String id = renterInformation.getID();
+        String name = renterInformation.getName();
+        String sex = renterInformation.getSex();
+        String tel = renterInformation.getTel();
+        String wechat = renterInformation.getWechat();
+        String sql1 = "update UserInformation set Tel =?, Password = ?, Power = ?, Name =?, Sex = ?, UID = ?, Wechat = ? where UID = ? or tel= ? ";
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(sql1);
+            statement.setString(1, tel);
+            statement.setString(2, password);
+            statement.setInt(3, power);
+            statement.setString(4, name);
+            statement.setString(5, sex);
+            statement.setString(6, id);
+            statement.setString(7, wechat);
+            statement.setString(8, id);
+            statement.setString(9,tel);
+
+            statement.execute();
+            //statement.setString();
+
+            System.out.println("成功修改用户");
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println("修改中发生错误");
+        return false;
     }
 
     public boolean insertR(RenterInformation renterInformation) {

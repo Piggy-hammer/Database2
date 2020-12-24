@@ -196,7 +196,6 @@ public class AdministratorController {
     private void Fedit() throws IOException {
         try {
             HouseInformation selectedItem = FangXing.getSelectionModel().getSelectedItem();
-            manager.delete(selectedItem.getLocation(),selectedItem.getOwner());
             FXMLLoader loader = new FXMLLoader((Main.class.getResource("/Fedit.fxml")));
             AnchorPane pane = loader.load();
             FeditController feditController = loader.getController();

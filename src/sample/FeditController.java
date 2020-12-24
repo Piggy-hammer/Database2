@@ -152,7 +152,7 @@ public class FeditController {
             int pot = Pot.isSelected() ? 1 : 0;
             int bus = Bus.isSelected() ? 1 : 0;
             if (!huxing.equals("选择户型") && isNumeric(rent) && !loc.equals("") && !pic.equals("") && isNumeric(size) && !pic2.equals("") && !pic3.equals("") && !user.equals("")) {
-                if (manager.insertF(new HouseInformation(loc, huxing, Integer.parseInt(size), Integer.parseInt(rent), pic, pic2, pic3, user, breakfast, wifi, subway, park, tv, pot, bus, Describe.getText()))) {
+                if (manager.updateHouse(new HouseInformation(loc, huxing, Integer.parseInt(size), Integer.parseInt(d), pic, pic2, pic3, user, breakfast, wifi, subway, park, tv, pot, bus, Describe.getText()))) {
                     holderController.HouseRefresh();
                     stage.close();
                 } else {
