@@ -101,7 +101,7 @@ public class TController {
     }
 
     public void next() {
-        if(t == 0) t = 2;
+        if(t == 0) t = 3;
         t--;
         Pic.setImage(new Image(pics[t]));
     }

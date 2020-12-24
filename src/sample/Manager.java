@@ -26,7 +26,7 @@ public class Manager {
             e.printStackTrace();
             System.out.println("fail");
         }
-        String password = "password=694907182";//自己的密码
+        String password = "password=654321";//自己的密码
         String url = "jdbc:sqlserver://127.0.0.1:1433;DatabaseName=HouseManager;user=sa;";
         url += password;
         try {

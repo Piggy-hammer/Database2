@@ -11,12 +11,12 @@
 <AnchorPane prefHeight="500.0" prefWidth="250.0" styleClass="background" stylesheets="@sample/DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.TController">
    <children>
       <ImageView fx:id="Pic" fitHeight="150.0" fitWidth="250.0" layoutX="58.0" pickOnBounds="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <Button layoutY="64.0" mnemonicParsing="false" onAction="#last" opacity="0.4" prefHeight="150.0" styleClass="button-1" text="&lt;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Button layoutY="64.0" mnemonicParsing="false" onAction="#last" opacity="0.25" prefHeight="150.0" styleClass="button-1" text="&lt;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <font>
             <Font size="50.0" />
          </font>
       </Button>
-      <Button layoutX="296.0" mnemonicParsing="false" onAction="#next" opacity="0.4" prefHeight="150.0" styleClass="button-1" text="&gt;" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Button layoutX="296.0" mnemonicParsing="false" onAction="#next" opacity="0.25" prefHeight="150.0" styleClass="button-1" text="&gt;" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <font>
             <Font size="50.0" />
          </font>

@@ -44,7 +44,7 @@ public class HolderController {
             Loc.setWrappingWidth(120);
             Loc.setFont(Font.font("system", 15));
             Loc.setFill(Color.WHITE);
-            rent.setText(e.Size+"m²"+"\n"+"￥"+e.getPrice());
+            rent.setText(e.getSize()+"m²"+"\n"+"￥"+e.getPrice());
             rent.getStyleClass().add("label-bright");
             imageView.setFitHeight(100);
             imageView.setFitWidth(100);
